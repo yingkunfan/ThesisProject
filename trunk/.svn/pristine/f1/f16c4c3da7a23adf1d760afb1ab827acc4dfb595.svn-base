@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<sriracha.frontend.android.AnalysisMenu xmlns:android="http://schemas.android.com/apk/res/android"
+                                        android:layout_width="fill_parent" android:layout_height="fill_parent"
+                                        android:id="@+id/analysis_menu"
+                                        android:background="@color/MenuBackground"
+                                        android:padding="5dip"
+                                        android:focusable="true"
+                                        android:focusableInTouchMode="true"
+                                        android:orientation="vertical"
+        >
+
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="0dp"
+                  android:orientation="vertical"
+                  android:layout_weight="10">
+
+        <Spinner android:layout_width="fill_parent" android:layout_height="wrap_content"
+                 android:id="@+id/analysis_type"/>
+
+        <!-- AC options -->
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/ac_analysis_options"
+                      android:orientation="vertical">
+
+            <!-- Frequency selection -->
+            <TableLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+                <TableRow>
+                    <TextView style="@style/HorizontalWeight"
+                              android:text="Start Frequency"/>
+
+                    <TextView style="@style/HorizontalWeight"
+                              android:text="Stop Frequency"/>
+                </TableRow>
+
+                <TableRow>
+                    <EditText style="@style/HorizontalWeight.AnalysisEditText"
+                              android:id="@+id/ac_analysis_startf"/>
+
+                    <EditText style="@style/HorizontalWeight.AnalysisEditText"
+                              android:id="@+id/ac_analysis_stopf"/>
+
+                </TableRow>
+
+            </TableLayout>
+
+            <!-- Number of steps -->
+            <TextView style="@style/HorizontalFull"
+                      android:text="Number of steps"/>
+
+            <EditText style="@style/HorizontalFull.AnalysisEditText"
+                      android:id="@+id/ac_analysis_num"
+                      android:inputType="number"/>
+
+            <!-- Frequency Scale -->
+            <TextView style="@style/HorizontalFull"
+                      android:text="Frequency Scale"/>
+
+            <Spinner style="@style/HorizontalFull.AnalysisEditText"
+                     android:id="@+id/ac_frequency_scale"/>
+
+
+        </LinearLayout>
+
+        <!-- DC options -->
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/dc_analysis_options"
+                      android:orientation="vertical">
+
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:text="Element to Sweep"/>
+
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/dc_analysis_element"
+                      android:textSize="32dip"
+                      android:text="[Select...]"/>
+
+            <TableLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+                <!-- Labels for Start Stop voltage -->
+                <TableRow>
+                    <TextView style="@style/HorizontalWeight"
+                              android:text="Start Value"/>
+
+                    <TextView style="@style/HorizontalWeight"
+                              android:text="Stop Value"/>
+
+                </TableRow>
+
+                <!-- EditText boxes for Start and stop Voltage-->
+                <TableRow>
+                    <EditText style="@style/HorizontalWeight.AnalysisEditText"
+                              android:id="@+id/dc_analysis_startv"/>
+
+
+                    <EditText style="@style/HorizontalWeight.AnalysisEditText"
+                              android:id="@+id/dc_analysis_stopv"
+                              android:layout_alignParentRight="true"/>
+                </TableRow>
+
+            </TableLayout>
+            <!-- increment Selection -->
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:text="Increment"/>
+            <EditText style="@style/HorizontalFull.AnalysisEditText"
+                      android:id="@+id/dc_analysis_incr"
+                      android:inputType="numberDecimal"/>
+
+        </LinearLayout>
+
+
+        <!-- Print type Selection control -->
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:id="@+id/print_type_label"
+                  android:text="Plot Type"/>
+
+        <Spinner android:layout_width="fill_parent" android:layout_height="wrap_content"
+                 android:id="@+id/print_type"
+                 android:layout_below="@id/print_type_label"/>
+
+
+        <!-- Voltage Difference Selector -->
+        <TableLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                     android:id="@+id/print_type_voltage">
+
+
+            <TableRow>
+                <TextView style="@style/HorizontalWeight"
+                          android:text="V+"/>
+
+                <TextView style="@style/HorizontalWeight"
+                          android:text="V-"/>
+
+            </TableRow>
+
+            <!-- Selectors -->
+
+            <TableRow>
+
+                <TextView style="@style/HorizontalWeight"
+                          android:id="@+id/print_node1"
+                          android:textSize="32dip"
+                          android:text="[...]"/>
+
+                <TextView style="@style/HorizontalWeight"
+                          android:id="@+id/print_node2"
+                          android:textSize="32dip"
+                          android:text="0"/>
+
+            </TableRow>
+
+
+        </TableLayout>
+
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/print_type_current"
+                      android:orientation="vertical">
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:text="Current across"/>
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/print_node_current"
+                      android:textSize="32dip"
+                      android:text="[...]"/>
+        </LinearLayout>
+
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/print_add"
+                android:layout_gravity="right"
+                android:text="Add"/>
+
+
+        <ListView android:layout_width="fill_parent" android:layout_height="fill_parent"
+                  android:id="@+id/print_statements"/>
+    </LinearLayout>
+
+
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="4dip"
+                    android:layout_gravity="bottom"
+            >
+        <Button android:layout_width="fill_parent" android:layout_height="fill_parent"
+                android:text="Analyse"
+                android:textSize="32dip"
+                android:textColor="#FFF"
+                android:background="@color/GoGreen"
+                android:id="@+id/analyse_button"
+                android:onClick="goButtonOnClick"/>
+        <Button android:layout_width="fill_parent" android:layout_height="fill_parent"
+                android:text="Cancel"
+                android:textSize="32dip"
+                android:textColor="#FFF"
+                android:background="@color/CancelRed"
+                android:id="@+id/cancel_button"
+                android:onClick="cancelButtonOnClick"
+                android:visibility="gone"/>
+    </RelativeLayout>
+
+    <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content"
+                 android:id="@+id/analysis_progress"
+                 android:layout_gravity="center"
+                 android:visibility="gone"/>
+
+</sriracha.frontend.android.AnalysisMenu>

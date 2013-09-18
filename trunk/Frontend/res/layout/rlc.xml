@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent" android:layout_height="fill_parent">
+    <TableLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                 android:stretchColumns="*">
+
+        <ImageView style="@style/CircuitMenuItemImage.Element"
+                   android:layout_marginTop="20dip"
+                   android:layout_marginBottom="20dip"
+                   android:src="@drawable/back_button"
+                   android:onClick="backButtonOnClick"
+                />
+
+        <TableRow style="@style/CircuitMenuRow">
+            <ImageView style="@style/CircuitMenuItemImage.Element"
+                       android:src="@drawable/circuitmenu_resistor"
+                       android:id="@+id/rlc_resistor"
+                       android:onClick="circuitElementOnClick"
+                    />
+            <ImageView style="@style/CircuitMenuItemImage.Element"
+                       android:src="@drawable/circuitmenu_capacitor"
+                       android:id="@+id/rlc_capacitor"
+                       android:onClick="circuitElementOnClick"
+                    />
+        </TableRow>
+
+        <TableRow style="@style/CircuitMenuRow">
+            <ImageView style="@style/CircuitMenuItemImage.Element"
+                       android:src="@drawable/circuitmenu_inductor"
+                       android:id="@+id/rlc_inductor"
+                       android:onClick="circuitElementOnClick"
+                    />
+        </TableRow>
+
+    </TableLayout>
+
+    <include layout="@layout/wire_and_hand"/>
+</RelativeLayout>
