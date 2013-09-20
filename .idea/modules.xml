@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/trunk/Frontend/Frontend.iml" filepath="$PROJECT_DIR$/trunk/Frontend/Frontend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/trunk/Math/Math.iml" filepath="$PROJECT_DIR$/trunk/Math/Math.iml" />
+      <module fileurl="file://$PROJECT_DIR$/trunk/Simulator/Simulator.iml" filepath="$PROJECT_DIR$/trunk/Simulator/Simulator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/trunk/Test/Test.iml" filepath="$PROJECT_DIR$/trunk/Test/Test.iml" />
+    </modules>
+  </component>
+</project>
+
