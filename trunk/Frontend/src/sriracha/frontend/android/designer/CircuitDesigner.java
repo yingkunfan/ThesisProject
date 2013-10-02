@@ -187,14 +187,14 @@ public class CircuitDesigner extends GestureDetector.SimpleOnGestureListener
         // The first endpoint of a wire
         if (getCanvasState() == CanvasState.IDLE)
         {
-            lastInsertedIntersection = elementView.getClosestPort(snappedX, snappedY, true);
+            lastInsertedIntersection = elementView.getClosestPort(snappedX, snappedY, false);
             wireManager.addIntersection(lastInsertedIntersection);
             setCanvasState(CanvasState.DRAWING_WIRE);
         } else if (getCanvasState() == CanvasState.DRAWING_WIRE)
         {
             // Create new node, and end the wire at the new element
-            CircuitElementPortView port = elementView.getClosestPort(snappedX, snappedY, true);
-            switchIntersectionToClosestPort(port.getX(), port.getY());
+            CircuitElementPortView port = elementView.getClosestPort(snappedX, snappedY, false);
+     //       switchIntersectionToClosestPort(port.getX(), port.getY());
             wireManager.connectNewIntersection(lastInsertedIntersection, port);
 
             // End the wire drawing now.
@@ -218,7 +218,7 @@ public class CircuitDesigner extends GestureDetector.SimpleOnGestureListener
         if (clickedPort != null)
         {
             // Case 1: clicked a port
-            switchIntersectionToClosestPort(snappedX, snappedY);
+          //  switchIntersectionToClosestPort(snappedX, snappedY);
             onWireModeElementClick(clickedPort.getElement(), snappedX, snappedY);
         } else
         {
