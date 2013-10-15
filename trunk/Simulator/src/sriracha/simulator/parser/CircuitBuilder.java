@@ -620,7 +620,6 @@ public class CircuitBuilder
         else if (str2.startsWith("f"))
             factor = Math.pow(10, -15);
 
-
         return factor * Double.parseDouble(str1);
 
     }

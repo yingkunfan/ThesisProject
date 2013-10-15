@@ -1,5 +1,7 @@
 package sriracha.frontend.android.designer;
 
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,6 +17,7 @@ import sriracha.frontend.android.model.CircuitElementView;
 import sriracha.frontend.android.results.IElementSelector;
 import sriracha.frontend.model.CircuitElement;
 import sriracha.frontend.model.CircuitElementManager;
+import android.graphics.Canvas;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -51,6 +54,8 @@ public class CircuitDesigner extends GestureDetector.SimpleOnGestureListener
     private WireSegment dragSegment;
 
     private boolean recentMove;
+
+    private DrawCorrectPort redCircle;
 
     private CircuitDesignerMenu circuitDesignerMenu;
     private CircuitElementActivator activator;
@@ -120,6 +125,7 @@ public class CircuitDesigner extends GestureDetector.SimpleOnGestureListener
             case ELEMENT:
                 itemId = selectedItemId;
                 canvasState = CanvasState.IDLE;
+                wireManager.removeCircle();
                 break;
             case WIRE:
                 itemId = R.id.wire;
@@ -127,6 +133,7 @@ public class CircuitDesigner extends GestureDetector.SimpleOnGestureListener
             case HAND:
                 itemId = R.id.hand;
                 canvasState = CanvasState.IDLE;
+                wireManager.removeCircle();
                 break;
         }
 
@@ -189,6 +196,7 @@ public class CircuitDesigner extends GestureDetector.SimpleOnGestureListener
         {
             lastInsertedIntersection = elementView.getClosestPort(snappedX, snappedY, false);
             wireManager.addIntersection(lastInsertedIntersection);
+            wireManager.drawCircle(elements, lastInsertedIntersection);
             setCanvasState(CanvasState.DRAWING_WIRE);
         } else if (getCanvasState() == CanvasState.DRAWING_WIRE)
         {
@@ -196,6 +204,7 @@ public class CircuitDesigner extends GestureDetector.SimpleOnGestureListener
             CircuitElementPortView port = elementView.getClosestPort(snappedX, snappedY, false);
      //       switchIntersectionToClosestPort(port.getX(), port.getY());
             wireManager.connectNewIntersection(lastInsertedIntersection, port);
+            wireManager.removeCircle();
 
             // End the wire drawing now.
             endWireDraw();

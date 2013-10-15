@@ -8,6 +8,7 @@ import sriracha.frontend.NodeCrawler;
 import sriracha.frontend.android.model.CircuitElementPortView;
 import sriracha.frontend.android.model.CircuitElementView;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,6 +25,9 @@ public class WireManager
 
     private ViewGroup canvasView;
     private Context context;
+    private boolean throughelement = false;
+
+    DrawCorrectPort correctPort;
 
     public WireManager(ViewGroup canvasView)
     {
@@ -89,17 +93,30 @@ public class WireManager
                 extendVertically = orientation % 180 == 0;
 
                 boolean passingThroughElement = false;
-                if (extendVertically)
+                if (extendVertically && to.getY() < from.getY())
                 {
-                    passingThroughElement |= orientation == 0 && port.getTransformedPosition()[1] < 0 && to.getY() > from.getY();
-                    passingThroughElement |= orientation == 180 && port.getTransformedPosition()[1] > 0 && to.getY() < from.getY();
-                } else
-                {
-                    passingThroughElement |= orientation == 90 && port.getTransformedPosition()[0] < 0 && to.getX() > from.getX();
-                    passingThroughElement |= orientation == 270 && port.getTransformedPosition()[0] > 0 && to.getX() < from.getX();
+
+                    passingThroughElement |= orientation == 0 && !(port.getTransformedPosition()[1] < 0);
+                    passingThroughElement |= orientation == 180 && port.getTransformedPosition()[1] > 0; /*&& to.getY() > from.getY()*/
+                } else if(extendVertically && to.getY() > from.getY()) {
+                    passingThroughElement = (passingThroughElement || orientation == 0) && (port.getTransformedPosition()[1] < 0);
                 }
-                if (passingThroughElement)
+
+                else
+                {
+                    passingThroughElement |= orientation == 90 && port.getTransformedPosition()[0] < 0 /*&& to.getX() > from.getX()*/;
+
+                    passingThroughElement |= orientation == 270 && port.getTransformedPosition()[0] < 0 /*&& to.getX() < from.getX()*/;
+                    if(from.getX() > to.getX())  {
+                        passingThroughElement |= orientation == 90 && port.getTransformedPosition()[0] > 0;
+                        passingThroughElement |= orientation == 270 && port.getTransformedPosition()[0] > 0;
+                    }
+                }
+
+                if (passingThroughElement)  {
                     extendVertically = !extendVertically;
+                }
+
             } else
             {
                 WireIntersection intersection = (WireIntersection) from;
@@ -566,5 +583,15 @@ public class WireManager
     {
         for (WireSegment segment : segments)
             segment.invalidate();
+    }
+
+    public void drawCircle(ArrayList<CircuitElementView> elements, IWireIntersection intersection) {
+        correctPort = new DrawCorrectPort(getContext(), elements, intersection);
+        canvasView.addView(correctPort);
+        correctPort.invalidate();
+    }
+
+    public void removeCircle() {
+        canvasView.removeView(correctPort);
     }
 }
