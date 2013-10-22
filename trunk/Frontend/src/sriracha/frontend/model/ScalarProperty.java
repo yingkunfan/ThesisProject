@@ -54,9 +54,11 @@ abstract public class ScalarProperty extends Property
     {
         String[] units = new String[unitPrefixes.length];
         int i = 0;
-        for (String prefix : unitPrefixes)
-        {
-            units[i++] = prefix + getBaseUnit();
+        if(this.baseUnit != null) {
+            for (String prefix : unitPrefixes)
+            {
+                units[i++] = prefix + getBaseUnit();
+            }
         }
         return units;
     }

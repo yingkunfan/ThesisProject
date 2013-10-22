@@ -2,6 +2,7 @@ package sriracha.frontend.android.persistence;
 
 import android.content.*;
 import android.os.*;
+import java.util.*;
 
 import java.io.*;
 import java.lang.reflect.*;
@@ -33,7 +34,24 @@ public class Storage
                 return name.endsWith(extensionFilter);
             }
         });
-        return files;
+
+        //Get list from downloads as well for the email function
+
+        File file2 = new File("/mnt/sdcard/Download/");
+        String[] files2 = file2.list(new FilenameFilter() {
+            @Override
+            public boolean accept(File file, String name)
+            {
+                return name.endsWith(extensionFilter);
+            }
+        });
+
+        String[] allFiles = new String[files.length + files2.length];
+        System.arraycopy(files,0,allFiles,0,files.length);
+        System.arraycopy(files2,0,allFiles,files.length,files2.length);
+
+
+        return allFiles;
     }
 
     public void load(String fileName, Serialization serialization) throws IOException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException

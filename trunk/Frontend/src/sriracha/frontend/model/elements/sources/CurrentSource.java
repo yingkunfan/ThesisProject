@@ -100,7 +100,7 @@ public class CurrentSource extends TwoPortElement implements Serializable
                 }
             };
 
-            final ScalarProperty acProp = new ScalarProperty("AC Current", "A")
+            final ScalarProperty acProp = new ScalarProperty("AC Amplitude", "A")
             {
                 @Override
                 public String getValue()
@@ -191,7 +191,7 @@ public class CurrentSource extends TwoPortElement implements Serializable
                 }
             };
 
-            properties = new Property[]{dcProp, acProp, /*freqProp, */phaseProp};
+            properties = new Property[]{dcProp, acProp, freqProp, phaseProp};
         }
         return properties;
     }

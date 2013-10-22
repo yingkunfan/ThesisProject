@@ -55,7 +55,7 @@ public class CircuitDesigner extends GestureDetector.SimpleOnGestureListener
 
     private boolean recentMove;
 
-    private DrawCorrectPort redCircle;
+    //private DrawCorrectPort redCircle;
 
     private CircuitDesignerMenu circuitDesignerMenu;
     private CircuitElementActivator activator;

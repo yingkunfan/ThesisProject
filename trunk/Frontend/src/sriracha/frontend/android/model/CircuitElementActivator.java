@@ -21,6 +21,7 @@ import sriracha.frontend.model.elements.sources.Ground;
 import sriracha.frontend.model.elements.sources.VCC;
 import sriracha.frontend.model.elements.sources.VoltageSource;
 
+
 import java.lang.reflect.*;
 import java.util.*;
 
@@ -87,8 +88,8 @@ public class CircuitElementActivator
             case R.id.sources_ground:
                 return new GroundView(context, new Ground(elementManager), positionX, positionY, wireManager);
 
-            case R.id.sources_sine:
-                return new SineSourceView(context, new VoltageSource(elementManager), positionX, positionY, wireManager);
+//            case R.id.sources_sine:
+//                return new ACSourceView(context, new ACSource(elementManager), positionX, positionY, wireManager);
 
             case R.id.rlc_resistor:
                 return new ResistorView(context, new Resistor(elementManager), positionX, positionY, wireManager);

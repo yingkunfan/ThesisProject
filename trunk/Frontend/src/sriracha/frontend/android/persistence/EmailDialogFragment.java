@@ -44,8 +44,9 @@ public class EmailDialogFragment extends DialogFragment
 
                     //Fetch email and subject from form
                     String email = ((TextView)getDialog().findViewById(R.id.recipient_email)).getText().toString();
-                    String subject =  ((TextView)getDialog().findViewById(R.id.subject)).getText().toString();
-                  //  String body = ((TextView)getDialog().findViewById(R.id.body)).getText().toString();
+                    //String subject =  ((TextView)getDialog().findViewById(R.id.subject)).getText().toString();
+
+                    //  String body = ((TextView)getDialog().findViewById(R.id.body)).getText().toString();
 
                     if (email.isEmpty())
                     {
@@ -54,6 +55,7 @@ public class EmailDialogFragment extends DialogFragment
                     }
                     //Fetch filename
                     String fileName = (adapter.getItem(position));
+                    String subject =  "Attached is circuit: "+fileName;
 
                     System.out.println("fileName is:"+fileName);
                     System.out.println("Email:"+email);

@@ -39,16 +39,7 @@
               android:inputType="text"
             />
 
-    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-              android:layout_marginBottom="5dip"
-              android:text="Subject"
-              android:textSize="20dip"
-            />
-    <EditText android:layout_width="fill_parent" android:layout_height="wrap_content"
-              android:layout_marginBottom="20dip"
-              android:id="@+id/subject"
-              android:inputType="text"
-            />
+
 
     <!--TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
               android:layout_marginBottom="5dip"

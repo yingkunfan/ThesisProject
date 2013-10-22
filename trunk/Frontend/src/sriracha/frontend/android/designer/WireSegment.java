@@ -16,7 +16,7 @@ import java.util.Random;
  * two intersections.
  * The class holds a reference to each endpoint, which must be an instance of
  * {@link IWireIntersection}. It is also responsible for its own serialization,
- * since the defaualt Java serialization does not work well for View subclasses.
+ * since the default Java serialization does not work well for View subclasses.
  */
 public class WireSegment extends View
 {

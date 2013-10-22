@@ -101,7 +101,7 @@ public class VoltageSource extends TwoPortElement implements Serializable
                 }
             };
 
-            final ScalarProperty acProp = new ScalarProperty("AC Voltage", "V")
+            final ScalarProperty acProp = new ScalarProperty("AC Amplitude", "V")
             {
                 @Override
                 public String getValue()
@@ -192,7 +192,7 @@ public class VoltageSource extends TwoPortElement implements Serializable
                 }
             };
 
-            properties = new Property[]{dcProp, acProp, /*freqProp, */phaseProp};
+            properties = new Property[]{dcProp, acProp, freqProp, phaseProp};
         }
         return properties;
     }
