@@ -49,6 +49,16 @@
                        android:onClick="circuitElementOnClick"
                     />
         </TableRow>
+
+        <TableRow style="@style/CircuitMenuRow">
+            <ImageView style="@style/CircuitMenuItemImage.Element"
+                       android:src="@drawable/circuitmenu_sine"
+                       android:id="@+id/sources_sine"
+                       android:onClick="circuitElementOnClick"
+                    />
+
+        </TableRow>
+
     </TableLayout>
 
     <include layout="@layout/wire_and_hand"/>

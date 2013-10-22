@@ -14,6 +14,7 @@ import sriracha.frontend.android.designer.CircuitDesigner;
 import sriracha.frontend.android.designer.CircuitDesignerMenu;
 import sriracha.frontend.android.model.CircuitElementActivator;
 import sriracha.frontend.android.persistence.LoadDialogFragment;
+import sriracha.frontend.android.persistence.EmailDialogFragment;
 import sriracha.frontend.android.persistence.SaveDialogFragment;
 import sriracha.frontend.android.persistence.Serialization;
 import sriracha.frontend.android.persistence.Storage;
@@ -248,7 +249,7 @@ public class MainActivity extends Activity
     {
         final ListView menu = (ListView) findViewById(R.id.wrenchmenu_items);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                new String[]{"New", "Load", "Save", "Save As...", "Export Netlist..."});
+                new String[]{"New", "Load", "Save", "Save As...", "Export Netlist...","Email"});
         menu.setAdapter(adapter);
 
         menu.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -279,6 +280,9 @@ public class MainActivity extends Activity
                         break;
                     case 4: // Export Netlist...
                         showDialog(new SaveDialogFragment(SaveDialogFragment.SAVE_NETLIST));
+                        break;
+                    case 5: // Email function
+                        showDialog(EmailDialogFragment.newInstance());
                         break;
                 }
                 menu.setVisibility(View.GONE);

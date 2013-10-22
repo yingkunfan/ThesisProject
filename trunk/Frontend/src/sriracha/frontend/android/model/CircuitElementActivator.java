@@ -9,10 +9,7 @@ import sriracha.frontend.android.model.elements.InductorView;
 import sriracha.frontend.android.model.elements.ResistorView;
 import sriracha.frontend.android.model.elements.ctlsources.DependentCurrentSourceView;
 import sriracha.frontend.android.model.elements.ctlsources.DependentVoltageSourceView;
-import sriracha.frontend.android.model.elements.sources.CurrentSourceView;
-import sriracha.frontend.android.model.elements.sources.GroundView;
-import sriracha.frontend.android.model.elements.sources.VCCView;
-import sriracha.frontend.android.model.elements.sources.VoltageSourceView;
+import sriracha.frontend.android.model.elements.sources.*;
 import sriracha.frontend.model.*;
 import sriracha.frontend.model.elements.Capacitor;
 import sriracha.frontend.model.elements.Inductor;
@@ -31,7 +28,7 @@ import java.util.*;
  * Activates {@link CircuitElementView}s.
  * There are two ways to instantiate an element: by button ID or by UUID.
  * Instantiation by button ID occurs when an element is added to the canvas using the
- * circuit designer. In this case, the {@link CircuitDesigner} keeps track of the currently
+ * circuit designer. In this case, the {@link sriracha.frontend.android.designer.CircuitDesigner} keeps track of the currently
  * selected element by holding the ID of the button that is clicked to choose that element.
  * Instantiation by UUID occurs when a circuit is deserialized from a loaded file. In this case,
  * the apropriate CircuitElementView is retrieved based on the serialized UUID, and the class is
@@ -89,6 +86,9 @@ public class CircuitElementActivator
 
             case R.id.sources_ground:
                 return new GroundView(context, new Ground(elementManager), positionX, positionY, wireManager);
+
+            case R.id.sources_sine:
+                return new SineSourceView(context, new VoltageSource(elementManager), positionX, positionY, wireManager);
 
             case R.id.rlc_resistor:
                 return new ResistorView(context, new Resistor(elementManager), positionX, positionY, wireManager);

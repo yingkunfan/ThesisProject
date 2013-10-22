@@ -2,7 +2,7 @@
 <resources>
     <style name="CircuitMenuRow">
         <item name="android:layout_marginTop">20dip</item>
-        <item name="android:layout_marginBottom">20dip</item>
+        <!--item name="android:layout_marginBottom">20dip</item>-->
         <item name="android:paddingTop">5dip</item>
         <item name="android:paddingBottom">5dip</item>
     </style>
