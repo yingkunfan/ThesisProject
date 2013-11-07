@@ -109,6 +109,40 @@
 
         </LinearLayout>
 
+        <!-- Transient options -->
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:id="@+id/transient_analysis_options"
+                      android:orientation="vertical">
+
+            <TableLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <TableRow>
+                    <TextView style="@style/HorizontalWeight"
+                              android:text="Time Step"/>
+                    <EditText style="@style/HorizontalWeight.AnalysisEditText"
+                              android:id="@+id/transient_analysis_time_step"/>
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView style="@style/HorizontalWeight"
+                              android:text="Stop Time"/>
+                    <EditText style="@style/HorizontalWeight.AnalysisEditText"
+                              android:id="@+id/transient_analysis_stop_time"/>
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView style="@style/HorizontalWeight"
+                              android:text="Start Time"/>
+                    <EditText style="@style/HorizontalWeight.AnalysisEditText"
+                              android:id="@+id/transient_analysis_start_time"/>
+                </TableRow>
+
+            </TableLayout>
+
+
+        </LinearLayout>
+
 
         <!-- Print type Selection control -->
         <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"

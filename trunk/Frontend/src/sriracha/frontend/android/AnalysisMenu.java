@@ -56,6 +56,10 @@ public class AnalysisMenu extends LinearLayout
     private ListView printStatements;
     private Button addPrint;
 
+    private TextView timeStep;
+    private TextView stopTime;
+    private TextView startTime;
+
     public AnalysisMenu(Context context)
     {
         super(context);
@@ -101,6 +105,10 @@ public class AnalysisMenu extends LinearLayout
         printNodeCurrent = (TextView) findViewById(R.id.print_node_current);
         printStatements = (ListView) findViewById(R.id.print_statements);
         addPrint = (Button) findViewById(R.id.print_add);
+
+        timeStep = (TextView) findViewById(R.id.transient_analysis_time_step);
+        stopTime = (TextView) findViewById(R.id.transient_analysis_stop_time);
+        startTime = (TextView) findViewById(R.id.transient_analysis_start_time);
     }
 
     public void reset()
@@ -115,6 +123,9 @@ public class AnalysisMenu extends LinearLayout
         acStop.setText("");
         acScale.setSelection(0);
         printType.setSelection(0);
+        timeStep.setText("");
+        stopTime.setText("");
+        startTime.setText("");
         resetPrints();
     }
 
@@ -142,6 +153,8 @@ public class AnalysisMenu extends LinearLayout
                 analysis = getDcAnalysis();
             else if (analysisType.equals("AC"))
                 analysis = getAcAnalysis();
+            else if (analysisType.equals("TR"))
+                analysis = getTrAnalysis();
         } catch (RuntimeException e)
         {
             analysis = "";
@@ -167,6 +180,8 @@ public class AnalysisMenu extends LinearLayout
                 analysis = getDcAnalysis();
             else if (analysisType.equals("AC"))
                 analysis = getAcAnalysis();
+            else if (analysisType.equals("TR"))
+                analysis = getTrAnalysis();
         } catch (RuntimeException e)
         {
             showToast(e.getMessage());
@@ -257,6 +272,8 @@ public class AnalysisMenu extends LinearLayout
             return "DC";
         else if (analysisType.equals("Frequency"))
             return "AC";
+        else if (analysisType.equals("Transient Response"))
+            return "TR";
         else
             throw new RuntimeException("Invalid analysis type: " + analysisType);
     }
@@ -274,6 +291,9 @@ public class AnalysisMenu extends LinearLayout
         out.writeObject(dcStart.getText().toString());
         out.writeObject(dcStop.getText().toString());
         out.writeObject(dcElement.getText().toString());
+        out.writeObject(startTime.getText().toString());
+        out.writeObject(stopTime.getText().toString());
+        out.writeObject(timeStep.getText().toString());
         out.writeInt(printType.getSelectedItemPosition());
 //        out.writeObject(printN1.getText().toString());
 //        out.writeObject(printN2.getText().toString());
@@ -299,6 +319,9 @@ public class AnalysisMenu extends LinearLayout
         dcStart.setText((String) in.readObject());
         dcStop.setText((String) in.readObject());
         dcElement.setText((String) in.readObject());
+        startTime.setText((String) in.readObject());
+        stopTime.setText((String) in.readObject());
+        timeStep.setText((String) in.readObject());
         printType.setSelection(in.readInt());
 
         resetPrints();
@@ -361,6 +384,23 @@ public class AnalysisMenu extends LinearLayout
         return analysis;
     }
 
+    private String getTrAnalysis()
+    {
+        float tStep, start, stop;
+        try
+        {
+            tStep = Float.parseFloat(timeStep.getText().toString());
+            start = Float.parseFloat(startTime.getText().toString());
+            stop = Float.parseFloat(stopTime.getText().toString());
+        } catch (NumberFormatException e)
+        {
+            throw new NumberFormatException("You must specify a valid number for time step, stop time and start time.");
+        }
+
+        String analysis = String.format(".TR %f %f %f", tStep, stop, start);
+        return analysis;
+    }
+
     private int getFreqScaleType()
     {
         return acScale.getSelectedItemPosition();
@@ -413,7 +453,8 @@ public class AnalysisMenu extends LinearLayout
     {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, new String[]{
                 "DC Sweep",
-                "Frequency"
+                "Frequency",
+                "Transient Response"
         });
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         analysisType.setAdapter(adapter);
@@ -429,6 +470,8 @@ public class AnalysisMenu extends LinearLayout
                     showDcMenu();
                 else if (((TextView) view).getText().toString().equals("Frequency"))
                     showAcMenu();
+                else if (((TextView) view).getText().toString().equals("Transient Response"))
+                    showTrMenu();
                 else
                     throw new RuntimeException("Invalid analysis type");
             }
@@ -476,12 +519,22 @@ public class AnalysisMenu extends LinearLayout
     {
         findViewById(R.id.dc_analysis_options).setVisibility(VISIBLE);
         findViewById(R.id.ac_analysis_options).setVisibility(GONE);
+        findViewById(R.id.transient_analysis_options).setVisibility(GONE);
     }
 
     private void showAcMenu()
     {
         findViewById(R.id.dc_analysis_options).setVisibility(GONE);
         findViewById(R.id.ac_analysis_options).setVisibility(VISIBLE);
+        findViewById(R.id.transient_analysis_options).setVisibility(GONE);
+
+    }
+
+    private void showTrMenu()
+    {
+        findViewById(R.id.dc_analysis_options).setVisibility(GONE);
+        findViewById(R.id.ac_analysis_options).setVisibility(GONE);
+        findViewById(R.id.transient_analysis_options).setVisibility(VISIBLE);
     }
 
     private void showVoltagePrintMenu()
