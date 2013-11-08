@@ -98,6 +98,16 @@ public class CircuitElementActivator
             case R.id.rlc_inductor:
                 return new InductorView(context, new Inductor(elementManager), positionX, positionY, wireManager);
 
+            case R.id.dnt_diode:
+                return new DiodeView(context, new Inductor(elementManager), positionX, positionY, wireManager);
+
+            case R.id.dnt_npn:
+                return new NpnView(context, new Inductor(elementManager), positionX, positionY, wireManager);
+
+            case R.id.dnt_pnp:
+                return new PnpView(context, new Inductor(elementManager), positionX, positionY, wireManager);
+
+
             default:
                 return null;
         }
