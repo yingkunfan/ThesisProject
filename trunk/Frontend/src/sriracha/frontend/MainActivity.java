@@ -170,7 +170,8 @@ public class MainActivity extends Activity
 
     public void dntOnClick(View view)
     {
-        showToast("Coming Soon");
+        showCircuitMenu(R.id.dnt);
+        // showToast("Coming Soon");
     }
 
     public void subCircuitOnClick(View view)
