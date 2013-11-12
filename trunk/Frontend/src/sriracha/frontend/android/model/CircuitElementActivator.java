@@ -107,6 +107,11 @@ public class CircuitElementActivator
             case R.id.dnt_pnp:
                 return new PnpView(context, new Inductor(elementManager), positionX, positionY, wireManager);
 
+            case R.id.dnt_mosfetn:
+                return new PnpView(context, new Inductor(elementManager), positionX, positionY, wireManager);
+
+            case R.id.dnt_mosfetp:
+                return new PnpView(context, new Inductor(elementManager), positionX, positionY, wireManager);
 
             default:
                 return null;

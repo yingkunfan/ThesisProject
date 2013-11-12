@@ -33,6 +33,19 @@
                 />
     </TableRow>
 
+    <TableRow style="@style/CircuitMenuRow">
+        <ImageView style="@style/CircuitMenuItemImage.Element"
+                   android:src="@drawable/circuitmenu_mosfet_n"
+                   android:id="@+id/dnt_mosfetn"
+                   android:onClick="circuitElementOnClick"
+                />
+        <ImageView style="@style/CircuitMenuItemImage.Element"
+                   android:src="@drawable/circuitmenu_mosfet_p"
+                   android:id="@+id/dnt_mosfetp"
+                   android:onClick="circuitElementOnClick"
+                />
+    </TableRow>
+
 </TableLayout>
 
 <include layout="@layout/wire_and_hand"/>
