@@ -2,6 +2,7 @@ package sriracha.simulator.model;
 
 import sriracha.simulator.solver.analysis.ac.ACEquation;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
+import sriracha.simulator.solver.analysis.trans.TransEquation;
 
 /**
  * Base class for all circuit elements including sources and subcircuits
@@ -82,6 +83,12 @@ public abstract class CircuitElement
      */
     public abstract void applyAC(ACEquation equation);
 
+    /**
+     * Stamps the equation for Transient analysis.
+     *
+     * @param equation TransEquation object to be stamped
+     */
+    public abstract void applyTrans(TransEquation equation);
 
     @Override
     public String toString()

@@ -50,6 +50,8 @@ public abstract class NodeInfo
                 return new double[]{getPhase(val)};
             case Decibels:
                 return new double[]{toDecibel(getMagnitude(val))};
+            case Transient:
+                return toArray(val);
             default:
                 return null;
 
@@ -72,6 +74,8 @@ public abstract class NodeInfo
                 return "P";
             case Decibels:
                 return "DB";
+            case Transient:
+                return "T";
             default:
                 return null;
 

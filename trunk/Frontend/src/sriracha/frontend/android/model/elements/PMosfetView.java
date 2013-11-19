@@ -10,11 +10,18 @@ import sriracha.frontend.model.CircuitElement;
 
 import java.util.UUID;
 
-public class DiodeView extends CircuitElementView
-{
+/**
+ * Created with IntelliJ IDEA.
+ * User: shadiasfour
+ * Date: 13-11-13
+ * Time: 1:00 PM
+ * To change this template use File | Settings | File Templates.
+ */
+public class PMosfetView extends CircuitElementView {
+
     CircuitElementPortView ports[];
 
-    public DiodeView(Context context, CircuitElement element, float positionX, float positionY, WireManager wireManager)
+    public PMosfetView(Context context, CircuitElement element, float positionX, float positionY, WireManager wireManager)
     {
         super(context, element, positionX, positionY, wireManager);
     }
@@ -22,7 +29,7 @@ public class DiodeView extends CircuitElementView
     @Override
     public int getDrawableId()
     {
-        return R.drawable.dnt_diode;
+        return R.drawable.mosfet_p;
     }
 
     @Override
@@ -31,8 +38,10 @@ public class DiodeView extends CircuitElementView
         if (ports == null)
         {
             ports = new CircuitElementPortView[]{
-                    new CircuitElementPortView(this, 0.5f, 0),
                     new CircuitElementPortView(this, -0.5f, 0),
+                    new CircuitElementPortView(this, 0.5f, 0),
+                    new CircuitElementPortView(this, 0, -0.5f),
+                    new CircuitElementPortView(this, 0, 0.5f)
             };
         }
         return ports;
@@ -41,6 +50,6 @@ public class DiodeView extends CircuitElementView
     @Override
     public UUID getTypeUUID()
     {
-        return ElementTypeUUID.DIODE;
+        return ElementTypeUUID.PMOSFET;
     }
 }

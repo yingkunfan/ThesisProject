@@ -4,6 +4,7 @@ import sriracha.simulator.model.CircuitElement;
 import sriracha.simulator.model.elements.sources.VoltageSource;
 import sriracha.simulator.solver.analysis.ac.ACEquation;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
+import sriracha.simulator.solver.analysis.trans.TransEquation;
 
 public class CCCS extends CCSource
 {
@@ -34,6 +35,15 @@ public class CCCS extends CCSource
     {
         equation.applyMatrixStamp(nPlus, dummySource.getCurrentVarIndex(), gm);
         equation.applyMatrixStamp(nMinus, dummySource.getCurrentVarIndex(), -gm);
+
+    }
+
+    /* TODO */
+    @Override
+    public void applyTrans(TransEquation equation)
+    {
+        equation.applyTransRealMatrixStamp(nPlus, dummySource.getCurrentVarIndex(), gm);
+        equation.applyTransRealMatrixStamp(nMinus, dummySource.getCurrentVarIndex(), -gm);
 
     }
 

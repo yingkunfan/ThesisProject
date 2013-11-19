@@ -9,5 +9,6 @@ package sriracha.simulator.solver.analysis;
  */
 public enum AnalysisType {
     AC,
-    DC
+    DC,
+    TR
 }

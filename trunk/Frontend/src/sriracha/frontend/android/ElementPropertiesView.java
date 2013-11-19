@@ -24,6 +24,9 @@ import java.util.Arrays;
  */
 public class ElementPropertiesView extends LinearLayout
 {
+    int selectedItem = 0;
+    boolean firstTime = true;
+
     public ElementPropertiesView(Context context)
     {
         super(context);
@@ -102,7 +105,7 @@ public class ElementPropertiesView extends LinearLayout
     {
         showNameAndType(circuitElementView);
 
-        ViewGroup propertiesView = (ViewGroup) findViewById(R.id.properties_current_property);
+        final ViewGroup propertiesView = (ViewGroup) findViewById(R.id.properties_current_property);
         propertiesView.removeAllViews();
 
         for (Property property : circuitElementView.getElement().getProperties())
@@ -118,8 +121,9 @@ public class ElementPropertiesView extends LinearLayout
                 final Spinner propertyUnits = (Spinner) scalarPropertyView.findViewById(R.id.scalar_property_unit_list);
 
                 propertiesView.addView(scalarPropertyView);
-
+//
                 propertyName.setText(scalarProperty.getName());
+
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, scalarProperty.getUnitsList());
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -140,6 +144,7 @@ public class ElementPropertiesView extends LinearLayout
                 });
 
                 propertyValue.setText(scalarProperty.getValue());
+
                 propertyValue.setOnEditorActionListener(new TextView.OnEditorActionListener()
                 {
                     @Override
@@ -148,6 +153,7 @@ public class ElementPropertiesView extends LinearLayout
                         try
                         {
                             scalarProperty.trySetValue(textView.getText().toString());
+
                         }
                         catch (Exception e)
                         {
@@ -275,6 +281,178 @@ public class ElementPropertiesView extends LinearLayout
                 sourceNode1.setOnClickListener(listener);
                 sourceNode2.setOnClickListener(listener);
             }
+        }
+        Spinner modeSpinner = (Spinner) super.findViewById(R.id.mode_list);
+        TextView modeText = (TextView) super.findViewById(R.id.mode_text);
+
+        firstTime = true;
+
+        if((circuitElementView.getElement().getType().equals("Voltage Source") || circuitElementView.getElement().getType().equals("Current Source")))  {
+            modeSpinner.setVisibility(VISIBLE);
+            modeText.setText("Choose Source Type:");
+            modeText.setVisibility(VISIBLE);
+            String modeArray[] = {"DC", "AC", "Sine", "Piecewise Linear", "Pulse"};
+
+            ArrayAdapter<String> myAdapter = new ArrayAdapter<String> (getContext(), android.R.layout.simple_spinner_item, modeArray);
+            myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            modeSpinner.setAdapter(myAdapter);
+
+            modeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    //int n = adapterView.getSelectedItemPosition();
+                    if(firstTime) {
+                        if(i == 0 && circuitElementView.getSourceType() != 0) {
+                            i = circuitElementView.getSourceType();
+                            adapterView.setSelection(i);
+                        }
+
+                    }
+
+                    switch (i) {
+                        case 0:
+
+                            propertiesView.getChildAt(0).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(1).setVisibility(GONE);
+                            propertiesView.getChildAt(2).setVisibility(GONE);
+                            propertiesView.getChildAt(3).setVisibility(GONE);
+                            propertiesView.getChildAt(4).setVisibility(GONE);
+                            propertiesView.getChildAt(5).setVisibility(GONE);
+
+                            break;
+                        case 1:
+
+                            propertiesView.getChildAt(0).setVisibility(GONE);
+                            propertiesView.getChildAt(1).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(2).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(3).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(4).setVisibility(GONE);
+                            propertiesView.getChildAt(5).setVisibility(GONE);
+
+                            break;
+                        case 2:
+
+                            propertiesView.getChildAt(0).setVisibility(GONE);
+                            propertiesView.getChildAt(1).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(2).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(3).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(4).setVisibility(GONE);
+                            propertiesView.getChildAt(5).setVisibility(GONE);
+
+                            break;
+                        case 3:
+
+                            propertiesView.getChildAt(0).setVisibility(GONE);
+                            propertiesView.getChildAt(1).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(2).setVisibility(GONE);
+                            propertiesView.getChildAt(3).setVisibility(GONE);
+                            propertiesView.getChildAt(4).setVisibility(GONE);
+                            propertiesView.getChildAt(5).setVisibility(VISIBLE);
+
+                            break;
+                        case 4:
+
+                            propertiesView.getChildAt(0).setVisibility(GONE);
+                            propertiesView.getChildAt(1).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(2).setVisibility(GONE);
+                            propertiesView.getChildAt(3).setVisibility(GONE);
+                            propertiesView.getChildAt(4).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(5).setVisibility(GONE);
+
+                            break;
+                        default:
+                            break;
+                    }
+                    circuitElementView.setSourceType(i);
+                    firstTime = false;
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                    //To change body of implemented methods use File | Settings | File Templates.
+                  //  adapterView.setSelection(selectedItem);
+                }
+            });
+        }
+        else if(circuitElementView.getElement().getType().contains("Mosfet")) {
+            modeSpinner.setVisibility(VISIBLE);
+            modeText.setText("Choose Mosfet Level:");
+            modeText.setVisibility(VISIBLE);
+            String modeArray[] = {"Level 1", "Level 2", "Level 3"};
+
+            ArrayAdapter<String> myAdapter = new ArrayAdapter<String> (getContext(), android.R.layout.simple_spinner_item, modeArray);
+            myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            modeSpinner.setAdapter(myAdapter);
+
+            modeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    //int n = adapterView.getSelectedItemPosition();
+                    if(i == 0 && circuitElementView.getSourceType() != 0 && firstTime) {
+                        i = circuitElementView.getSourceType();
+                        adapterView.setSelection(i);
+                    }
+                    switch (i) {
+                        case 0:
+
+                            propertiesView.getChildAt(0).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(1).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(2).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(3).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(4).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(5).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(6).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(7).setVisibility(GONE);
+                            propertiesView.getChildAt(8).setVisibility(GONE);
+                            propertiesView.getChildAt(9).setVisibility(GONE);
+
+                            break;
+                        case 1:
+
+                            propertiesView.getChildAt(0).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(1).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(2).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(3).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(4).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(5).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(6).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(7).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(8).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(9).setVisibility(VISIBLE);
+
+                            break;
+                        case 2:
+
+                            propertiesView.getChildAt(0).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(1).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(2).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(3).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(4).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(5).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(6).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(7).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(8).setVisibility(VISIBLE);
+                            propertiesView.getChildAt(9).setVisibility(VISIBLE);
+
+                            break;
+                        default:
+                            break;
+                    }
+                    circuitElementView.setSourceType(i);
+                    firstTime = false;
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                    //To change body of implemented methods use File | Settings | File Templates.
+                    //  adapterView.setSelection(selectedItem);
+                }
+            });
+
+        }
+        else {
+            modeSpinner.setVisibility(GONE);
+            modeText.setVisibility(GONE);
         }
     }
 

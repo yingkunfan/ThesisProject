@@ -58,6 +58,8 @@ abstract public class CircuitElementView extends ImageView implements View.OnTou
     private transient int activePointerId = INVALID_POINTER_ID;
     private transient int possibleClickPointerId = INVALID_POINTER_ID;
 
+    private int sourceType;
+
     abstract public int getDrawableId();
 
     abstract public CircuitElementPortView[] getPortViews();
@@ -136,6 +138,12 @@ abstract public class CircuitElementView extends ImageView implements View.OnTou
     public void rotate(int degrees)
     {
         setOrientation((orientation + degrees + 360) % 360);
+    }
+
+    public int getSourceType() { return sourceType; }
+    public void setSourceType(int sourceType)
+    {
+        this.sourceType = sourceType;
     }
 
     /**

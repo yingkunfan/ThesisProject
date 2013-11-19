@@ -3,6 +3,7 @@ package sriracha.simulator.model.elements.ctlsources;
 import sriracha.simulator.model.CircuitElement;
 import sriracha.simulator.solver.analysis.ac.ACEquation;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
+import sriracha.simulator.solver.analysis.trans.TransEquation;
 
 public class VCVS extends VCSource
 {
@@ -46,6 +47,18 @@ public class VCVS extends VCSource
         equation.applyMatrixStamp(nMinus, currentIndex, 1);
         equation.applyMatrixStamp(currentIndex, nPlus, -1);
         equation.applyMatrixStamp(currentIndex, nMinus, 1);
+    }
+
+    /* TODO */
+    @Override
+    public void applyTrans(TransEquation equation)
+    {
+        equation.applyTransRealMatrixStamp(currentIndex, ncPlus, gm);
+        equation.applyTransRealMatrixStamp(currentIndex, ncMinus, -gm);
+        equation.applyTransRealMatrixStamp(nPlus, currentIndex, -1);
+        equation.applyTransRealMatrixStamp(nMinus, currentIndex, 1);
+        equation.applyTransRealMatrixStamp(currentIndex, nPlus, -1);
+        equation.applyTransRealMatrixStamp(currentIndex, nMinus, 1);
     }
 
     @Override

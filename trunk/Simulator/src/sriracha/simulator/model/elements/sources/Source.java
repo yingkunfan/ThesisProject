@@ -1,6 +1,7 @@
 package sriracha.simulator.model.elements.sources;
 
 import sriracha.math.interfaces.IComplex;
+import sriracha.math.interfaces.IRealVector;
 import sriracha.simulator.model.CircuitElement;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
 
@@ -21,6 +22,8 @@ public abstract class Source extends CircuitElement
 
     protected IComplex acPhasorValue;
 
+    //protected double transValue;
+
 
     /**
      * @param name element name from netlist
@@ -31,6 +34,18 @@ public abstract class Source extends CircuitElement
         this.dcValue = dcValue;
         this.acPhasorValue = acPhasorValue;
     }
+
+    /* TODO */
+    /**
+     * @param name element name from netlist
+     */
+    /*protected Source(String name, double dcValue, IComplex acPhasorValue, double transValue)
+    {
+        super(name);
+        this.dcValue = dcValue;
+        this.acPhasorValue = acPhasorValue;
+        this.transValue = transValue;
+    }  */
 
 
     /**
@@ -58,6 +73,5 @@ public abstract class Source extends CircuitElement
         nMinus = indices[1];
 
     }
-
 
 }

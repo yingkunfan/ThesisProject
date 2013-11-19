@@ -1,29 +1,30 @@
-package sriracha.simulator.solver.analysis.dc;
+package sriracha.simulator.solver.analysis.trans;
 
-import sriracha.math.interfaces.IRealVector;
 import sriracha.simulator.solver.analysis.IResultVector;
+import sriracha.math.interfaces.IRealVector;
 
 /**
- * Created by IntelliJ IDEA.
- * User: antoine
- * Date: 3/8/12
- * Time: 2:08 PM
+ * Created with IntelliJ IDEA.
+ * User: sikram
+ * Date: 10/24/13
+ * Time: 1:50 AM
  * To change this template use File | Settings | File Templates.
  */
-public class DCResult implements IResultVector
+
+public class TransResult implements IResultVector
 {
-    private double dcValue;
+    private double transValue;
     private IRealVector vector;
 
-    public DCResult(double dcValue, IRealVector vector)
+    public TransResult(double transValue, IRealVector vector)
     {
-        this.dcValue = dcValue;
+        this.transValue = transValue;
         this.vector = vector;
     }
 
-    public double getDcValue()
+    public double getTransValue()
     {
-        return dcValue;
+        return transValue;
     }
 
     public IRealVector getVector()
@@ -34,7 +35,7 @@ public class DCResult implements IResultVector
     @Override
     public double getX()
     {
-        return dcValue;
+        return transValue;
     }
 
     @Override

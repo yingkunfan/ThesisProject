@@ -32,6 +32,11 @@ public class ElementTypeUUID
     public static final UUID RESISTOR					= UUID.fromString("24d7d51b-dd44-44d4-b138-9cdcba67c064");
     public static final UUID CAPACITOR					= UUID.fromString("bff2976e-c1b7-4c4b-a684-417492ba7ed4");
     public static final UUID INDUCTOR					= UUID.fromString("58fa0479-3fc2-45b4-8921-e2a57d0364c1");
+    public static final UUID DIODE					    = UUID.fromString("4b3dd790-48c8-11e3-8f96-0800200c9a66");
+    public static final UUID NPN			    		= UUID.fromString("3e3c86e0-48c8-11e3-8f96-0800200c9a66");
+    public static final UUID PNP    					= UUID.fromString("238e3c30-48c8-11e3-8f96-0800200c9a66");
+    public static final UUID NMOSFET			    	= UUID.fromString("3f8821c0-4c8e-11e3-8f96-0800200c9a66");
+    public static final UUID PMOSFET   					= UUID.fromString("46c83600-4c8e-11e3-8f96-0800200c9a66");
 
     static {
         VIEW_MAP.put(VOLTAGE_SOURCE, VoltageSourceView.class);
@@ -43,6 +48,11 @@ public class ElementTypeUUID
         VIEW_MAP.put(RESISTOR, ResistorView.class);
         VIEW_MAP.put(CAPACITOR, CapacitorView.class);
         VIEW_MAP.put(INDUCTOR, InductorView.class);
+        VIEW_MAP.put(DIODE, DiodeView.class);
+        VIEW_MAP.put(NPN, NpnView.class);
+        VIEW_MAP.put(PNP, PnpView.class);
+        VIEW_MAP.put(NMOSFET, NMosfetView.class);
+        VIEW_MAP.put(PMOSFET, PMosfetView.class);
 
         ELEMENT_MAP.put(VOLTAGE_SOURCE, VoltageSource.class);
         ELEMENT_MAP.put(CURRENT_SOURCE, CurrentSource.class);
@@ -53,5 +63,10 @@ public class ElementTypeUUID
         ELEMENT_MAP.put(RESISTOR, Resistor.class);
         ELEMENT_MAP.put(CAPACITOR, Capacitor.class);
         ELEMENT_MAP.put(INDUCTOR, Inductor.class);
+        ELEMENT_MAP.put(DIODE, Diode.class);
+        ELEMENT_MAP.put(NPN, NPN.class);
+        ELEMENT_MAP.put(PNP, PNP.class);
+        ELEMENT_MAP.put(NMOSFET, NMosfet.class);
+        ELEMENT_MAP.put(PMOSFET, PMosfet.class);
     }
 }

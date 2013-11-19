@@ -24,35 +24,119 @@
     </option>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e884a6dd-8d07-458d-9fc6-3adc9383ad70" name="Default" comment="Added indicators to help user connect the correct ports together">
+    <list default="true" id="e884a6dd-8d07-458d-9fc6-3adc9383ad70" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/Diode.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/FourPortElement.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/NMosfet.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/elements/NMosfetView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/NPN.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/PMosfet.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/elements/PMosfetView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/PNP.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/ThreePortElement.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/trans/TransAnalysis.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/trans/TransEquation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/trans/TransResult.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/trans/TransResults.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/ac/ACAnalysis.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/ac/ACAnalysis.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/ac/ACEquation.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/ac/ACEquation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/ac/ACResult.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/ac/ACResult.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/ac/ACResults.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/ac/ACResults.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/ac/ACSubType.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/ac/ACSubType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/Analysis.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/Analysis.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/AnalysisException.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/AnalysisException.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/AnalysisMenu.java" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/AnalysisMenu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/CurrentSource.java" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/CurrentSource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/Frontend.iml" afterPath="$PROJECT_DIR$/trunk/Frontend/Frontend.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/res/layout/analysis_menu.xml" afterPath="$PROJECT_DIR$/trunk/Frontend/res/layout/analysis_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/AnalysisType.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/AnalysisType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/ctlsources/CCCS.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/ctlsources/CCCS.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/ctlsources/CCSource.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/ctlsources/CCSource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/ctlsources/CCVS.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/ctlsources/CCVS.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/Capacitor.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/Capacitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/Circuit.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/Circuit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/parser/CircuitBuilder.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/parser/CircuitBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/CircuitElement.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/CircuitElement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/CircuitElementActivator.java" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/CircuitElementActivator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/CircuitElementView.java" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/CircuitElementView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Test/src/Console.java" afterPath="$PROJECT_DIR$/trunk/Test/src/Console.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/ctlsources/ControlledSource.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/ctlsources/ControlledSource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/CurrentInfo.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/CurrentInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/sources/CurrentSource.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/sources/CurrentSource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/dc/DCAnalysis.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/dc/DCAnalysis.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/dc/DCEquation.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/dc/DCEquation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/dc/DCResult.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/dc/DCResult.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/dc/DCResults.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/dc/DCResults.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/dc/DCSweep.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/dc/DCSweep.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/elements/DiodeView.java" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/elements/DiodeView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/DrawCorrectPort.java" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/DrawCorrectPort.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/ElementPropertiesView.java" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/ElementPropertiesView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/ElementTypeUUID.java" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/ElementTypeUUID.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/FilteredVector.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/FilteredVector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/IAnalysisResults.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/IAnalysisResults.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/ICollectElements.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/ICollectElements.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/IDataPoint.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/IDataPoint.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/IPrintData.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/IPrintData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/IResultVector.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/analysis/IResultVector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/ISimulator.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/ISimulator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/Inductor.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/Inductor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/NodeDataFormat.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/NodeDataFormat.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/NodeInfo.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/NodeInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/elements/NpnView.java" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/elements/NpnView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/Options.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/Options.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/OutputFilter.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/OutputFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/parser/ParseException.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/parser/ParseException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/elements/PnpView.java" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/elements/PnpView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/PrintData.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/PrintData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/Resistor.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/Resistor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/ResultsParser.java" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/ResultsParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/Simulator.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/Simulator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/sources/Source.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/sources/Source.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/SubCircuit.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/SubCircuit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/SubCircuitTemplate.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/SubCircuitTemplate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/ctlsources/VCCS.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/ctlsources/VCCS.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/ctlsources/VCSource.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/ctlsources/VCSource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/ctlsources/VCVS.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/ctlsources/VCVS.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/VoltageInfo.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/VoltageInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/VoltageSource.java" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/VoltageSource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/sources/VoltageSource.java" afterPath="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/sources/VoltageSource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/WireManager.java" afterPath="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/WireManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/res/layout/element_properties.xml" afterPath="$PROJECT_DIR$/trunk/Frontend/res/layout/element_properties.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/project.properties" afterPath="$PROJECT_DIR$/trunk/Frontend/project.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/res/values/strings.xml" afterPath="$PROJECT_DIR$/trunk/Frontend/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sriracha.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383863300287" ignored="false" />
+    <file path="/Dummy.txt" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384820956098" ignored="false" />
     <file path="/fragment.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383341794102" ignored="false" />
     <file path="/WireManager.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383782529298" ignored="false" />
     <file path="/CircuitDesigner.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1381812622962" ignored="false" />
-    <file path="/CircuitBuilder.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1380672129271" ignored="false" />
+    <file path="/CircuitBuilder.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384811700941" ignored="false" />
     <file path="/JsComplex.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1380670300462" ignored="false" />
     <file path="/WireSegment.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1381626387417" ignored="false" />
-    <file path="/DrawCorrectPort.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383588380780" ignored="false" />
+    <file path="/DrawCorrectPort.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383951765569" ignored="false" />
     <file path="/analysis_menu.xml" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383341570913" ignored="false" />
     <file path="/AnalysisMenu.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383590704731" ignored="false" />
-    <file path="/a.dummy" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383343708504" ignored="false" />
-    <file path="/VoltageSource.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383854748277" ignored="false" />
-    <file path="/element_properties.xml" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383429479657" ignored="false" />
+    <file path="/a.dummy" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384682464407" ignored="false" />
+    <file path="/VoltageSource.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384807272126" ignored="false" />
+    <file path="/element_properties.xml" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384645327937" ignored="false" />
     <file path="/strings.xml" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383416899664" ignored="false" />
-    <file path="/ElementPropertiesView.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383855302344" ignored="false" />
-    <file path="/CurrentSource.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383430496871" ignored="false" />
+    <file path="/ElementPropertiesView.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384675755104" ignored="false" />
+    <file path="/CurrentSource.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384643064690" ignored="false" />
     <file path="/CircuitElementView.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383854949418" ignored="false" />
     <file path="/ThreePortElement.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383863160262" ignored="false" />
+    <file path="/Diode.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383936987091" ignored="false" />
+    <file path="/NPN.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384370162879" ignored="false" />
+    <file path="/PNP.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383936955921" ignored="false" />
+    <file path="/CircuitElementActivator.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384368326055" ignored="false" />
+    <file path="/DiodeView.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383940116053" ignored="false" />
+    <file path="/ElementTypeUUID.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384365951196" ignored="false" />
+    <file path="/NpnView.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383940123799" ignored="false" />
+    <file path="/PnpView.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1383940131771" ignored="false" />
+    <file path="/NMosfet.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384647318555" ignored="false" />
+    <file path="/FourPortElement.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384365307439" ignored="false" />
+    <file path="/PMosfet.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384365351315" ignored="false" />
+    <file path="/NMosfetView.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384366006974" ignored="false" />
+    <file path="/PMosfetView.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384366000672" ignored="false" />
+    <file path="/NodeInfo.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384811473514" ignored="false" />
+    <file path="/NodeDataFormat.java" changelist="e884a6dd-8d07-458d-9fc6-3adc9383ad70" time="1384811442240" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,52 +188,7 @@
       </breakpoint>
     </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/parser/CircuitBuilder.java" line="470" class="sriracha.simulator.parser.CircuitBuilder" package="sriracha.simulator.parser">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/trunk/Math/src/sriracha/math/wrappers/jscience/JsMathActivator.java" line="15" class="sriracha.math.wrappers.jscience.JsMathActivator" package="sriracha.math.wrappers.jscience">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/DrawCorrectPort.java" line="0" class="sriracha.frontend.android.designer.DrawCorrectPort" package="sriracha.frontend.android.designer">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/AnalysisMenu.java" line="200" class="sriracha.frontend.android.AnalysisMenu" package="sriracha.frontend.android">
+      <breakpoint url="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/DrawCorrectPort.java" line="0" class="DrawCorrectPort.java" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -194,21 +233,6 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/AsyncSimulator.java" line="38" class="sriracha.frontend.android.AsyncSimulator$1" package="sriracha.frontend.android">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/AnalysisMenu.java" line="367" class="sriracha.frontend.android.AnalysisMenu" package="sriracha.frontend.android">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
@@ -239,112 +263,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/Simulator.java" line="101" class="sriracha.simulator.Simulator" package="sriracha.simulator">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/parser/CircuitBuilder.java" line="628" class="sriracha.simulator.parser.CircuitBuilder.SourceValue" package="sriracha.simulator.parser">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/parser/CircuitBuilder.java" line="643" class="sriracha.simulator.parser.CircuitBuilder.SourceValue" package="sriracha.simulator.parser">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/CircuitDesigner.java" line="194" class="sriracha.frontend.android.designer.CircuitDesigner" package="sriracha.frontend.android.designer">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/ElementPropertiesView.java" line="358" class="sriracha.frontend.android.ElementPropertiesView$8" package="sriracha.frontend.android">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/AnalysisMenu.java" line="173" class="sriracha.frontend.android.AnalysisMenu" package="sriracha.frontend.android">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/ElementPropertiesView.java" line="154" class="sriracha.frontend.android.ElementPropertiesView$4" package="sriracha.frontend.android">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/ElementPropertiesView.java" line="303" class="sriracha.frontend.android.ElementPropertiesView$8" package="sriracha.frontend.android">
+      <breakpoint url="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/ElementPropertiesView.java" line="372" class="sriracha.frontend.android.ElementPropertiesView$8" package="sriracha.frontend.android">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -385,28 +304,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ElementPropertiesView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/ElementPropertiesView.java">
+      <file leaf-file-name="AnalysisMenu.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/AnalysisMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="362" column="8" selection-start="17128" selection-end="17128" vertical-scroll-proportion="0.0">
+            <state line="641" column="53" selection-start="22884" selection-end="22884" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CircuitElementPortView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/CircuitElementPortView.java">
+      <file leaf-file-name="Inductor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/Inductor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="13" selection-start="684" selection-end="684" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CircuitElementView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/CircuitElementView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="45" selection-start="2324" selection-end="2324" vertical-scroll-proportion="0.0">
+            <state line="45" column="34" selection-start="1113" selection-end="1113" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -415,62 +325,80 @@
       <file leaf-file-name="VoltageSource.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/VoltageSource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="49" selection-start="247" selection-end="261" vertical-scroll-proportion="0.0">
+            <state line="273" column="22" selection-start="8450" selection-end="8450" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VCC.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/VCC.java">
+      <file leaf-file-name="CurrentSource.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/CurrentSource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="13" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0">
+            <state line="266" column="39" selection-start="8281" selection-end="8281" vertical-scroll-proportion="10.076923">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ground.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/Ground.java">
+      <file leaf-file-name="OutputFilter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/OutputFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="48" selection-start="448" selection-end="448" vertical-scroll-proportion="0.0">
+            <state line="11" column="13" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TwoPortElement.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/TwoPortElement.java">
+      <file leaf-file-name="NodeDataFormat.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/NodeDataFormat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="26" selection-start="261" selection-end="386" vertical-scroll-proportion="0.0">
+            <state line="13" column="13" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ThreePortElement.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/ThreePortElement.java">
+      <file leaf-file-name="VoltageInfo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/VoltageInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="32" selection-start="112" selection-end="112" vertical-scroll-proportion="0.0">
+            <state line="10" column="13" selection-start="298" selection-end="298" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/Frontend/res/values/strings.xml">
+      <file leaf-file-name="CurrentInfo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/CurrentInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="101" selection-end="101" vertical-scroll-proportion="-1.8">
+            <state line="20" column="16" selection-start="594" selection-end="594" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DrawCorrectPort.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/DrawCorrectPort.java">
+      <file leaf-file-name="NodeInfo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/NodeInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="47" selection-start="534" selection-end="534" vertical-scroll-proportion="0.53424656">
+            <state line="60" column="29" selection-start="1551" selection-end="1551" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CircuitBuilder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/parser/CircuitBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="195" column="61" selection-start="7742" selection-end="7742" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#1169#1197#0" expanded="true" />
+                <element signature="e#1292#1302#0" expanded="true" />
+                <element signature="e#1371#1385#0" expanded="true" />
+                <element signature="e#1923#1931#0" expanded="true" />
+                <element signature="e#1997#2005#0" expanded="true" />
+                <element signature="e#2061#2069#0" expanded="true" />
+                <element signature="e#2865#2873#0" expanded="true" />
+                <element signature="e#3610#3618#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -493,29 +421,29 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/trunk/Math/src/sriracha/math/wrappers/jscience/JsComplex.java" />
-        <option value="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/parser/CircuitBuilder.java" />
-        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/WireSegment.java" />
-        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/CircuitDesigner.java" />
-        <option value="$PROJECT_DIR$/trunk/Frontend/res/layout/analysis_menu.xml" />
-        <option value="$PROJECT_DIR$/trunk/Frontend/res/layout/sineItems.xml" />
+        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/elements/PMosfetView.java" />
+        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/elements/NMosfetView.java" />
+        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/CircuitElementActivator.java" />
+        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/NPN.java" />
+        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/PNP.java" />
+        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/NMosfet.java" />
         <option value="$PROJECT_DIR$/trunk/Frontend/res/layout/element_properties.xml" />
+        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/PMosfet.java" />
+        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/ResultsParser.java" />
         <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/AnalysisMenu.java" />
-        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/CurrentSource.java" />
-        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/WireManager.java" />
-        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/VoltageSource.java" />
-        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/CircuitElementView.java" />
         <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/ElementPropertiesView.java" />
-        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/ThreePortElement.java" />
-        <option value="$PROJECT_DIR$/trunk/Frontend/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/DrawCorrectPort.java" />
+        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/VoltageSource.java" />
+        <option value="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/NodeDataFormat.java" />
+        <option value="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/NodeInfo.java" />
+        <option value="$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/parser/CircuitBuilder.java" />
+        <option value="$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/CurrentSource.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
     <option name="width" value="1280" />
-    <option name="height" value="760" />
+    <option name="height" value="774" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -543,13 +471,222 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="sriracha" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sriracha" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sriracha" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sriracha" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="solver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="output" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sriracha" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="solver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="output" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filtering" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sriracha" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="solver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analysis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sriracha" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sriracha" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sriracha" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sriracha" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ctlsources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -650,126 +787,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sriracha" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="results" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sriracha" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="persistence" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sriracha" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sriracha" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="designer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sriracha" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -789,10 +809,32 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/trunk/Simulator" />
+    </key>
   </component>
   <component name="RunManager" selected="Android Application.Frontend">
+    <configuration default="false" name="Console" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Console" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Test" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
@@ -825,6 +867,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -850,19 +905,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -933,9 +975,15 @@
       <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Android Application.Frontend" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Console" />
     </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Application.Console" />
+      </list>
+    </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -979,35 +1027,39 @@
       <created>1381862286075</created>
       <updated>1381862286076</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixed red dot indicator implementation, added the ability to select source type, added transient response feature">
+      <created>1383863453815</created>
+      <updated>1383863453815</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1280" height="760" extended-state="0" />
+    <frame x="0" y="22" width="1280" height="774" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.340625" sideWeight="0.6334432" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3379205" sideWeight="0.63290113" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32568806" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2390625" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29578605" sideWeight="0.6703125" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296875" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22366288" sideWeight="0.67431194" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32568806" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294893" sideWeight="0.6703125" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294893" sideWeight="0.6703125" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920793" sideWeight="0.659375" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1054,7 +1106,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added indicators to help user connect the correct ports together" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed red dot indicator implementation, added the ability to select source type, added transient response feature" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1071,6 +1123,7 @@
     <MESSAGE value="Fixed closest port wire connections" />
     <MESSAGE value="Fixed several wire related bugs, as well as another bug when trying to analyse a circuit" />
     <MESSAGE value="Added indicators to help user connect the correct ports together" />
+    <MESSAGE value="Fixed red dot indicator implementation, added the ability to select source type, added transient response feature" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1080,112 +1133,124 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/ScalarProperty.java">
+    <entry file="file://$PROJECT_DIR$/trunk/Frontend/res/layout/analysis_menu.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="16" selection-start="403" selection-end="403" vertical-scroll-proportion="0.0">
+        <state line="222" column="41" selection-start="9154" selection-end="9154" vertical-scroll-proportion="-4.9038463">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="220" column="67" selection-start="6370" selection-end="6370" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/Downloads/adt-bundle-mac-x86_64/sdk/platforms/android-11/android.jar!/android/widget/AdapterView.class">
+    <entry file="file://$PROJECT_DIR$/trunk/Math/src/sriracha/math/interfaces/IComplex.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="19" selection-start="3847" selection-end="3913" vertical-scroll-proportion="0.33240223" />
+        <state line="2" column="17" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/CircuitDesigner.java">
+    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/AsyncSimulator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="36" selection-start="1507" selection-end="1507" vertical-scroll-proportion="0.0">
+        <state line="113" column="65" selection-start="3008" selection-end="3009" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/sources/Source.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="30" selection-start="438" selection-end="438" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/ElementPropertiesView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="359" column="55" selection-start="17384" selection-end="17384" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/AnalysisMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="373" column="45" selection-start="12948" selection-end="12955" vertical-scroll-proportion="0.0">
+        <state line="641" column="53" selection-start="22884" selection-end="22884" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/CurrentSource.java">
+    <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/model/elements/Inductor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="29" selection-start="544" selection-end="544" vertical-scroll-proportion="0.0">
+        <state line="45" column="34" selection-start="1113" selection-end="1113" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/WireManager.java">
+    <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/OutputFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="585" column="32" selection-start="25707" selection-end="25707" vertical-scroll-proportion="0.0">
+        <state line="11" column="13" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/ElementPropertiesView.java">
+    <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/parser/CircuitBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="362" column="8" selection-start="17128" selection-end="17128" vertical-scroll-proportion="0.0">
+        <state line="195" column="61" selection-start="7742" selection-end="7742" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#1169#1197#0" expanded="true" />
+            <element signature="e#1292#1302#0" expanded="true" />
+            <element signature="e#1371#1385#0" expanded="true" />
+            <element signature="e#1923#1931#0" expanded="true" />
+            <element signature="e#1997#2005#0" expanded="true" />
+            <element signature="e#2061#2069#0" expanded="true" />
+            <element signature="e#2865#2873#0" expanded="true" />
+            <element signature="e#3610#3618#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/NodeDataFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/CircuitElementPortView.java">
+    <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/CurrentInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="684" selection-end="684" vertical-scroll-proportion="0.0">
+        <state line="20" column="16" selection-start="594" selection-end="594" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/model/CircuitElementView.java">
+    <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/NodeInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="45" selection-start="2324" selection-end="2324" vertical-scroll-proportion="0.0">
+        <state line="60" column="29" selection-start="1551" selection-end="1551" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/Simulator/src/sriracha/simulator/solver/output/filtering/VoltageInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="13" selection-start="298" selection-end="298" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/VoltageSource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="49" selection-start="247" selection-end="261" vertical-scroll-proportion="0.0">
+        <state line="273" column="22" selection-start="8450" selection-end="8450" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/VCC.java">
+    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/CurrentSource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/sources/Ground.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="48" selection-start="448" selection-end="448" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/TwoPortElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="26" selection-start="261" selection-end="386" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/model/elements/ThreePortElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="32" selection-start="112" selection-end="112" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/Frontend/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="101" selection-end="101" vertical-scroll-proportion="-1.8">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/Frontend/src/sriracha/frontend/android/designer/DrawCorrectPort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="47" selection-start="534" selection-end="534" vertical-scroll-proportion="0.53424656">
+        <state line="266" column="39" selection-start="8281" selection-end="8281" vertical-scroll-proportion="10.076923">
           <folding />
         </state>
       </provider>

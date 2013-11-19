@@ -75,7 +75,7 @@ public class Console
 
 
             //no args, running from IDE insert quick test stuff here ...
-            runAndPrint("C:\\Users\\antoine\\Dev\\Sriracha\\bnetlist.txt");
+            runAndPrint("/Users/shadiasfour/Downloads/hnetlist.txt");
 
         }
 

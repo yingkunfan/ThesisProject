@@ -55,6 +55,7 @@ public class ACEquation
      */
     IComplexVector solve(double frequency)
     {
+        System.out.println(b);
 
         IComplexMatrix a = buildMatrixA(frequency);
 

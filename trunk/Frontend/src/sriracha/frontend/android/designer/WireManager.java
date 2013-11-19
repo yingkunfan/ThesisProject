@@ -583,15 +583,16 @@ public class WireManager
     {
         for (WireSegment segment : segments)
             segment.invalidate();
+        canvasView.invalidate();
     }
 
     public void drawCircle(ArrayList<CircuitElementView> elements, IWireIntersection intersection) {
         correctPort = new DrawCorrectPort(getContext(), elements, intersection);
         canvasView.addView(correctPort);
-        correctPort.invalidate();
     }
 
     public void removeCircle() {
         canvasView.removeView(correctPort);
+        canvasView.invalidate();
     }
 }

@@ -10,5 +10,6 @@ public enum NodeDataFormat
     Imaginary,
     Phase,
     Magnitude,
-    Decibels
+    Decibels,
+    Transient
 }

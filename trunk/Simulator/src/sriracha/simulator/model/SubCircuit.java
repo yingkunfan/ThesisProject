@@ -2,6 +2,7 @@ package sriracha.simulator.model;
 
 import sriracha.simulator.solver.analysis.ac.ACEquation;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
+import sriracha.simulator.solver.analysis.trans.TransEquation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -128,6 +129,15 @@ public class SubCircuit extends CircuitElement
         for (CircuitElement e : elements.values())
         {
             e.applyDC(equation);
+        }
+    }
+
+    @Override
+    public void applyTrans(TransEquation equation)
+    {
+        for (CircuitElement e : elements.values())
+        {
+            e.applyTrans(equation);
         }
     }
 

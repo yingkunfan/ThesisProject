@@ -5,6 +5,7 @@ import sriracha.math.interfaces.IComplex;
 import sriracha.simulator.model.CircuitElement;
 import sriracha.simulator.solver.analysis.ac.ACEquation;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
+import sriracha.simulator.solver.analysis.trans.TransEquation;
 
 public class CurrentSource extends Source
 {
@@ -55,6 +56,16 @@ public class CurrentSource extends Source
         equation.applySourceVectorStamp(nPlus, acPhasorValue.opposite());
     }
 
+    /* TODO */
+    @Override
+    public void applyTrans(TransEquation equation)
+    {
+        /*equation.applySourceVectorStamp(nMinus, transValue);
+        equation.applySourceVectorStamp(nPlus, -transValue); */
+
+        equation.applySourceVectorStamp(nMinus, acPhasorValue);
+        equation.applySourceVectorStamp(nPlus, acPhasorValue.opposite());
+    }
 
     @Override
     public int getNodeCount()

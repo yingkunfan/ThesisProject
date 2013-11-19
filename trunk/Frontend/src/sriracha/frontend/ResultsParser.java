@@ -21,7 +21,7 @@ public class ResultsParser {
             double [][]vector = dp.getVector();
             int k =0;
             for(int i = 0; i < vector.length; i++){
-                for(int j = 0; j < vector[i].length; j++){
+                for(int j = 0; j < vector[i].length; j++) {
                     plots.get(k++).addPoint(new Point(x, vector[i][j]));
                 }
             }

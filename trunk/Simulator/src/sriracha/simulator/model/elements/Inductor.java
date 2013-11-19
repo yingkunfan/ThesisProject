@@ -3,6 +3,7 @@ package sriracha.simulator.model.elements;
 import sriracha.simulator.model.CircuitElement;
 import sriracha.simulator.solver.analysis.ac.ACEquation;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
+import sriracha.simulator.solver.analysis.trans.TransEquation;
 
 public class Inductor extends CircuitElement
 {
@@ -59,6 +60,26 @@ public class Inductor extends CircuitElement
         equation.applyRealMatrixStamp(nMinus, currentIndex, -1);
 
         equation.applyComplexMatrixStamp(currentIndex, currentIndex, -inductance);
+    }
+
+    /* TODO */
+    @Override
+    public void applyTrans(TransEquation equation)
+    {
+        equation.applyTransRealMatrixStamp(currentIndex, nPlus, 1);
+        equation.applyTransRealMatrixStamp(currentIndex, nMinus, -1);
+        equation.applyTransRealMatrixStamp(nPlus, currentIndex, 1);
+        equation.applyTransRealMatrixStamp(nMinus, currentIndex, -1);
+
+        equation.applyTransConductorInductor(currentIndex, currentIndex, -inductance);
+
+        //equation.applyTransConductorInductor(currentIndex, nPlus, 1);
+        //equation.applyTransConductorInductor(currentIndex, nMinus, -1);
+        //equation.applyTransConductorInductor(nPlus, currentIndex, 1);
+       // equation.applyTransConductorInductor(nMinus, currentIndex, -1);
+
+        //equation.applyTransConductorInductor(currentIndex, currentIndex, -inductance);
+
     }
 
 

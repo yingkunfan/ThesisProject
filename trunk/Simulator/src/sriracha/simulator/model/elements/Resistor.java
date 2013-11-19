@@ -3,6 +3,7 @@ package sriracha.simulator.model.elements;
 import sriracha.simulator.model.CircuitElement;
 import sriracha.simulator.solver.analysis.ac.ACEquation;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
+import sriracha.simulator.solver.analysis.trans.TransEquation;
 
 public class Resistor extends CircuitElement
 {
@@ -48,6 +49,14 @@ public class Resistor extends CircuitElement
         equation.applyRealMatrixStamp(nodeB, nodeA, -G);
     }
 
+    @Override
+    public void applyTrans(TransEquation equation)
+    {
+        equation.applyTransRealMatrixStamp(nodeA, nodeA, G);
+        equation.applyTransRealMatrixStamp(nodeB, nodeB, G);
+        equation.applyTransRealMatrixStamp(nodeA, nodeB, -G);
+        equation.applyTransRealMatrixStamp(nodeB, nodeA, -G);
+    }
 
     @Override
     public void setNodeIndices(int... indices)

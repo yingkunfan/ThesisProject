@@ -40,109 +40,37 @@ public class DrawCorrectPort extends View {
         CircuitElementView myElement = null;
 
         for(CircuitElementView element : elements) {
-            if(element.getElement().getPortCount() != 1) {
+            if(element.getElement().getPortCount() == 1) {
+                if(element.getPortViews()[0].getY() == intersection.getY() && element.getPortViews()[0].getX() == intersection.getX()) {
+                    canvas.drawCircle(intersection.getX(), intersection.getY(), 4, paint);
+                    break;
+                }
+            }
+
+            else if(element.getElement().getPortCount() == 2) {
                 if((element.getPortViews()[0].getY() == intersection.getY() && element.getPortViews()[0].getX() == intersection.getX())
                         || (element.getPortViews()[1].getY() == intersection.getY() && element.getPortViews()[1].getX() == intersection.getX())) {
-                    myElement = element;  //mark the element that was just clicked on
+                    canvas.drawCircle(intersection.getX(), intersection.getY(), 4, paint);
+                    break;
+                }
+            }
+            else if(element.getElement().getPortCount() == 3) {
+                if((element.getPortViews()[0].getY() == intersection.getY() && element.getPortViews()[0].getX() == intersection.getX())
+                        || (element.getPortViews()[1].getY() == intersection.getY() && element.getPortViews()[1].getX() == intersection.getX())
+                        ||  (element.getPortViews()[2].getY() == intersection.getY() && element.getPortViews()[2].getX() == intersection.getX())) {
+                    canvas.drawCircle(intersection.getX(), intersection.getY(), 4, paint);
+                    break;
+                }
+            }
+            else if(element.getElement().getPortCount() == 4) {
+                if((element.getPortViews()[0].getY() == intersection.getY() && element.getPortViews()[0].getX() == intersection.getX())
+                        || (element.getPortViews()[1].getY() == intersection.getY() && element.getPortViews()[1].getX() == intersection.getX())
+                        ||  (element.getPortViews()[2].getY() == intersection.getY() && element.getPortViews()[2].getX() == intersection.getX())
+                        ||  (element.getPortViews()[3].getY() == intersection.getY() && element.getPortViews()[3].getX() == intersection.getX())) {
+                    canvas.drawCircle(intersection.getX(), intersection.getY(), 4, paint);
                     break;
                 }
             }
         }
-        for(CircuitElementView element: elements) {
-            if(element != myElement && myElement != null) { // because we dont want to draw a circle on the the element clicked on
-                int[] correctPort = returnCorrectPort(element, myElement, intersection);
-                canvas.drawCircle(correctPort[0], correctPort[1], 4, paint);
-            }
-        }
     }
-
-    // The following method returns the port where the red circle should be drawn based on where the user last clicked
-    // and other elements' positions
-    private int[] returnCorrectPort(CircuitElementView element, CircuitElementView myElement, IWireIntersection intersection) {
-      //  String temp = element.getElement().getName();
-        int[] correctPort = new int[2];
-        if(element.getElement().getPortCount() != 1) {
-
-            if(element.getOrientation() % 180 == 0) {
-                if(intersection.getY() == myElement.getPortViews()[0].getY()) {
-                    correctPort[0] = element.getPortViews()[0].getX();
-                    correctPort[1] = element.getPortViews()[0].getY();
-
-                }
-
-                else {
-                    correctPort[0] = element.getPortViews()[1].getX();
-                    correctPort[1] = element.getPortViews()[1].getY();
-
-               }
-            }
-            else if(element.getOrientation() == 90) {
-                if(intersection.getY() == myElement.getPortViews()[0].getY()) {
-                    if((element.getPortViews()[1].getX() <= intersection.getX() && element.getPortViews()[1].getY() <= myElement.getPortViews()[1].getY())
-                            || (element.getPortViews()[1].getX() > intersection.getX() && element.getPortViews()[1].getY() > myElement.getPortViews()[1].getY()))  {
-                        correctPort[0] = element.getPortViews()[0].getX();
-                        correctPort[1] = element.getPortViews()[0].getY();
-                    } else {
-                        correctPort[0] = element.getPortViews()[1].getX();
-                        correctPort[1] = element.getPortViews()[1].getY();
-                    }
-                }
-                else {
-                    if((element.getPortViews()[1].getX() <= intersection.getX() && element.getPortViews()[1].getY() <= myElement.getPortViews()[1].getY())
-                            || (element.getPortViews()[1].getX() > intersection.getX() && element.getPortViews()[1].getY() > myElement.getPortViews()[1].getY()))  {
-                        correctPort[0] = element.getPortViews()[1].getX();
-                        correctPort[1] = element.getPortViews()[1].getY();
-                    } else {
-                        correctPort[0] = element.getPortViews()[0].getX();
-                        correctPort[1] = element.getPortViews()[0].getY();
-                    }
-                }
-            } else if(element.getOrientation() == 270) {
-                if(intersection.getY() == myElement.getPortViews()[0].getY()) {
-                    if((element.getPortViews()[0].getX() <= intersection.getX() && element.getPortViews()[0].getY() <= myElement.getPortViews()[1].getY())
-                            || (element.getPortViews()[0].getX() > intersection.getX() && element.getPortViews()[0].getY() > myElement.getPortViews()[1].getY()))  {
-                        correctPort[0] = element.getPortViews()[1].getX();
-                        correctPort[1] = element.getPortViews()[1].getY();
-                    } else {
-                        correctPort[0] = element.getPortViews()[0].getX();
-                        correctPort[1] = element.getPortViews()[0].getY();
-                    }
-                }
-                else {
-                    if((element.getPortViews()[0].getX() <= intersection.getX() && element.getPortViews()[0].getY() <= myElement.getPortViews()[1].getY())
-                            || (element.getPortViews()[0].getX() > intersection.getX() && element.getPortViews()[0].getY() > myElement.getPortViews()[1].getY()))  {
-                        correctPort[0] = element.getPortViews()[0].getX();
-                        correctPort[1] = element.getPortViews()[0].getY();
-                    } else {
-                        correctPort[0] = element.getPortViews()[1].getX();
-                        correctPort[1] = element.getPortViews()[1].getY();
-                    }
-                }
-            }
-
-
-            if((myElement.getElement().getName().charAt(0) == 'V' || myElement.getElement().getName().charAt(0) == 'E') ||
-                    (element.getElement().getName().charAt(0) == 'V' || element.getElement().getName().charAt(0) == 'E')) {
-                if(correctPort[0] == element.getPortViews()[0].getX() && correctPort[1] == element.getPortViews()[0].getY()) {
-                    correctPort[0] = element.getPortViews()[1].getX();
-                    correctPort[1] = element.getPortViews()[1].getY();
-                } else {
-                    correctPort[0] = element.getPortViews()[0].getX();
-                    correctPort[1] = element.getPortViews()[0].getY();
-                }
-
-            }
-
-        }
-
-        else {
-            correctPort[0] = element.getPortViews()[0].getX();
-            correctPort[1] = element.getPortViews()[0].getY();
-        }
-
-        return correctPort;
-    }
-
-
-
 }

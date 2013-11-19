@@ -23,6 +23,12 @@ public class VoltageSource extends TwoPortElement implements Serializable
     private float phase;
     private String phaseUnit;
 
+    private float pulsed;
+    private String pulsedUnit;
+
+    private float instTime;
+    private String timeUnit;
+
     public VoltageSource(CircuitElementManager elementManager)
     {
         super(elementManager);
@@ -101,7 +107,7 @@ public class VoltageSource extends TwoPortElement implements Serializable
                 }
             };
 
-            final ScalarProperty acProp = new ScalarProperty("AC Amplitude", "V")
+            final ScalarProperty acProp = new ScalarProperty("Amplitude", "V")
             {
                 @Override
                 public String getValue()
@@ -165,7 +171,7 @@ public class VoltageSource extends TwoPortElement implements Serializable
                 @Override
                 public String getValue()
                 {
-                    return phase == 0 ? "" : String.valueOf(phase);
+                    return phase == 0 ? "0" : String.valueOf(phase);
                 }
                 @Override
                 public void _trySetValue(String value)
@@ -192,7 +198,56 @@ public class VoltageSource extends TwoPortElement implements Serializable
                 }
             };
 
-            properties = new Property[]{dcProp, acProp, freqProp, phaseProp};
+            final ScalarProperty pulseProp = new ScalarProperty("Pulsed Value", "V")
+            {
+                @Override
+                public String getValue()
+                {
+                    return pulsed == 0 ? "" : String.valueOf(pulsed);
+                }
+                @Override
+                public void _trySetValue(String value)
+                {
+                    pulsed = Float.parseFloat(value);
+                }
+                @Override
+                public String getUnit()
+                {
+                    return pulsedUnit == null || pulsedUnit.isEmpty() ? this.getBaseUnit() : pulsedUnit;
+                }
+                @Override
+                public void setUnit(String newUnit)
+                {
+                    pulsedUnit = newUnit;
+                }
+            };
+
+            final ScalarProperty timeProp = new ScalarProperty("Instantaneous Time", "S")
+            {
+                @Override
+                public String getValue()
+                {
+                    return instTime == 0 ? "" : String.valueOf(instTime);
+                }
+                @Override
+                public void _trySetValue(String value)
+                {
+                    instTime = Float.parseFloat(value);
+                }
+                @Override
+                public String getUnit()
+                {
+                    return timeUnit == null || timeUnit.isEmpty() ? this.getBaseUnit() : timeUnit;
+                }
+                @Override
+                public void setUnit(String newUnit)
+                {
+                    timeUnit = newUnit;
+                }
+            };
+
+
+            properties = new Property[]{dcProp, acProp, freqProp, phaseProp, pulseProp, timeProp};
         }
         return properties;
     }
@@ -213,10 +268,10 @@ public class VoltageSource extends TwoPortElement implements Serializable
     public String toNetlistString(String[] nodes, NodeCrawler crawler)
     {
         return super.toNetlistString(nodes, crawler)
-                + String.format("DC %f%s AC %f%s %f",
+                + String.format("DC %f%s AC %f%s %f %f",
                 dcVoltage, ScalarProperty.translateUnit(dcVoltageUnit),
                 amplitude, ScalarProperty.translateUnit(amplitudeUnit),
-                phase);
+                phase,  frequency);
 
     }
 }

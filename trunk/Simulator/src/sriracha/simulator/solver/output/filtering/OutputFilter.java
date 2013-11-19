@@ -59,6 +59,8 @@ public class OutputFilter
                 return "freq(hz)";
             case DC:
                 return "Volts";
+            case TR:
+                return "Time";
             default:
                 return null;
         }

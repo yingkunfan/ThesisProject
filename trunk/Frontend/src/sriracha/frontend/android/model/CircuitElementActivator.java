@@ -12,6 +12,11 @@ import sriracha.frontend.model.*;
 import sriracha.frontend.model.elements.Capacitor;
 import sriracha.frontend.model.elements.Inductor;
 import sriracha.frontend.model.elements.Resistor;
+import sriracha.frontend.model.elements.Diode;
+import sriracha.frontend.model.elements.NPN;
+import sriracha.frontend.model.elements.PNP;
+import sriracha.frontend.model.elements.NMosfet;
+import sriracha.frontend.model.elements.PMosfet;
 import sriracha.frontend.model.elements.ctlsources.DependentCurrentSource;
 import sriracha.frontend.model.elements.ctlsources.DependentVoltageSource;
 import sriracha.frontend.model.elements.sources.CurrentSource;
@@ -86,9 +91,6 @@ public class CircuitElementActivator
             case R.id.sources_ground:
                 return new GroundView(context, new Ground(elementManager), positionX, positionY, wireManager);
 
-//            case R.id.sources_sine:
-//                return new ACSourceView(context, new ACSource(elementManager), positionX, positionY, wireManager);
-
             case R.id.rlc_resistor:
                 return new ResistorView(context, new Resistor(elementManager), positionX, positionY, wireManager);
 
@@ -99,19 +101,19 @@ public class CircuitElementActivator
                 return new InductorView(context, new Inductor(elementManager), positionX, positionY, wireManager);
 
             case R.id.dnt_diode:
-                return new DiodeView(context, new Inductor(elementManager), positionX, positionY, wireManager);
+                return new DiodeView(context, new Diode(elementManager), positionX, positionY, wireManager);
 
             case R.id.dnt_npn:
-                return new NpnView(context, new Inductor(elementManager), positionX, positionY, wireManager);
+                return new NpnView(context, new NPN(elementManager), positionX, positionY, wireManager);
 
             case R.id.dnt_pnp:
-                return new PnpView(context, new Inductor(elementManager), positionX, positionY, wireManager);
+                return new PnpView(context, new PNP(elementManager), positionX, positionY, wireManager);
 
             case R.id.dnt_mosfetn:
-                return new PnpView(context, new Inductor(elementManager), positionX, positionY, wireManager);
+                return new NMosfetView(context, new NMosfet(elementManager), positionX, positionY, wireManager);
 
             case R.id.dnt_mosfetp:
-                return new PnpView(context, new Inductor(elementManager), positionX, positionY, wireManager);
+                return new PMosfetView(context, new PMosfet(elementManager), positionX, positionY, wireManager);
 
             default:
                 return null;

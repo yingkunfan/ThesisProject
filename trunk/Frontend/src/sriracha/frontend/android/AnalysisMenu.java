@@ -488,6 +488,7 @@ public class AnalysisMenu extends LinearLayout
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, new String[]{
                 "V (real and complex)", "VR (real)", "VI (complex)", "VM (magnitude)", "VDB (magnitude in dB)", "VP (phase)",
                 "I (real and complex)", "IR (real)", "II (complex)", "IM (magnitude)", "IDB (magnitude in dB)", "IP (phase)",
+                "Vt (transient)", "It (transient)",
         });
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         printType.setAdapter(adapter);

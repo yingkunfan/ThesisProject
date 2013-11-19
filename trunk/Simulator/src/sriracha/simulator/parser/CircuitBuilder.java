@@ -15,6 +15,7 @@ import sriracha.simulator.solver.analysis.AnalysisType;
 import sriracha.simulator.solver.analysis.ac.ACAnalysis;
 import sriracha.simulator.solver.analysis.ac.ACSubType;
 import sriracha.simulator.solver.analysis.dc.DCAnalysis;
+import sriracha.simulator.solver.analysis.trans.TransAnalysis;
 import sriracha.simulator.solver.analysis.dc.DCSweep;
 import sriracha.simulator.solver.output.filtering.*;
 
@@ -22,12 +23,14 @@ import java.util.*;
 
 public class CircuitBuilder
 {
-
+    public static double transFrequency = 0;
     private HashMap<String, SubCircuitTemplate> subcircuitTemplates = new HashMap<String, SubCircuitTemplate>();
 
     private Circuit circuit;
     private ArrayList<Analysis> analysisTypes = new ArrayList<Analysis>();
     private ArrayList<OutputFilter> outputFilters = new ArrayList<OutputFilter>();
+    public static IComplex ACValue;
+    public static double DCValue;
 
     public Circuit getCircuit()
     {
@@ -109,7 +112,7 @@ public class CircuitBuilder
                 }
                 parseSubCircuitTemplate(subCircuitLines.toArray(new String[subCircuitLines.size()]));
             }
-            else if (line.startsWith(".AC") || line.startsWith(".DC"))
+            else if (line.startsWith(".AC") || line.startsWith(".DC") || line.startsWith(".TR"))
             {
                 analysisTypes.add(parseAnalysis(line));
             }
@@ -120,6 +123,7 @@ public class CircuitBuilder
 
         }
     }
+
 
     public OutputFilter parsePrint(String line)
     {
@@ -135,7 +139,10 @@ public class CircuitBuilder
             printType = AnalysisType.AC;
         else if (printTypeStr.equalsIgnoreCase("DC"))
             printType = AnalysisType.DC;
-        else if (printTypeStr.equalsIgnoreCase("TRAN") || printTypeStr.equalsIgnoreCase("NOISE") || printTypeStr.equalsIgnoreCase("DISTO"))
+        else if (printTypeStr.equalsIgnoreCase("TR"))
+            printType = AnalysisType.TR;
+            //else if (printTypeStr.equalsIgnoreCase("TRAN") || printTypeStr.equalsIgnoreCase("NOISE") || printTypeStr.equalsIgnoreCase("DISTO"))
+        else if (printTypeStr.equalsIgnoreCase("NOISE") || printTypeStr.equalsIgnoreCase("DISTO"))
             throw new UnsupportedOperationException("This format of analysis is currently not supported: " + line);
         else
             throw new ParseException("Invalid Plot analysis format: " + line);
@@ -195,6 +202,8 @@ public class CircuitBuilder
             return NodeDataFormat.Phase;
         else if (outputString.equalsIgnoreCase("DB"))
             return NodeDataFormat.Decibels;
+        else if (outputString.equalsIgnoreCase("t"))
+            return NodeDataFormat.Transient;
 
         throw new ParseException("Invalid output format: " + line);
     }
@@ -253,8 +262,30 @@ public class CircuitBuilder
             return parseSmallSignal(line);
         else if (line.startsWith(".DC"))
             return parseDCAnalysis(line);
+        else if (line.startsWith(".TR")) {
+            return parseTransAnalysis(line); }
         else
             throw new UnsupportedOperationException("This format of analysis is currently not supported: " + line);
+    }
+
+    //    /* TODO: number of parameters? */
+    private TransAnalysis parseTransAnalysis(String line){
+        String[] params = line.split("\\s+");
+
+        if (params.length != 4)
+            throw new ParseException("Incorrect number of parameters for Transient analysis: " + line);
+
+        double stepSize = parseDouble(params[1]);
+        double rangeStart = parseDouble(params[3]);
+        double rangeStop = parseDouble(params[2]);
+
+        if (stepSize == 0)
+        {
+            throw new ParseException("Step size must be greater than 0 for Transient analysis");
+        }
+
+        return new TransAnalysis(rangeStart, rangeStop, stepSize, transFrequency);
+
     }
 
     private DCAnalysis parseDCAnalysis(String line)
@@ -356,8 +387,6 @@ public class CircuitBuilder
             throw new ParseException("Not enough parameters for a circuit element: " + line);
 
         String[] additionalParams = Arrays.copyOfRange(params, 3, params.length);
-
-
         switch (elementType)
         {
             case 'r':
@@ -423,7 +452,8 @@ public class CircuitBuilder
     private void createCurrentSource(ICollectElements elementCollection, String name, String node1, String node2, String... params)
     {
         SourceValue value = findPhasorOrDC(params);
-
+        ACValue = value.AC;
+        DCValue = value.DC;
         CurrentSource source;
         if (value.AC != null)
             source = new CurrentSource(name, value.AC);
@@ -439,7 +469,8 @@ public class CircuitBuilder
     private void createVoltageSource(ICollectElements elementCollection, String name, String node1, String node2, String... params)
     {
         SourceValue value = findPhasorOrDC(params);
-
+        ACValue = value.AC;
+        DCValue = value.DC;
         VoltageSource source = new VoltageSource(name, value.DC, value.AC);
 
         int node1Index = elementCollection.assignNodeMapping(node1);
@@ -455,7 +486,7 @@ public class CircuitBuilder
 
         if (params[0].equalsIgnoreCase("DC"))
         {
-            if (params.length > 2)
+            if ((params.length > 2) && (params.length >= 6))
             {
                 if (params[2].equalsIgnoreCase("AC"))
                 {
@@ -464,6 +495,9 @@ public class CircuitBuilder
                         amplitude = parseDouble(params[3]);
                     if (params.length >= 5)
                         phase = Math.toRadians(parseDouble(params[4]));
+                    if (params.length >= 6) {
+                         transFrequency = parseDouble(params[5]);
+                    }
 
                     double real = amplitude * Math.cos(phase);
                     double imaginary = amplitude * Math.sin(phase);
@@ -471,7 +505,26 @@ public class CircuitBuilder
                     return new SourceValue(parseDouble(params[1]), MathActivator.Activator.complex(real, imaginary));
                 }
                 else throw new ParseException("Invalid parameters on Voltage Source " + params);
-            }
+            } /* else if (params.length >= 6)
+            {
+                if (params[2].equalsIgnoreCase(""))
+                {
+                    double amplitude = 1, phase = 0;
+                            //frequency = 1;
+                    if (params.length >= 4)
+                        amplitude = parseDouble(params[3]);
+                    if (params.length >= 5)
+                        phase = Math.toRadians(parseDouble(params[4]));
+                    if (params.length >= 6)
+                        transFrequency = parseDouble(params[5]);
+
+                    double real = amplitude * Math.cos(phase);
+                    double imaginary = amplitude * Math.sin(phase);
+
+                    return new SourceValue(parseDouble(params[1]), MathActivator.Activator.complex(real, imaginary));
+                }
+                else throw new ParseException("Invalid parameters on Voltage Source " + params);
+            }  */
             else
             {
                 return new SourceValue(parseDouble(params[1]));
@@ -488,6 +541,7 @@ public class CircuitBuilder
 
             double real = amplitude * Math.cos(phase);
             double imaginary = amplitude * Math.sin(phase);
+
 
             return new SourceValue(MathActivator.Activator.complex(real, imaginary));
         }
@@ -620,6 +674,7 @@ public class CircuitBuilder
         else if (str2.startsWith("f"))
             factor = Math.pow(10, -15);
 
+
         return factor * Double.parseDouble(str1);
 
     }
@@ -628,6 +683,7 @@ public class CircuitBuilder
     {
         public double DC = 0;
         public IComplex AC = MathActivator.Activator.complex(0, 0);
+        public double frequency = 0;
 
         public SourceValue(double dc)
         {
@@ -644,5 +700,12 @@ public class CircuitBuilder
             this.DC = DC;
             this.AC = AC;
         }
+
+    /*    private SourceValue(double DC, IComplex AC, double frequency)
+        {
+            this.DC = DC;
+            this.AC = AC;
+            this.frequency = frequency;
+        }   */
     }
 }

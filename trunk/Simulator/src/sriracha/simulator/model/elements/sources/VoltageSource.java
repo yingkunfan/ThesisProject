@@ -2,9 +2,11 @@ package sriracha.simulator.model.elements.sources;
 
 import sriracha.math.MathActivator;
 import sriracha.math.interfaces.IComplex;
+import sriracha.math.interfaces.IRealVector;
 import sriracha.simulator.model.CircuitElement;
 import sriracha.simulator.solver.analysis.ac.ACEquation;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
+import sriracha.simulator.solver.analysis.trans.TransEquation;
 
 public class VoltageSource extends Source
 {
@@ -52,6 +54,19 @@ public class VoltageSource extends Source
         equation.applyRealMatrixStamp(nPlus, currentIndex, 1);
         equation.applyRealMatrixStamp(nMinus, currentIndex, -1);
 
+        equation.applySourceVectorStamp(currentIndex, acPhasorValue);
+    }
+
+    /* TODO */
+    @Override
+    public void applyTrans(TransEquation equation)
+    {
+        equation.applyTransRealMatrixStamp(currentIndex, nPlus, 1);
+        equation.applyTransRealMatrixStamp(currentIndex, nMinus, -1);
+        equation.applyTransRealMatrixStamp(nPlus, currentIndex, 1);
+        equation.applyTransRealMatrixStamp(nMinus, currentIndex, -1);
+
+        //equation.applySourceVectorStamp(currentIndex, transValue);
         equation.applySourceVectorStamp(currentIndex, acPhasorValue);
     }
 
@@ -109,4 +124,5 @@ public class VoltageSource extends Source
     {
         return currentIndex;
     }
+
 }
