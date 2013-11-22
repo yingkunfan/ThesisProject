@@ -104,4 +104,8 @@ public abstract class NodeInfo
         return 20 * Math.log10(d);
     }
 
+    public static double toTransient(IComplex phasor)
+    {
+        return Math.sin(2*Math.PI*1000/phasor.getReal());
+    }
 }

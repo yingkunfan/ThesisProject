@@ -228,8 +228,8 @@ public class WireSegment extends View
             start = newIntersection;
         else if (end == oldIntersection)
             end = newIntersection;
-        else
-            throw new IllegalArgumentException("Intersection not found in segment");
+//        else
+//            throw new IllegalArgumentException("Intersection not found in segment");
     }
 
     public boolean isVertical()

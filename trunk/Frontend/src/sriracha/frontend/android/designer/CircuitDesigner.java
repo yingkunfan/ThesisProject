@@ -55,8 +55,6 @@ public class CircuitDesigner extends GestureDetector.SimpleOnGestureListener
 
     private boolean recentMove;
 
-    //private DrawCorrectPort redCircle;
-
     private CircuitDesignerMenu circuitDesignerMenu;
     private CircuitElementActivator activator;
     private CircuitElementManager elementManager;
@@ -98,7 +96,7 @@ public class CircuitDesigner extends GestureDetector.SimpleOnGestureListener
         setCursor(CursorState.HAND);
     }
 
-    public void setCursorToSelection()
+    public void setCursorToSelection()    //Not used
     {
         setCursor(CursorState.SELECTION);
     }
@@ -125,7 +123,7 @@ public class CircuitDesigner extends GestureDetector.SimpleOnGestureListener
             case ELEMENT:
                 itemId = selectedItemId;
                 canvasState = CanvasState.IDLE;
-                wireManager.removeCircle();
+                wireManager.removeCircle();     //remove red dot indicator
                 break;
             case WIRE:
                 itemId = R.id.wire;
