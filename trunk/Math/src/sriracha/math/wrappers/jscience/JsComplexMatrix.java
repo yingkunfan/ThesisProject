@@ -5,6 +5,8 @@ import org.jscience.mathematics.vector.ComplexMatrix;
 import sriracha.math.interfaces.*;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.Collections;
 
 
 class JsComplexMatrix extends JsMatrix implements IComplexMatrix
@@ -54,7 +56,11 @@ class JsComplexMatrix extends JsMatrix implements IComplexMatrix
     public void setValue(int i, int j, IComplex value)
     {
         matrix.set(i, j, JsComplex.make(value));
+    }
 
+    @Override
+    public void setValue(int i, int j, double real, double complex){
+        matrix.set(i,j, Complex.valueOf(real, complex));
     }
 
     @Override
@@ -62,6 +68,12 @@ class JsComplexMatrix extends JsMatrix implements IComplexMatrix
     {
         Complex previousValue = (Complex) matrix.get(i, j);
         matrix.set(i, j, previousValue.plus(JsComplex.make(value)));
+    }
+
+    @Override
+    public void addValue(int i, int j, double real, double complex)
+    {
+        matrix.set(i, j, ((Complex)matrix.get(i,j)).plus(Complex.valueOf(real, complex)));
     }
 
     @Override
@@ -75,6 +87,85 @@ class JsComplexMatrix extends JsMatrix implements IComplexMatrix
         {
             return new JsComplexVector(getMatrix().solve(((JsComplexVector) b).getVector()));
         }
+    }
+
+    @Override
+    public IComplex getMax() {
+        ComplexMatrix myMat = (ComplexMatrix) matrix;
+        int m = myMat.getNumberOfRows();
+        int n = myMat.getNumberOfColumns();
+        double temp = 0;
+
+        double max = 0;
+        int maxRow = 0;
+        int maxCol = 0;
+
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                temp = myMat.get(i,j).magnitude();
+                if(temp > max){
+                    max = temp;
+                    maxRow = i;
+                    maxCol = j;
+                }
+            }
+        }
+
+        return new JsComplex(myMat.get(maxRow, maxCol).getReal(),
+                myMat.get(maxRow, maxCol).getImaginary()) {
+        };
+    }
+
+    @Override
+    public IComplex getMin(){
+        ComplexMatrix myMat = (ComplexMatrix) matrix;
+        int m = myMat.getNumberOfRows();
+        int n = myMat.getNumberOfColumns();
+        double temp = 0;
+
+        double min = 0;
+        int minRow = 0;
+        int minCol = 0;
+
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                temp = myMat.get(i,j).magnitude();
+                if(temp < min){
+                    min = temp;
+                    minRow = i;
+                    minCol = j;
+                }
+            }
+        }
+
+        return new JsComplex(myMat.get(minRow, minCol).getReal(),
+                myMat.get(minRow, minCol).getImaginary()) {
+        };
+    }
+
+
+    @Override
+    public void clear()
+    {
+        for(int i = 0; i < matrix.getNumberOfRows(); i++){
+            for(int j = 0; j < matrix.getNumberOfRows(); j++){
+                matrix.set(i,j,Complex.valueOf(0,0));
+            }
+        }
+    }
+
+    @Override
+    public void copy(IComplexMatrix target){
+        if((target.getNumberOfRows()==this.getNumberOfRows()&&
+                (target.getNumberOfColumns()==this.getNumberOfColumns())))
+
+            for(int i = 0; i < target.getNumberOfRows(); i++){
+                for(int j = 0; j < target.getNumberOfColumns(); j++){
+                    this.setValue(i,j,target.getValue(i,j));
+                }
+            }
+        else
+            System.out.println("Error: unmatched matrix size for copying.  No change applied.");
     }
 
     @Override
@@ -104,6 +195,5 @@ class JsComplexMatrix extends JsMatrix implements IComplexMatrix
         }
         return sb.toString();
     }
-
 
 }

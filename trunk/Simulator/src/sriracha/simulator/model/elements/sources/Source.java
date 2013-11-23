@@ -1,7 +1,6 @@
 package sriracha.simulator.model.elements.sources;
 
 import sriracha.math.interfaces.IComplex;
-import sriracha.math.interfaces.IRealVector;
 import sriracha.simulator.model.CircuitElement;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
 

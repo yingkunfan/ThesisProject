@@ -66,7 +66,7 @@ class JsComplexVector extends JsVector implements IComplexVector
     }
 
     @Override
-    ComplexVector getVector()
+    public ComplexVector getVector()
     {
         return (ComplexVector) vector;
     }
@@ -78,10 +78,40 @@ class JsComplexVector extends JsVector implements IComplexVector
     }
 
     @Override
+    public IComplex getMax(){
+        ComplexVector myVec = (ComplexVector)vector;
+        int d = myVec.getDimension();
+
+
+        double temp = 0;
+        double max = 0;
+        int maxIndex = 0;
+
+        for(int i = 0; i < d; i++){
+            temp = myVec.get(i).magnitude();
+            if(temp > max){
+                max = temp;
+                maxIndex = i;
+            }
+        }
+
+        return new JsComplex(myVec.get(maxIndex).getReal(),
+                myVec.get(maxIndex).getImaginary()) {
+        };
+    }
+
+    @Override
     public void setValue(int i, IComplex value)
     {
         getVector().set(i, JsComplex.make(value));
     }
+
+    @Override
+    public void setValue(int i, double real, double complex)
+    {
+        getVector().set(i, Complex.valueOf(real, complex));
+    }
+
 
     @Override
     public void addValue(int i, IComplex value)
@@ -89,6 +119,33 @@ class JsComplexVector extends JsVector implements IComplexVector
 
         getVector().set(i, getVector().get(i).plus(JsComplex.make(value)));
     }
+
+    @Override
+    public void addValue(int i, double real, double complex)
+    {
+        getVector().set(i, getVector().get(i).plus(Complex.valueOf(real, complex)));
+    }
+
+    @Override
+    public void clear()
+    {
+        for(int i = 0; i < vector.getDimension(); i++){
+            vector.set(i, Complex.valueOf(0,0));
+        }
+    }
+
+    @Override
+    public void copy(IComplexVector target){
+        int n = target.getDimension();
+        if(n == this.getDimension()){
+            for(int i = 0; i < n; i++){
+                this.setValue(i, target.getValue(i));
+            }
+        }else{
+            System.out.println("Error: unmatched vector size for copying.  No change applied.");
+        }
+    }
+
 
     @Override
     public String toString()
@@ -111,4 +168,6 @@ class JsComplexVector extends JsVector implements IComplexVector
     {
         return new JsComplexVector(ComplexVector.valueOf(vector.copy()));
     }
+
+
 }

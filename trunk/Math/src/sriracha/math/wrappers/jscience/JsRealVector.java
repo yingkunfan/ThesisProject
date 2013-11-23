@@ -28,29 +28,12 @@ class JsRealVector extends JsVector implements IRealVector
     }
 
     @Override
-    public IVector opposite()
-    {
-        return new JsRealVector(getVector().opposite());
-    }
-
-    @Override
     public IVector minus(IVector vector)
     {
         return plus(vector.opposite());
     }
 
-    @Override
-    public String toString()
-    {
-        DecimalFormat format = new DecimalFormat("+0.0000;-0.0000");
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < vector.getDimension(); i++)
-        {
-            sb.append(format.format(getVector().get(i)) + "\t");
-            sb.append('\n');
-        }
-        return sb.toString();
-    }
+
 
     @Override
     public IVector plus(IVector v)
@@ -93,12 +76,94 @@ class JsRealVector extends JsVector implements IRealVector
     }
 
     @Override
+    public void copy(IRealVector target){
+        if(this.sameSize(target)){
+            int n = getDimension();
+            for(int i = 0; i < n; i++){
+                this.setValue(i, target.getValue(i));
+            }
+        }else{
+            System.out.println("Error: unmatched vector size for copying.  No change applied.");
+        }
+    }
+
+    @Override
+    public double getMax(){
+        int n = getDimension();
+        double max = 0;
+        double temp;
+
+        for(int i = 0; i < n; i++){
+            temp = this.getValue(i);
+            if(temp > max)
+                max = temp;
+        }
+
+        return max;
+    }
+
+    @Override
+    public double getMin(){
+        int n = getDimension();
+        double min = 0;
+        double temp;
+
+        for(int i = 0; i < n; i++){
+            temp = this.getValue(i);
+            if(temp < min)
+                min = temp;
+        }
+
+        return min;
+    }
+
+    @Override
+    public double getMaxMag(){
+        double max = Math.abs(getMax());
+        double min = Math.abs(getMin());
+
+        if(max >= min){
+            return max;
+        }else{
+            return min;
+        }
+    }
+
+    @Override
+    public IVector opposite(){
+        return new JsRealVector(vector.opposite());
+    }
+
+
+    @Override
+    public void clear(){
+        int n = getDimension();
+        for(int i = 0; i < n; i++){
+            setValue(i, 0);
+        }
+    }
+
+    @Override
     public IRealVector clone()
     {
         return new JsRealVector(Float64Vector.valueOf(vector.copy()));
     }
 
-    Float64Vector getVector()
+    @Override
+    public String toString()
+    {
+        DecimalFormat format = new DecimalFormat("+0.0000;-0.0000");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < vector.getDimension(); i++)
+        {
+            sb.append(format.format(getVector().get(i)) + "\t");
+            sb.append('\n');
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public Float64Vector getVector()
     {
         return (Float64Vector) vector;
     }

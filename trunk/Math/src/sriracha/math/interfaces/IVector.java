@@ -1,5 +1,7 @@
 package sriracha.math.interfaces;
 
+import org.jscience.mathematics.vector.Vector;
+
 public interface IVector {
 
     public int getDimension();
@@ -12,6 +14,10 @@ public interface IVector {
 
     public IVector clone();
 
+    public Vector getVector();
 
     public IVector opposite();
+
+    public boolean sameSize(IVector target);
+
 }
