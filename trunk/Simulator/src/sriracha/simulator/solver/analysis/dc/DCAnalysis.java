@@ -29,11 +29,26 @@ public class DCAnalysis extends Analysis
         this.sweep2 = sweep2;
     }
 
+//    @Override
+//    public void extractSolvingInfo(Circuit circuit)
+//    {
+//        originalEquation = DCEquation.generate(circuit);
+//    }
+
+    /**
+     * Apply circuit element stamps from the circuit objects to the
+     * "equation" object of this instance of DCAnalysis object.
+     * @param circuit
+     */
     @Override
     public void extractSolvingInfo(Circuit circuit)
     {
-        originalEquation = DCEquation.generate(circuit);
+        if(circuit.isLinear())
+            originalEquation = DCEquation.generate(circuit);
+        else
+            originalEquation = DCNonLinEquation.generate(circuit);
     }
+
 
     @Override
     public IAnalysisResults run()
@@ -66,8 +81,7 @@ public class DCAnalysis extends Analysis
             }
 
 
-        } else
-        {
+        } else {
             //short mode
             for (double i = sweep.getStartValue(); i <= sweep.getEndValue(); i += sweep.getStep())
             {

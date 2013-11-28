@@ -2,8 +2,8 @@ package sriracha.simulator.solver.output.filtering;
 
 import sriracha.math.interfaces.IComplex;
 import sriracha.math.interfaces.IComplexVector;
-import sriracha.math.interfaces.IRealVector;
 import sriracha.math.interfaces.IVector;
+import sriracha.math.interfaces.IRealVector;
 
 public abstract class NodeInfo
 {
@@ -102,10 +102,5 @@ public abstract class NodeInfo
     public static double toDecibel(double d)
     {
         return 20 * Math.log10(d);
-    }
-
-    public static double toTransient(IComplex phasor)
-    {
-        return Math.sin(2*Math.PI*1000/phasor.getReal());
     }
 }

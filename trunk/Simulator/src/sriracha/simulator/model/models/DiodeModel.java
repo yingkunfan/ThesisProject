@@ -19,7 +19,7 @@ public class DiodeModel extends CircuitElementModel{
 
 
     public DiodeModel(char key, String line) {
-        super(key, line.split("\\s+")[1]);
+       super(key, line.split("\\s+")[1]);
 
         //parse the ".model" line's characteristics between parentheses into separate Strings
         //example: .model mName D (IS=0 RS=0 ...)
@@ -35,7 +35,7 @@ public class DiodeModel extends CircuitElementModel{
                 characteristicName = characteristicName.toUpperCase(Locale.ENGLISH);
                 if(characteristicName.equals("IS")){
                     is = CircuitBuilder.parseDouble(str.substring(str.indexOf("=")+1, str.length()));
-                }else if(characteristicName.equals("VT"))
+                } else if(characteristicName.equals("VT"))
                     vt = CircuitBuilder.parseDouble(str.substring(str.indexOf("=")+1, str.length()));
             }
         }catch(StringIndexOutOfBoundsException e1){

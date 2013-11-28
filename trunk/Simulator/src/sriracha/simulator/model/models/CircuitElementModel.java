@@ -36,7 +36,7 @@ public abstract class CircuitElementModel {
 
         if(key.equals("D")){
             return new DiodeModel('D', line);
-        }else{
+        } else {
             System.out.println("Unknown circuit model type.");
             return null;
         }

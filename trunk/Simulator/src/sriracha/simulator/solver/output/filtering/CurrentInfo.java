@@ -2,9 +2,9 @@ package sriracha.simulator.solver.output.filtering;
 
 import sriracha.math.interfaces.IComplex;
 import sriracha.math.interfaces.IComplexVector;
-import sriracha.math.interfaces.IRealVector;
 import sriracha.simulator.model.Circuit;
 import sriracha.simulator.model.elements.sources.VoltageSource;
+import sriracha.math.interfaces.IRealVector;
 
 public class CurrentInfo extends NodeInfo
 {

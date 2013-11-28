@@ -1,6 +1,5 @@
 package sriracha.simulator.solver.analysis.trans;
 
-import sriracha.math.interfaces.IRealVector;
 import sriracha.simulator.Options;
 import sriracha.simulator.Simulator;
 import sriracha.simulator.model.Circuit;
@@ -10,6 +9,7 @@ import sriracha.simulator.solver.analysis.IAnalysisResults;
 import sriracha.math.MathActivator;
 import sriracha.math.interfaces.IComplex;
 import sriracha.simulator.parser.CircuitBuilder;
+import sriracha.math.interfaces.IRealVector;
 
 /**
  * Created with IntelliJ IDEA.
@@ -85,13 +85,13 @@ public class TransAnalysis extends Analysis{
 
             IRealVector soln = equation.solve(timeStep, voltageVector, nextTime, ACfrequency, AcValue, DcValue, p);
 
-            /* The first result is the initial guess. */
-            if (p == 0) {
-
-               results.addVector(currentTime, equation.getInitialGuess());
-
-            /* Subsequent results are found through backward euler */
-            }
+//            /* The first result is the initial guess. */
+//            if (p == 0) {
+//
+//               results.addVector(currentTime, equation.getInitialGuess());
+//
+//            /* Subsequent results are found through backward euler */
+//            }
 
             results.addVector(nextTime, soln);
             currentTime += timeStep;

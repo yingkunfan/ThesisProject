@@ -1,8 +1,8 @@
 package sriracha.simulator.solver.analysis.dc;
 
-import sriracha.math.interfaces.IRealVector;
 import sriracha.simulator.solver.analysis.IAnalysisResults;
 import sriracha.simulator.solver.analysis.IResultVector;
+import sriracha.math.interfaces.IRealVector;
 
 import java.util.ArrayList;
 import java.util.List;

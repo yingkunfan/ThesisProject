@@ -466,12 +466,18 @@ public class AnalysisMenu extends LinearLayout
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
             {
-                if (((TextView) view).getText().toString().equals("DC Sweep"))
+                if (((TextView) view).getText().toString().equals("DC Sweep")) {
                     showDcMenu();
-                else if (((TextView) view).getText().toString().equals("Frequency"))
+
+                }
+                else if (((TextView) view).getText().toString().equals("Frequency"))   {
                     showAcMenu();
-                else if (((TextView) view).getText().toString().equals("Transient Response"))
+
+                }
+                else if (((TextView) view).getText().toString().equals("Transient Response"))   {
                     showTrMenu();
+
+                }
                 else
                     throw new RuntimeException("Invalid analysis type");
             }
@@ -485,6 +491,7 @@ public class AnalysisMenu extends LinearLayout
 
     private void setPlotTypeItems()
     {
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, new String[]{
                 "V (real and complex)", "VR (real)", "VI (complex)", "VM (magnitude)", "VDB (magnitude in dB)", "VP (phase)",
                 "I (real and complex)", "IR (real)", "II (complex)", "IM (magnitude)", "IDB (magnitude in dB)", "IP (phase)",
@@ -492,6 +499,7 @@ public class AnalysisMenu extends LinearLayout
         });
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         printType.setAdapter(adapter);
+
 
         showVoltagePrintMenu();
 

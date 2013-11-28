@@ -6,8 +6,8 @@ import sriracha.math.interfaces.IRealMatrix;
 import sriracha.simulator.Options;
 import sriracha.simulator.model.Circuit;
 import sriracha.simulator.model.CircuitElement;
-import sriracha.math.interfaces.IRealVector;
 import sriracha.math.interfaces.IComplexVector;
+import sriracha.math.interfaces.IRealVector;
 
 /**
  * Created with IntelliJ IDEA.

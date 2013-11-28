@@ -1,7 +1,7 @@
 package sriracha.simulator.solver.analysis.dc;
 
-import sriracha.math.interfaces.IRealVector;
 import sriracha.simulator.solver.analysis.IResultVector;
+import sriracha.math.interfaces.IRealVector;
 
 /**
  * Created by IntelliJ IDEA.

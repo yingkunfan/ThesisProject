@@ -2,6 +2,8 @@ package sriracha.simulator.model;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Circuit object, contains all of the elements and takes care of managing node to matrix index mappings.
@@ -20,6 +22,10 @@ public class Circuit implements ICollectElements {
      */
     private HashMap<String, Integer> nodeMap;
 
+    public HashMap<String, Integer> getNodeMap() {
+        return nodeMap;
+    }
+
     /**
      * Circuit constructor.
      * @param name - first line of Netlist
@@ -28,7 +34,7 @@ public class Circuit implements ICollectElements {
         this.name = name;
         elements = new HashMap<String, CircuitElement>();
         nodeMap = new HashMap<String, Integer>();
-        nodeMap.put("0", -1);
+        nodeMap.put("0", -1);       //The ground should always be the first item
     }
 
     @Override
@@ -36,12 +42,7 @@ public class Circuit implements ICollectElements {
         elements.put(e.name, e);
     }
 
-    /**
-     * Add new node mapping, or returns existing
-     *
-     * @param nodeName - name of node from netlist
-     * @return index for node
-     */
+
     @Override
     public int assignNodeMapping(String nodeName) {
         if (!nodeMap.containsKey(nodeName)) {
@@ -56,7 +57,8 @@ public class Circuit implements ICollectElements {
      * @return matrix index
      */
     public int getNodeIndex(String nodeName) {
-        return nodeMap.get(nodeName);
+        return nodeMap.get(nodeName) == null ? nodeMap.get(nodeName.toUpperCase()) :  nodeMap.get(nodeName);
+        //return nodeMap.get(nodeName.toUpperCase());
     }
 
     /**
@@ -90,7 +92,8 @@ public class Circuit implements ICollectElements {
 
     /**
      * Assigns indices to the additional variables required by some elements
-     * and also to internal nodes in subcircuits
+     * and also to internal nodes in subcircuits.
+     * (Called by setCircuit() of Simulator class)
      */
     public void assignAdditionalVarIndices() {
         int index = getNodeCount();
@@ -111,6 +114,21 @@ public class Circuit implements ICollectElements {
             evCount += e.getExtraVariableCount();
         }
         return evCount + getNodeCount();
+    }
+
+    /**
+     * Return whether or not the Circuit is linear by determining if there are
+     * any NonLinCircuitElement among the elements of the Circuit.
+     * @return false if there are no NonLinCircuitElement, true if there are.
+     */
+    public boolean isLinear(){
+        Iterator iter = elements.entrySet().iterator();
+        for(Map.Entry<String, CircuitElement>entry : elements.entrySet()){
+            if(entry.getValue() instanceof  NonLinCircuitElement)
+                return false;
+        }
+
+        return true;
     }
 
     @Override

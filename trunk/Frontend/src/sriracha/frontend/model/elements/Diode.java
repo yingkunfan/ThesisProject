@@ -16,6 +16,12 @@ import java.io.Serializable;
 public class Diode extends TwoPortElement implements Serializable{
     private transient Property[] properties;
 
+    private float is = 1;
+    private String isUnit = "mA";
+
+    private float  vt = 1;
+    private String vtUnit = "mV";
+
     public Diode(CircuitElementManager elementManager)
     {
         super(elementManager);
@@ -23,7 +29,58 @@ public class Diode extends TwoPortElement implements Serializable{
 
     public Property[] getProperties()
     {
-        return new Property[0];
+        ScalarProperty IS_Property = new ScalarProperty("Current", "A") {
+            @Override
+            public String getValue() {
+                return String.valueOf(is);
+            }
+
+            @Override
+            public void _trySetValue(String value) {
+                float floatValue = Float.parseFloat(value);
+                if (floatValue <= 0)
+                    throw new NumberFormatException("Current value must be greater than zero");
+                is = floatValue;
+            }
+
+            @Override
+            public String getUnit() {
+                return isUnit == null || isUnit.isEmpty() ? this.getBaseUnit() : isUnit;  //To change body of implemented methods use File | Settings | File Templates.
+            }
+
+            @Override
+            public void setUnit(String unit) {
+                isUnit = unit;
+            }
+        };
+
+        ScalarProperty VT_Property = new ScalarProperty("Threshold Voltage", "V") {
+            @Override
+            public String getValue() {
+                return String.valueOf(vt);
+            }
+
+            @Override
+            public void _trySetValue(String value) {
+                float floatValue = Float.parseFloat(value);
+                if (floatValue <= 0)
+                    throw new NumberFormatException("Threshold Voltage value must be greater than zero");
+                vt = floatValue;
+            }
+
+            @Override
+            public String getUnit() {
+                return vtUnit == null || vtUnit.isEmpty() ? this.getBaseUnit() : vtUnit;  //To change body of implemented methods use File | Settings | File Templates.
+            }
+
+            @Override
+            public void setUnit(String unit) {
+                vtUnit = unit;
+            }
+        };
+        Property properties[] = {IS_Property, VT_Property};
+
+        return properties;
     }
 
     @Override
@@ -41,6 +98,8 @@ public class Diode extends TwoPortElement implements Serializable{
     @Override
     public String toNetlistString(String[] nodes, NodeCrawler crawler)
     {
-        return super.toNetlistString(nodes, crawler) /*+ resistance + ScalarProperty.translateUnit(unit)*/;
+        return ".MODEL D1N44 D (IS="+ is + ScalarProperty.translateUnit(isUnit) +
+                " vt=" + vt + ScalarProperty.translateUnit(vtUnit)  +")\n" + super.toNetlistString(nodes, crawler)
+                + "D1N44";
     }
 }
