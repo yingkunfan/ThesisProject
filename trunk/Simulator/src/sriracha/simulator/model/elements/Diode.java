@@ -22,7 +22,6 @@ public class Diode extends NonLinCircuitElement {
      * Standard saturation current: 1e-14A
      */
     public static final double STD_IS = 0.00000000000001;
-
     /**
      * Diode's anode
      */

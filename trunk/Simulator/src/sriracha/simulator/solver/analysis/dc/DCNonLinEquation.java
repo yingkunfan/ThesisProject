@@ -141,7 +141,7 @@ public class DCNonLinEquation extends DCEquation{
                 //steps to aim for a better change of convergence.  Restart continuation method.
                 if(success == -1){
                     alpha = 0;
-                    steps *= 100;
+                    steps *= 10;
                     x0.clear();
                     failedAttempts++;
                     break;
@@ -150,7 +150,6 @@ public class DCNonLinEquation extends DCEquation{
                 x0.copy(answer);
             }
         }
-
         return answer;
     }
 
