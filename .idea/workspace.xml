@@ -25,9 +25,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e884a6dd-8d07-458d-9fc6-3adc9383ad70" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/gen/sriracha/frontend/Manifest.java" afterPath="$PROJECT_DIR$/trunk/Frontend/gen/sriracha/frontend/Manifest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/Frontend/gen/sriracha/frontend/R.java" afterPath="$PROJECT_DIR$/trunk/Frontend/gen/sriracha/frontend/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sriracha.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -112,7 +112,7 @@
       <file leaf-file-name="Console.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/trunk/Test/src/Console.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="23" selection-start="2351" selection-end="2351" vertical-scroll-proportion="0.4385382" vertical-offset="905" max-vertical-offset="2652">
+            <state line="73" column="23" selection-start="2378" selection-end="2378" vertical-scroll-proportion="0.66445184" vertical-offset="905" max-vertical-offset="2652">
               <folding />
             </state>
           </provider>
@@ -769,7 +769,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/trunk/Test/src/Console.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="23" selection-start="2351" selection-end="2351" vertical-scroll-proportion="0.4385382" vertical-offset="905" max-vertical-offset="2652">
+        <state line="73" column="23" selection-start="2378" selection-end="2378" vertical-scroll-proportion="0.66445184" vertical-offset="905" max-vertical-offset="2652">
           <folding />
         </state>
       </provider>
