@@ -63,7 +63,7 @@ public class Diode extends NonLinCircuitElement {
     public void getNonLinContribution(IComplexVector f, IComplexVector x){
 
         //Note: A node value of -1 is ground by default.
-        //If a node is -1, then its voltage is 0 and has contribution
+        //If a node is -1, then its voltage is 0 and has no contribution
 
         double value = 0;
         if(nodeA == -1){
@@ -84,7 +84,7 @@ public class Diode extends NonLinCircuitElement {
     public void getNonLinContribution(IRealVector f, IRealVector x){
 
         //Note: A node value of -1 is ground by default.
-        //If a node is -1, then its voltage is 0 and has contribution
+        //If a node is -1, then its voltage is 0 and has no contribution
 
         double value = 0;
         if(nodeA == -1){

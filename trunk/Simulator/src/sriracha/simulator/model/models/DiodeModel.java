@@ -21,6 +21,9 @@ public class DiodeModel extends CircuitElementModel{
     public DiodeModel(char key, String line) {
        super(key, line.split("\\s+")[1]);
 
+        is = Diode.STD_IS;
+        vt = Diode.STD_VT;
+
         //parse the ".model" line's characteristics between parentheses into separate Strings
         //example: .model mName D (IS=0 RS=0 ...)
         String parameterSect = line.substring(line.indexOf("(") + 1, line.indexOf(")"));
