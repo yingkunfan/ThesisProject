@@ -73,7 +73,7 @@ public class Console
         } else
         {
 
-
+            //Hello!
             //no args, running from IDE insert quick test stuff here ...
             runAndPrint("C:\\1- University stuff\\ECSE 498\\Tests\\bnetlist4.txt");
 
