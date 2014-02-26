@@ -86,7 +86,7 @@ public class DCNonLinEquation extends DCEquation{
     }
 
     /**
-     * Solve for non-linear transient analysis.  Assumes 0 initial
+     * Solve for non-linear DC point analysis.  Assumes 0 initial
      * conditions.
      * @return
      */

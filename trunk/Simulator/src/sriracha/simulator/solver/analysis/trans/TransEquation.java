@@ -26,6 +26,9 @@ public class TransEquation {
 
     private IRealMatrix C;
     private IComplexVector b;
+    /**
+     * b(n+1)
+     */
     private IRealVector b2;
     private IRealVector b3;
     private IRealMatrix G;
@@ -74,7 +77,7 @@ public class TransEquation {
            return (IRealVector) (matrixMultiplicationResult.plus(b2));
     }
 
-    /* Solve: P*x(n+1) = Q
+    /* Solve: P*x(n+1) = Q for the given the current nodal voltages and the
     *  returns x(n+1) , i.e. nextVoltage
     * */
     IRealVector solve(double timeStep, IRealVector currentVoltage, double nextTime, double frequency, IComplex AcValue,
@@ -83,15 +86,15 @@ public class TransEquation {
         //FUNCTION CALL
         getNewBVector(frequency, nextTime, AcValue, DcValue);
 
-        /* For the first time that solve is called, use a currentVoltage vector consisting of 0's */
-
+        /* For the first time that solve is called, use a zero initial guess */
         if (p == 0) {
-
+            //(P = C + G/h)
             IRealMatrix P = buildMatrixP(timeStep);
             //IRealVector Q = buildVectorQ(timeStep, initialVoltageGuess);
 
             /* Apply DC analysis to get initial guess (AC sources are shorted to 0) */
             initialVoltageGuess =  getInitialGuess();
+            //Q = G/h*x(n) + b(n+1)
             IRealVector Q =  buildVectorQ(timeStep, initialVoltageGuess);
 
             if (Options.isPrintMatrix())
@@ -102,10 +105,11 @@ public class TransEquation {
             }
 
             return P.solve(Q);
-
+        //For all subsequent calculation for time steps following the initial guess
         }  else {
-
+            //(P = C + G/h)
             IRealMatrix P = buildMatrixP(timeStep);
+            //Q = G/h*x(n) + b(n+1)
             IRealVector Q = buildVectorQ(timeStep, currentVoltage);
             if (Options.isPrintMatrix())
             {
@@ -113,7 +117,7 @@ public class TransEquation {
                 System.out.println("=\n");
                 System.out.println(Q);
             }
-
+            //P * x(n+1) = Q, solve for x(n+1)
             return P.solve(Q);
         }
     }
@@ -128,7 +132,8 @@ public class TransEquation {
         double phase;
         double result;
         for (int i = 0; i < circuitNodeCount; i++) {
-
+            //Note at this point, vector b is already filled with phasor values, all that left to do
+            //is to find the present magnitude of the signal at each node
             element = b.getValue(i);
             real = element.getReal();
             imag = element.getImag();
