@@ -59,7 +59,7 @@ public class TransAnalysis extends Analysis{
     @Override
     public IAnalysisResults run()
     {
-
+        voltageVector = activator.realVector(equation.getG().getNumberOfColumns());
         TransResults results = new TransResults();
         double currentTime = timeStart;
         double nextTime = 0;

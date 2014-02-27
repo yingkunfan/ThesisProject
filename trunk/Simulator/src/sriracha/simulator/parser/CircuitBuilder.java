@@ -1456,35 +1456,6 @@ public class CircuitBuilder
         elementCollection.addElement(source);
     }
 
-        /**
-     * Add a new diode circuit element to the circuit using the specified model "modelName"
-     *
-     * @param elementCollection The collection in which the diode is to be added
-     * @param name Name of this diode (Must be unique)
-     * @param node1 cathode of the diode, where the current is heading
-     * @param node2 anode of the diode, where the current leaves
-     * @param modelName Name of the Diode model on which the new Diode is based on (Must exists).
-     */
-    public void createDiode(ICollectElements elementCollection, String name, String node1, String node2, String modelName){
-        Diode d;
-
-        CircuitElementModel myModel = circuitElementModels.get(modelName);
-
-
-        if(myModel.getKey() == 'D'){
-            d = new Diode(name, (DiodeModel)(myModel));
-        }else{
-            System.out.println("Warning, non diode MODEL specified for a diode element.\n"+
-                    "Standard diode parameters applied.");
-            d = new Diode(name);
-        }
-
-        int node1Index = elementCollection.assignNodeMapping(node1);
-        int node2Index = elementCollection.assignNodeMapping(node2);
-        d.setNodeIndices(node1Index, node2Index);
-        elementCollection.addElement(d);
-    }
-
     private SourceValue findPhasorOrDC(String... params)
     {
         if (params.length == 1)
@@ -1492,7 +1463,7 @@ public class CircuitBuilder
 
         if (params[0].equalsIgnoreCase("DC"))
         {
-            if ((params.length > 2) && (params.length >= 6))
+            if ((params.length > 2) && (params.length <= 6))
             {
                 if (params[2].equalsIgnoreCase("AC"))
                 {
@@ -1580,6 +1551,35 @@ public class CircuitBuilder
         int node2Index = elementCollection.assignNodeMapping(node2);
         i.setNodeIndices(node1Index, node2Index);
         elementCollection.addElement(i);
+    }
+
+    /**
+     * Add a new diode circuit element to the circuit using the specified model "modelName"
+     *
+     * @param elementCollection The collection in which the diode is to be added
+     * @param name Name of this diode (Must be unique)
+     * @param node1 cathode of the diode, where the current is heading
+     * @param node2 anode of the diode, where the current leaves
+     * @param modelName Name of the Diode model on which the new Diode is based on (Must exists).
+     */
+    public void createDiode(ICollectElements elementCollection, String name, String node1, String node2, String modelName){
+        Diode d;
+
+        CircuitElementModel myModel = circuitElementModels.get(modelName);
+
+
+        if(myModel.getKey() == 'D'){
+            d = new Diode(name, (DiodeModel)(myModel));
+        }else{
+            System.out.println("Warning, non diode MODEL specified for a diode element.\n"+
+                    "Standard diode parameters applied.");
+            d = new Diode(name);
+        }
+
+        int node1Index = elementCollection.assignNodeMapping(node1);
+        int node2Index = elementCollection.assignNodeMapping(node2);
+        d.setNodeIndices(node1Index, node2Index);
+        elementCollection.addElement(d);
     }
 
     private void createVCCS(ICollectElements elementCollection, String name, String node1, String node2, String control1, String control2, String value)
