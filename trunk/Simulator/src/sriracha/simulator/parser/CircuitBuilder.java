@@ -27,7 +27,6 @@ import java.util.*;
 
 public class CircuitBuilder
 {
-    public static double transFrequency = 0;
     private HashMap<String, SubCircuitTemplate> subcircuitTemplates = new HashMap<String, SubCircuitTemplate>();
 
     private Circuit circuit;
@@ -339,43 +338,43 @@ public class CircuitBuilder
         switch (elementType)
         {
             case 'r':
-                ElementParser.createResistor(elementCollection, params[0], params[1], params[2], params[3]);
+                ElementParser.createResistor(elementCollection, params);
                 break;
 
             case 'i':
-                ElementParser.createCurrentSource(elementCollection, params[0], params[1], params[2], additionalParams);
+                SourceParser.createCurrentSource(elementCollection, params);
                 break;
 
             case 'v':
-                ElementParser.createVoltageSource(elementCollection, params[0], params[1], params[2], additionalParams);
+                SourceParser.createVoltageSource(elementCollection, params);
                 break;
 
             case 'l':
-                ElementParser.createInductor(elementCollection, params[0], params[1], params[2], params[3]);
+                ElementParser.createInductor(elementCollection, params);
                 break;
 
             case 'c':
-                ElementParser.createCapacitor(elementCollection, params[0], params[1], params[2], params[3]);
+                ElementParser.createCapacitor(elementCollection, params);
                 break;
 
             case 'd':
-                createDiode(elementCollection, params[0], params[1], params[2], params[3]);
+                ElementParser.createDiode(elementCollection, params, circuitElementModels.get(params[3]));
                 break;
 
             case 'g':
-                ElementParser.createVCCS(elementCollection, params[0], params[1], params[2], params[3], params[4], params[5]);
+                SourceParser.createVCCS(elementCollection, params);
                 break;
 
             case 'e':
-                ElementParser.createVCVS(elementCollection, params[0], params[1], params[2], params[3], params[4], params[5]);
+                SourceParser.createVCVS(elementCollection, params);
                 break;
 
             case 'f':
-                createCCCS(elementCollection, params[0], params[1], params[2], params[3], params[4]);
+                SourceParser.createCCCS(elementCollection, params[0], params[1], params[2], circuit.getElement(params[3]), params[4]);
                 break;
 
             case 'h':
-                createCCVS(elementCollection, params[0], params[1], params[2], params[3], params[4]);
+                SourceParser.createCCVS(elementCollection, params[0], params[1], params[2], circuit.getElement(params[3]), params[4]);
                 break;
 
             case 'x':
@@ -402,49 +401,7 @@ public class CircuitBuilder
         elementCollection.addElement(sc);
     }
 
-    private void createCCCS(ICollectElements elementCollection, String name, String node1, String node2, String control, String value)
-    {
-        CircuitElement vSource = circuit.getElement(control);
-        CCCS cccs = new CCCS(name, parseDouble(value), (VoltageSource) vSource);
 
-        ElementParser.createCurrentControlledSource(elementCollection, node1, node2, cccs);
-    }
-
-    private void createCCVS(ICollectElements elementCollection, String name, String node1, String node2, String control, String value)
-    {
-        CircuitElement vSource = circuit.getElement(control);
-        CCVS ccvs = new CCVS(name, parseDouble(value), (VoltageSource) vSource);
-        ElementParser.createCurrentControlledSource(elementCollection, node1, node2, ccvs);
-    }
-
-    /**
-     * Add a new diode circuit element to the circuit using the specified model "modelName"
-     *
-     * @param elementCollection The collection in which the diode is to be added
-     * @param name Name of this diode (Must be unique)
-     * @param node1 cathode of the diode, where the current is heading
-     * @param node2 anode of the diode, where the current leaves
-     * @param modelName Name of the Diode model on which the new Diode is based on (Must exists).
-     */
-    public void createDiode(ICollectElements elementCollection, String name, String node1, String node2, String modelName){
-        Diode d;
-
-        CircuitElementModel myModel = circuitElementModels.get(modelName);
-
-
-        if(myModel.getKey() == 'D'){
-            d = new Diode(name, (DiodeModel)(myModel));
-        }else{
-            System.out.println("Warning, non diode MODEL specified for a diode element.\n"+
-                    "Standard diode parameters applied.");
-            d = new Diode(name);
-        }
-
-        int node1Index = elementCollection.assignNodeMapping(node1);
-        int node2Index = elementCollection.assignNodeMapping(node2);
-        d.setNodeIndices(node1Index, node2Index);
-        elementCollection.addElement(d);
-    }
 
     /**
      * parses a double and allows for Spice compatible postfixes (case insensitive)

@@ -34,14 +34,14 @@ public class TransAnalysis extends Analysis{
     double frequency;
 
     /* TODO: Initial voltage is 0 for DC sources only */
-    public IRealVector voltageVector = activator.realVector(TransEquation.circuitNodeCount);
+    public IRealVector voltageVector;
 
     /* TODO: Initial voltage is 0 for DC sources only */
     //double initialVoltage = 0;
 
     //double currentVoltage = initialVoltage;
 
-    public TransAnalysis(double timeStart, double timeEnd, double timeStep, double frequency)
+    public TransAnalysis(double timeStart, double timeEnd, double timeStep)
     {
         super(AnalysisType.TR);
         this.timeStart = timeStart;
@@ -63,7 +63,6 @@ public class TransAnalysis extends Analysis{
         TransResults results = new TransResults();
         double currentTime = timeStart;
         double nextTime = 0;
-        double ACfrequency =   CircuitBuilder.transFrequency;
         int p = 0;
 
         for (double i = timeStart; i <= timeEnd; i += timeStep) {

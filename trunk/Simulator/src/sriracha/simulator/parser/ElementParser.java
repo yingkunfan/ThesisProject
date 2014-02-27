@@ -19,167 +19,61 @@ import sriracha.simulator.model.models.DiodeModel;
  */
 public class ElementParser {
 
-    public static void createCurrentSource(ICollectElements elementCollection, String name, String node1, String node2, String... params)
+
+
+    public static void createResistor(ICollectElements elementCollection, String[]params)
     {
-        SourceValue value = findPhasorOrDC(params);
-        CurrentSource source;
-        if (value.AC != null)
-            source = new CurrentSource(name, value.AC);
-        else
-            source = new CurrentSource(name, value.DC);
-
-        int node1Index = elementCollection.assignNodeMapping(node1);
-        int node2Index = elementCollection.assignNodeMapping(node2);
-        source.setNodeIndices(node1Index, node2Index);
-        elementCollection.addElement(source);
-    }
-
-    public static void createVoltageSource(ICollectElements elementCollection, String name, String node1, String node2, String... params)
-    {
-        SourceValue value = findPhasorOrDC(params);
-        VoltageSource source = new VoltageSource(name, value.DC, value.AC);
-
-        int node1Index = elementCollection.assignNodeMapping(node1);
-        int node2Index = elementCollection.assignNodeMapping(node2);
-        source.setNodeIndices(node1Index, node2Index);
-        elementCollection.addElement(source);
-    }
-
-    public static void createResistor(ICollectElements elementCollection, String name, String node1, String node2, String value)
-    {
-        Resistor r = new Resistor(name, CircuitBuilder.parseDouble(value));
-        int node1Index = elementCollection.assignNodeMapping(node1);
-        int node2Index = elementCollection.assignNodeMapping(node2);
+        Resistor r = new Resistor(params[0], CircuitBuilder.parseDouble(params[3]));
+        int node1Index = elementCollection.assignNodeMapping(params[1]);
+        int node2Index = elementCollection.assignNodeMapping(params[2]);
         r.setNodeIndices(node1Index, node2Index);
         elementCollection.addElement(r);
     }
 
 
-    public static void createCapacitor(ICollectElements elementCollection, String name, String node1, String node2, String value)
+    public static void createCapacitor(ICollectElements elementCollection, String[]params)
     {
-        Capacitor c = new Capacitor(name, CircuitBuilder.parseDouble(value));
-        int node1Index = elementCollection.assignNodeMapping(node1);
-        int node2Index = elementCollection.assignNodeMapping(node2);
+        Capacitor c = new Capacitor(params[0], CircuitBuilder.parseDouble(params[3]));
+        int node1Index = elementCollection.assignNodeMapping(params[1]);
+        int node2Index = elementCollection.assignNodeMapping(params[2]);
         c.setNodeIndices(node1Index, node2Index);
         elementCollection.addElement(c);
     }
 
-    public static void createInductor(ICollectElements elementCollection, String name, String node1, String node2, String value)
+    public static void createInductor(ICollectElements elementCollection, String[]params)
     {
-        Inductor i = new Inductor(name, CircuitBuilder.parseDouble(value));
-        int node1Index = elementCollection.assignNodeMapping(node1);
-        int node2Index = elementCollection.assignNodeMapping(node2);
+        Inductor i = new Inductor(params[0], CircuitBuilder.parseDouble(params[3]));
+        int node1Index = elementCollection.assignNodeMapping(params[1]);
+        int node2Index = elementCollection.assignNodeMapping(params[2]);
         i.setNodeIndices(node1Index, node2Index);
         elementCollection.addElement(i);
     }
 
+    /**
+     * Add a new diode circuit element to the circuit using the specified model "modelName"
+     *
+     * @param elementCollection The collection in which the diode is to be added
+     * @param params params[0]: Name of this diode (Must be unique).
+     *       params[1]: node1 cathode of the diode, where the current is heading.
+     *       params[2]: node2 anode of the diode, where the current leaves.
+     *       params[3]: modelName Name of the Diode model on which the new Diode is based on (Must exists).
+     */
+    public static void createDiode(ICollectElements elementCollection, String[]params, CircuitElementModel myModel){
+        Diode d;
 
-
-
-    public static void createVCCS(ICollectElements elementCollection, String name, String node1, String node2, String control1, String control2, String value)
-    {
-        VCCS vccs = new VCCS(name, CircuitBuilder.parseDouble(value));
-        createVoltageControlledSource(elementCollection, node1, node2, control1, control2, vccs);
-    }
-
-    public static void createVCVS(ICollectElements elementCollection, String name, String node1, String node2, String control1, String control2, String value)
-    {
-        VCVS vcvs = new VCVS(name, CircuitBuilder.parseDouble(value));
-        createVoltageControlledSource(elementCollection, node1, node2, control1, control2, vcvs);
-    }
-
-
-
-
-    public static void createVoltageControlledSource(ICollectElements elementCollection, String node1, String node2, String control1, String control2, VCSource source)
-    {
-        int node1Index = elementCollection.assignNodeMapping(node1);
-        int node2Index = elementCollection.assignNodeMapping(node2);
-        int controlNode1Index = elementCollection.assignNodeMapping(control1);
-        int controlNode2Index = elementCollection.assignNodeMapping(control2);
-        source.setNodeIndices(node1Index, node2Index, controlNode1Index, controlNode2Index);
-        elementCollection.addElement(source);
-    }
-
-    public static void createCurrentControlledSource(ICollectElements elementCollection, String node1, String node2, CCSource source)
-    {
-        int node1Index = elementCollection.assignNodeMapping(node1);
-        int node2Index = elementCollection.assignNodeMapping(node2);
-        source.setNodeIndices(node1Index, node2Index);
-        elementCollection.addElement(source);
-    }
-
-    public static SourceValue findPhasorOrDC(String... params)
-    {
-        if (params.length == 1)
-            return new SourceValue(CircuitBuilder.parseDouble(params[0]));
-
-        if (params[0].equalsIgnoreCase("DC"))
-        {
-            if ((params.length > 2) && (params.length <= 6))
-            {
-                if (params[2].equalsIgnoreCase("AC"))
-                {
-                    double amplitude = 1, phase = 0;
-                    if (params.length >= 4)
-                        amplitude = CircuitBuilder.parseDouble(params[3]);
-                    if (params.length >= 5)
-                        phase = Math.toRadians(CircuitBuilder.parseDouble(params[4]));
-                    if (params.length >= 6) {
-                        CircuitBuilder.transFrequency = CircuitBuilder.parseDouble(params[5]);
-                    }
-
-                    double real = amplitude * Math.cos(phase);
-                    double imaginary = amplitude * Math.sin(phase);
-
-                    return new SourceValue(CircuitBuilder.parseDouble(params[1]), MathActivator.Activator.complex(real, imaginary));
-                }
-                else throw new ParseException("Invalid parameters on Voltage Source " + params);
-            }  else if (params.length >= 6)
-            {
-                if (params[2].equalsIgnoreCase(""))
-                {
-                    double amplitude = 1, phase = 0;
-                    //frequency = 1;
-                    if (params.length >= 4)
-                        amplitude = CircuitBuilder.parseDouble(params[3]);
-                    if (params.length >= 5)
-                        phase = Math.toRadians(CircuitBuilder.parseDouble(params[4]));
-                    if (params.length >= 6)
-                        CircuitBuilder.transFrequency = CircuitBuilder.parseDouble(params[5]);
-
-                    double real = amplitude * Math.cos(phase);
-                    double imaginary = amplitude * Math.sin(phase);
-
-                    return new SourceValue(CircuitBuilder.parseDouble(params[1]), MathActivator.Activator.complex(real, imaginary));
-                }
-                else throw new ParseException("Invalid parameters on Voltage Source " + params);
-            }
-            else
-            {
-                return new SourceValue(CircuitBuilder.parseDouble(params[1]));
-            }
-
+        if(myModel.getKey() == 'D'){
+            d = new Diode(params[0], (DiodeModel)(myModel));
+        }else{
+            System.out.println("Warning, non diode MODEL specified for a diode element.\n"+
+                    "Standard diode parameters applied.");
+            d = new Diode(params[0]);
         }
-        else if (params[0].equalsIgnoreCase("AC"))
-        {
-            double amplitude = 1, phase = 0;
-            if (params.length >= 2)
-                amplitude = CircuitBuilder.parseDouble(params[1]);
-            if (params.length >= 3)
-                phase = Math.toRadians(CircuitBuilder.parseDouble(params[2]));
 
-            double real = amplitude * Math.cos(phase);
-            double imaginary = amplitude * Math.sin(phase);
-
-
-            return new SourceValue(MathActivator.Activator.complex(real, imaginary));
-        }
-        else
-            throw new ParseException("Invalid source format: " + params[0]);
+        int node1Index = elementCollection.assignNodeMapping(params[1]);
+        int node2Index = elementCollection.assignNodeMapping(params[2]);
+        d.setNodeIndices(node1Index, node2Index);
+        elementCollection.addElement(d);
     }
-
-
 
 
 }

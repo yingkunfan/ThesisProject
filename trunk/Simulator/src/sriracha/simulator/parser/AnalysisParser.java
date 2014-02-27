@@ -106,7 +106,7 @@ public class AnalysisParser {
             throw new ParseException("Step size must be greater than 0 for Transient analysis");
         }
 
-        return new TransAnalysis(rangeStart, rangeStop, stepSize, CircuitBuilder.transFrequency);
+        return new TransAnalysis(rangeStart, rangeStop, stepSize);
 
     }
 }
