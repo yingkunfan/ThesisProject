@@ -1232,104 +1232,16 @@ public class CircuitBuilder
     public Analysis parseAnalysis(String line)
     {
         if (line.startsWith(".AC"))
-            return parseSmallSignal(line);
+            return AnalysisParser.parseSmallSignal(line);
         else if (line.startsWith(".DC"))
-            return parseDCAnalysis(line);
+            return AnalysisParser.parseDCAnalysis(line, this.circuit);
         else if (line.startsWith(".TR")) {
-            return parseTransAnalysis(line); }
+            return AnalysisParser.parseTransAnalysis(line); }
         else
             throw new UnsupportedOperationException("This format of analysis is currently not supported: " + line);
     }
 
-    //    /* TODO: number of parameters? */
-    private TransAnalysis parseTransAnalysis(String line){
-        String[] params = line.split("\\s+");
 
-        if (params.length != 4)
-            throw new ParseException("Incorrect number of parameters for Transient analysis: " + line);
-
-        double stepSize = parseDouble(params[1]);
-        double rangeStart = parseDouble(params[3]);
-        double rangeStop = parseDouble(params[2]);
-
-        if (stepSize == 0)
-        {
-            throw new ParseException("Step size must be greater than 0 for Transient analysis");
-        }
-
-        return new TransAnalysis(rangeStart, rangeStop, stepSize, transFrequency);
-
-    }
-
-    private DCAnalysis parseDCAnalysis(String line)
-    {
-        String[] params = line.split("\\s+");
-
-        if (!(params.length == 5 || params.length == 9))
-            throw new ParseException("Incorrect number of parameters for DC analysis: " + line);
-
-        Source s1 = (Source) circuit.getElement(params[1]);
-
-        DCSweep sweep1 = new DCSweep(s1, parseDouble(params[2]), parseDouble(params[3]), parseDouble(params[4]));
-
-        if (sweep1.getStep() == 0)
-        {
-            throw new ParseException("Step size must be larger than 0 for DC analysis");
-        }
-        if (sweep1.getEndValue() <= sweep1.getStartValue())
-        {
-            throw new ParseException("End Sweep value must be larger than Start Sweep value");
-        }
-
-        DCSweep sweep2 = null;
-        if (params.length == 9)
-        {
-            sweep2 = new DCSweep((Source) circuit.getElement(params[5]), parseDouble(params[6]), parseDouble(params[7]),
-                    Integer.parseInt(params[8]));
-
-            if (sweep2.getStep() == 0)
-            {
-                throw new ParseException("Step size must be larger than 0 for DC analysis");
-            }
-
-            if (sweep2.getEndValue() <= sweep2.getStartValue())
-            {
-                throw new ParseException("End Sweep value must be larger than Start Sweep value");
-            }
-        }
-
-        return new DCAnalysis(sweep1, sweep2);
-    }
-
-    private ACAnalysis parseSmallSignal(String line)
-    {
-        String[] params = line.split("\\s+");
-
-        if (params.length != 5)
-            throw new ParseException("Incorrect number of parameters for AC analysis: " + line);
-
-        ACSubType subType;
-
-        if (params[1].equals("LIN"))
-            subType = ACSubType.Linear;
-        else if (params[1].equals("OCT"))
-            subType = ACSubType.Octave;
-        else if (params[1].equals("DEC"))
-            subType = ACSubType.Decade;
-        else
-            throw new ParseException("Invalid scale format. Scale must be LIN, OCT, or DEC: " + line);
-
-        int numPoints = Integer.parseInt(params[2]);
-        double rangeStart = parseDouble(params[3]);
-        double rangeStop = parseDouble(params[4]);
-
-        if (numPoints == 0)
-        {
-            throw new ParseException("Must request more than 0 points for AC analysis");
-        }
-
-        return new ACAnalysis(subType, rangeStart, rangeStop, numPoints);
-    }
 
     private void parseSubCircuitTemplate(String[] lines)
     {
