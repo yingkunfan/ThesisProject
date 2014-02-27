@@ -2,6 +2,7 @@ package sriracha.simulator.parser;
 
 import sriracha.simulator.model.Circuit;
 import sriracha.simulator.model.elements.sources.Source;
+import sriracha.simulator.solver.analysis.Analysis;
 import sriracha.simulator.solver.analysis.ac.ACAnalysis;
 import sriracha.simulator.solver.analysis.ac.ACSubType;
 import sriracha.simulator.solver.analysis.dc.DCAnalysis;
@@ -14,7 +15,17 @@ import sriracha.simulator.solver.analysis.trans.TransAnalysis;
 public class AnalysisParser {
 
 
-
+    public static Analysis parseAnalysis(String line, Circuit circuit)
+    {
+        if (line.startsWith(".AC"))
+            return parseSmallSignal(line);
+        else if (line.startsWith(".DC"))
+            return parseDCAnalysis(line, circuit);
+        else if (line.startsWith(".TR")) {
+            return parseTransAnalysis(line); }
+        else
+            throw new UnsupportedOperationException("This format of analysis is currently not supported: " + line);
+    }
 
     public static DCAnalysis parseDCAnalysis(String line, Circuit circuit)
     {
