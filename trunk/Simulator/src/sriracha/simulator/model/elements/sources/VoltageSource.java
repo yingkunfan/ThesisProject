@@ -13,17 +13,17 @@ public class VoltageSource extends Source
 
     public VoltageSource(String name, double dcValue)
     {
-        super(name, dcValue, MathActivator.Activator.complex(0, 0));
+        super(name, dcValue, MathActivator.Activator.complex(0, 0), Transfun.NONE);
     }
 
     public VoltageSource(String name, IComplex acPhasorValue)
     {
-        super(name, 0, acPhasorValue);
+        super(name, 0, acPhasorValue, Transfun.NONE);
     }
 
     public VoltageSource(String name, double dcValue, IComplex acPhasorValue)
     {
-        super(name, dcValue, acPhasorValue);
+        super(name, dcValue, acPhasorValue, Transfun.NONE);
     }
 
     private int currentIndex;

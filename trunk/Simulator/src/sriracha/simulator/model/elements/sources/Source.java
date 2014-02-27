@@ -4,11 +4,16 @@ import sriracha.math.interfaces.IComplex;
 import sriracha.simulator.model.CircuitElement;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
 
+enum Transfun{
+    AM, DC, EXP, PE, PL, PU, PULSE, PWL, SFFM, SIN, NONE;
+};
+
 /**
  * base class for all normal sources, Not Controlled sources
  */
 public abstract class Source extends CircuitElement
 {
+
 
     /**
      * Node indices for source
@@ -16,9 +21,9 @@ public abstract class Source extends CircuitElement
      */
     protected int nPlus, nMinus;
 
-    protected double dcValue;
+    protected double dcValue = 0;
 
-    protected double freq;
+    protected Transfun transfun;
 
     protected IComplex acPhasorValue;
 
@@ -28,11 +33,12 @@ public abstract class Source extends CircuitElement
     /**
      * @param name element name from netlist
      */
-    protected Source(String name, double dcValue, IComplex acPhasorValue)
+    protected Source(String name, double dcValue, IComplex acPhasorValue, Transfun transientFct)
     {
         super(name);
         this.dcValue = dcValue;
         this.acPhasorValue = acPhasorValue;
+        this.transfun = transientFct;
     }
 
     /* TODO */

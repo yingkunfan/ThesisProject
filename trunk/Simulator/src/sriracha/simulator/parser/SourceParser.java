@@ -18,11 +18,7 @@ public class SourceParser {
     {
         String[] additionalParams = Arrays.copyOfRange(params, 3, params.length);
         SourceValue value = findPhasorOrDC(additionalParams);
-        CurrentSource source;
-        if (value.AC != null)
-            source = new CurrentSource(params[0], value.AC);
-        else
-            source = new CurrentSource(params[0], value.DC);
+        CurrentSource source = new CurrentSource(params[0], value.DC, value.AC);
 
         int node1Index = elementCollection.assignNodeMapping(params[1]);
         int node2Index = elementCollection.assignNodeMapping(params[2]);
@@ -93,6 +89,7 @@ public class SourceParser {
 
         if (params[0].equalsIgnoreCase("DC"))
         {
+            //If DC specified, skip
             if ((params.length > 2) && (params.length <= 6))
             {
                 if (params[2].equalsIgnoreCase("AC"))
@@ -132,6 +129,7 @@ public class SourceParser {
                 }
                 else throw new ParseException("Invalid parameters on Voltage Source " + params);
             }
+            //only one param, i.e. no phase for AC source; only magnitude
             else
             {
                 return new SourceValue(CircuitBuilder.parseDouble(params[1]));
