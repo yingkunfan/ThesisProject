@@ -18,7 +18,7 @@ public class Circuit implements ICollectElements {
     /**
      * mapping from node names in received netlist to index in final matrix.
      * Ground node is always the tuple ("0", -1)
-     * Internal SubMatrix nodes are not mapped here
+     * Internal SubMatrix nodes and extra variables are not mapped here
      */
     private HashMap<String, Integer> nodeMap;
 
@@ -81,7 +81,7 @@ public class Circuit implements ICollectElements {
     }
 
     /**
-     * number of nodes in the circuit excluding ground and internal subcircuit nodes.
+     * number of nodes in the circuit excluding ground, internal subcircuit nodes, and extra variables added.
      *
      * @return number of nodes
      */
@@ -106,7 +106,7 @@ public class Circuit implements ICollectElements {
     }
 
     /**
-     * @return size of the matrix needed to hold equations for this circuit
+     * @return size of the matrix needed to hold equations for this circuit, including all extra variables
      */
     public int getMatrixSize() {
         int evCount = 0;

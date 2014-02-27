@@ -231,6 +231,7 @@ public class TransEquation {
         b.addValue(i, d);
     }
 
+
     public void applyTransConductorInductor(int i, int j, double value)
     {
         //no stamps to ground
@@ -241,6 +242,10 @@ public class TransEquation {
             G.addValue(i, j, value);
 
         }
+    }
+
+    public IRealMatrix getG() {
+        return G;
     }
 
 }

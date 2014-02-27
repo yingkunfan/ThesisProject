@@ -98,7 +98,7 @@ public class Simulator implements ISimulator
     {
         clearData();
 
-
+        //Build the circuit
         builder = new CircuitBuilder(netlist);
         setCircuit(builder.getCircuit());
 

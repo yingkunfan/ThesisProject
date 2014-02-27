@@ -19,6 +19,8 @@ public abstract class Source extends CircuitElement
 
     protected double dcValue;
 
+    protected double freq;
+
     protected IComplex acPhasorValue;
 
     //protected double transValue;
