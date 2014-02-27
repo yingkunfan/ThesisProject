@@ -22,8 +22,6 @@ public class ElementParser {
     public static void createCurrentSource(ICollectElements elementCollection, String name, String node1, String node2, String... params)
     {
         SourceValue value = findPhasorOrDC(params);
-        CircuitBuilder.ACValue = value.AC;
-        CircuitBuilder.DCValue = value.DC;
         CurrentSource source;
         if (value.AC != null)
             source = new CurrentSource(name, value.AC);
@@ -39,8 +37,6 @@ public class ElementParser {
     public static void createVoltageSource(ICollectElements elementCollection, String name, String node1, String node2, String... params)
     {
         SourceValue value = findPhasorOrDC(params);
-        CircuitBuilder.ACValue = value.AC;
-        CircuitBuilder.DCValue = value.DC;
         VoltageSource source = new VoltageSource(name, value.DC, value.AC);
 
         int node1Index = elementCollection.assignNodeMapping(node1);

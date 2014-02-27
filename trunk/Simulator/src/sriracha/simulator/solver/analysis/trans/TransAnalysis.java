@@ -63,8 +63,6 @@ public class TransAnalysis extends Analysis{
         TransResults results = new TransResults();
         double currentTime = timeStart;
         double nextTime = 0;
-        IComplex AcValue = CircuitBuilder.ACValue;
-        double DcValue = CircuitBuilder.DCValue;
         double ACfrequency =   CircuitBuilder.transFrequency;
         int p = 0;
 
@@ -83,7 +81,7 @@ public class TransAnalysis extends Analysis{
 
             nextTime =  currentTime + timeStep;
 
-            IRealVector soln = equation.solve(timeStep, voltageVector, nextTime, ACfrequency, AcValue, DcValue, p);
+            IRealVector soln = null;//equation.solve(timeStep, voltageVector, nextTime, ACfrequency, AcValue, DcValue, p);
 
 //            /* The first result is the initial guess. */
 //            if (p == 0) {

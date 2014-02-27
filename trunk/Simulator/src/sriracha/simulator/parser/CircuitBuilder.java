@@ -33,9 +33,6 @@ public class CircuitBuilder
     private Circuit circuit;
     private ArrayList<Analysis> analysisTypes = new ArrayList<Analysis>();
     private ArrayList<OutputFilter> outputFilters = new ArrayList<OutputFilter>();
-    public static IComplex ACValue;
-    public static double DCValue;
-
 
     /**
     * List of circuit element models, such as models for diodes and BJTs.
