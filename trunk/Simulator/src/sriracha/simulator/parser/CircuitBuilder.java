@@ -145,7 +145,7 @@ public class CircuitBuilder
             }
             else if (line.startsWith(".AC") || line.startsWith(".DC") || line.startsWith(".TR"))
             {
-                analysisTypes.add(AnalysisParser.parseAnalysis(line, this.circuit));
+                analysisTypes.add(parseAnalysis(line, this.circuit));
             }
             else if (line.startsWith(".PRINT"))
             {
@@ -315,6 +315,18 @@ public class CircuitBuilder
             parseCircuitElement(subCircuit, lines[i]);
 
         subcircuitTemplates.put(name, subCircuit);
+    }
+
+    public static Analysis parseAnalysis(String line, Circuit circuit)
+    {
+        if (line.startsWith(".AC"))
+            return AnalysisParser.parseSmallSignal(line);
+        else if (line.startsWith(".DC"))
+            return AnalysisParser.parseDCAnalysis(line, circuit);
+        else if (line.startsWith(".TR")) {
+            return AnalysisParser.parseTransAnalysis(line); }
+        else
+            throw new UnsupportedOperationException("This format of analysis is currently not supported: " + line);
     }
 
     private void parseCircuitElement(ICollectElements elementCollection, String line)

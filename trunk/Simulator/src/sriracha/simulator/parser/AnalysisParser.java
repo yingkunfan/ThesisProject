@@ -15,17 +15,7 @@ import sriracha.simulator.solver.analysis.trans.TransAnalysis;
 public class AnalysisParser {
 
 
-    public static Analysis parseAnalysis(String line, Circuit circuit)
-    {
-        if (line.startsWith(".AC"))
-            return parseSmallSignal(line);
-        else if (line.startsWith(".DC"))
-            return parseDCAnalysis(line, circuit);
-        else if (line.startsWith(".TR")) {
-            return parseTransAnalysis(line); }
-        else
-            throw new UnsupportedOperationException("This format of analysis is currently not supported: " + line);
-    }
+
 
     public static DCAnalysis parseDCAnalysis(String line, Circuit circuit)
     {

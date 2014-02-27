@@ -118,7 +118,7 @@ public class Simulator implements ISimulator
     @Override
     public boolean addAnalysis(String analysis)
     {
-        Analysis a = builder.parseAnalysis(analysis);
+        Analysis a = builder.parseAnalysis(analysis, builder.getCircuit());
         requestedAnalysis.add(a);
         a.extractSolvingInfo(circuit);
         return save(a);
