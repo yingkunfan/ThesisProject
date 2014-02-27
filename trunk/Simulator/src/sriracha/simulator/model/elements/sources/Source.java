@@ -16,7 +16,6 @@ public abstract class Source extends CircuitElement
      */
     protected int nPlus, nMinus;
 
-
     protected double dcValue;
 
     protected double freq;
