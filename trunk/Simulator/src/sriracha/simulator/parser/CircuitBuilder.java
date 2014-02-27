@@ -396,7 +396,7 @@ public class CircuitBuilder
     private void createCCCS(ICollectElements elementCollection, String name, String node1, String node2, String control, String value)
     {
         CircuitElement vSource = circuit.getElement(control);
-        CCCS cccs = new CCCS(name, ElementParser.parseDouble(value), (VoltageSource) vSource);
+        CCCS cccs = new CCCS(name, parseDouble(value), (VoltageSource) vSource);
 
         ElementParser.createCurrentControlledSource(elementCollection, node1, node2, cccs);
     }
@@ -404,7 +404,7 @@ public class CircuitBuilder
     private void createCCVS(ICollectElements elementCollection, String name, String node1, String node2, String control, String value)
     {
         CircuitElement vSource = circuit.getElement(control);
-        CCVS ccvs = new CCVS(name, ElementParser.parseDouble(value), (VoltageSource) vSource);
+        CCVS ccvs = new CCVS(name, parseDouble(value), (VoltageSource) vSource);
         ElementParser.createCurrentControlledSource(elementCollection, node1, node2, ccvs);
     }
 
@@ -437,4 +437,60 @@ public class CircuitBuilder
         elementCollection.addElement(d);
     }
 
+    /**
+     * parses a double and allows for Spice compatible postfixes (case insensitive)
+     * T = 10^12
+     * G = 10^9
+     * Meg = 10^6
+     * K = 10^3
+     * m = 10^-3
+     * u = 10^-6
+     * n = 10^-9
+     * p = 10^-12
+     * f = 10^-15
+     * <p/>
+     * the string can be followed with any text after these as long as what comes before is parsable
+     *
+     * @param str - the string to parse
+     * @return result as a double
+     */
+    public static double parseDouble(String str)
+    {
+
+        int i = 0;
+        char c = str.charAt(0);
+        while ((Character.isDigit(c) || c == '.' || c == '-' || Character.toLowerCase(c) == 'e') && ++i < str.length())
+        {
+            c = str.charAt(i);
+        }
+
+        String str1 = str.substring(0, i), str2 = str.substring(i);
+
+        double factor = 1;
+
+        str2 = str2.toLowerCase();
+
+        if (str2.startsWith("t"))
+            factor = Math.pow(10, 12);
+        else if (str2.startsWith("g"))
+            factor = Math.pow(10, 9);
+        else if (str2.startsWith("meg"))
+            factor = Math.pow(10, 6);
+        else if (str2.startsWith("k"))
+            factor = Math.pow(10, 3);
+        else if (str2.startsWith("m"))
+            factor = Math.pow(10, -3);
+        else if (str2.startsWith("u"))
+            factor = Math.pow(10, -6);
+        else if (str2.startsWith("n"))
+            factor = Math.pow(10, -9);
+        else if (str2.startsWith("p"))
+            factor = Math.pow(10, -12);
+        else if (str2.startsWith("f"))
+            factor = Math.pow(10, -15);
+
+
+        return factor * Double.parseDouble(str1);
+
+    }
 }
