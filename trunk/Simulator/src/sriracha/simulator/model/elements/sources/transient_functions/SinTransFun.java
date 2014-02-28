@@ -40,8 +40,8 @@ public class SinTransFun extends TransientFunction {
      */
     private double phi = 0;
 
-    public SinTransFun(String[]params){
-        super(SourceClass.currSrc);
+    public SinTransFun(String[]params, SourceClass srcClass){
+        super(srcClass);
         int index = 0;
 
         while(index < params.length){

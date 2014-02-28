@@ -63,13 +63,22 @@ public class SourceParser {
         elementCollection.addElement(source);
     }
 
+    /**
+     * Generate the source according to the specifications in "params" and insert it into "elementCollection".
+     * Note that the amount and order of information in params are assumed to be verified prior to this function
+     * call.
+     * @param elementCollection element collection in which the new source is to be added.
+     * @param srcClass the type of source to be created.
+     * @param params the source's characteristics.
+     */
     public static void generateSource(ICollectElements elementCollection, SourceClass srcClass, String[]params){
         SourceValue sourceValue = new SourceValue();
-        SinTransFun newTransFun = null;
+        TransientFunction newTransFun = null;
 
         //The first three parameters MUST be the name, the positive node, the negative node.
         //Skip these three for remaining parameters, thus paramsIndex starts at 3
         int paramsIndex = 3;
+
 
         //Obtain the source DC and AC value, and its transient function if there applicable.
         while(paramsIndex < params.length){
@@ -91,11 +100,12 @@ public class SourceParser {
             }else{
                 if(params[paramsIndex].equalsIgnoreCase("SIN")){
                     String[]subParams = Arrays.copyOfRange(params, paramsIndex + 1, params.length);
-                    newTransFun = new SinTransFun(subParams);
+                    newTransFun = new SinTransFun(subParams, srcClass);
                 }
+                //give loop exit condition.
                 paramsIndex = params.length;
-            }
-        }
+            }//end of else
+        }//end of while(paramsIndex < params.length)
 
         Source newSrc = null;
         String name = params[0];
@@ -105,10 +115,13 @@ public class SourceParser {
             case voltSrc: newSrc = new VoltageSource(name, sourceValue.DC, sourceValue.AC, newTransFun);    break;
         }
 
+        //Source's positive node
         int node1Index = elementCollection.assignNodeMapping(params[1]);
+        //Souce's negative node
         int node2Index = elementCollection.assignNodeMapping(params[2]);
+        //update node indexes
         newSrc.setNodeIndices(node1Index, node2Index);
-
+        //Add new source to the collection
         elementCollection.addElement(newSrc);
-    }
+    }//end of: generateSource(ICollectElements elementCollection, SourceClass srcClass, String[]params)
 }
