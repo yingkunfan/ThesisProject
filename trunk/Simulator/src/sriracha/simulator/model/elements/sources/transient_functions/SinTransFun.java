@@ -1,9 +1,13 @@
 package sriracha.simulator.model.elements.sources.transient_functions;
 
+import sriracha.math.interfaces.IComplex;
+import sriracha.simulator.model.elements.sources.SourceClass;
+import sriracha.simulator.parser.CircuitBuilder;
+
 /**
  * Created by yiqing on 27/02/14.
  */
-public class SinTransFun {
+public class SinTransFun extends TransientFunction {
     /**
      * Offset voltage or current in V oe A, by default 0.
      */
@@ -37,6 +41,33 @@ public class SinTransFun {
     private double phi = 0;
 
     public SinTransFun(String[]params){
+        super(SourceClass.currSrc);
+        int index = 0;
 
+        while(index < params.length){
+            switch(index){
+                case 0: vo = CircuitBuilder.parseDouble(params[index]);     break;
+                case 1: va = CircuitBuilder.parseDouble(params[index]);     break;
+                case 2: freq = CircuitBuilder.parseDouble(params[index]);   break;
+                case 3: td = CircuitBuilder.parseDouble(params[index]);     break;
+                case 4: theta = CircuitBuilder.parseDouble(params[index]);  break;
+                case 5: phi = CircuitBuilder.parseDouble(params[index]);    break;
+            }
+            index++;
+        }
+    }
+
+    /**
+     * Obtain the volt/current value of the sine wave function at the specified time.
+     * The equation is vo + va* exp[-(time-td)*theta]*sin[2*PI*(freq*(time-td)+phi/360)]
+     * @param time time at which the equation is probed
+     * @return
+     */
+    @Override
+    public IComplex probeValue(double time) {
+        double answer = 0;
+        answer = vo + va*Math.exp(-(time - td)*theta)*Math.sin(2*Math.PI*(freq*(time-td) + phi/360));
+
+        return null;
     }
 }
