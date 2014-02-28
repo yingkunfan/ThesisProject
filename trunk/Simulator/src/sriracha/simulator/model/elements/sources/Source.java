@@ -4,10 +4,6 @@ import sriracha.math.interfaces.IComplex;
 import sriracha.simulator.model.CircuitElement;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
 
-enum Transfun{
-    AM, DC, EXP, PE, PL, PU, PULSE, PWL, SFFM, SIN, NONE;
-};
-
 /**
  * base class for all normal sources, Not Controlled sources
  */

@@ -9,6 +9,7 @@ import sriracha.simulator.model.elements.sources.VoltageSource;
 
 import java.util.Arrays;
 
+
 /**
  * Created by yiqing on 27/02/14.
  */
@@ -129,13 +130,14 @@ public class SourceParser {
                 }
                 else throw new ParseException("Invalid parameters on Voltage Source " + params);
             }
-            //only one param, i.e. no phase for AC source; only magnitude
+            //only purely DC source
             else
             {
                 return new SourceValue(CircuitBuilder.parseDouble(params[1]));
             }
 
         }
+        //If source is purely AC
         else if (params[0].equalsIgnoreCase("AC"))
         {
             double amplitude = 1, phase = 0;
@@ -153,6 +155,5 @@ public class SourceParser {
         else
             throw new ParseException("Invalid source format: " + params[0]);
     }
-
 
 }
