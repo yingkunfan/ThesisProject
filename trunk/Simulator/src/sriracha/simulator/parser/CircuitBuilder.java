@@ -4,6 +4,7 @@ package sriracha.simulator.parser;
 import sriracha.math.MathActivator;
 import sriracha.math.interfaces.IComplex;
 import sriracha.simulator.model.*;
+import sriracha.simulator.model.elements.sources.SourceClass;
 import sriracha.simulator.model.models.CircuitElementModel;
 import sriracha.simulator.model.elements.Capacitor;
 import sriracha.simulator.model.elements.Inductor;
@@ -346,7 +347,8 @@ public class CircuitBuilder
                 break;
 
             case 'v':
-                SourceParser.createVoltageSource(elementCollection, params);
+                //SourceParser.createVoltageSource(elementCollection, params);
+                SourceParser.generateSource(elementCollection, SourceClass.voltSrc, params);
                 break;
 
             case 'l':

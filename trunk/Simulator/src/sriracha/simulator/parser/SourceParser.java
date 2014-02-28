@@ -195,6 +195,7 @@ public class SourceParser {
                     String[]subParams = Arrays.copyOfRange(params, paramsIndex + 1, params.length);
                     newTransFun = new SinTransFun(subParams);
                 }
+                paramsIndex = params.length;
             }
         }
 
@@ -202,8 +203,8 @@ public class SourceParser {
         String name = params[0];
 
         switch(srcClass){
-            case currSrc: newSrc = new CurrentSource(name, sourceValue.DC, sourceValue.AC, newTransFun);
-            //case voltSrc: newSrc = new Vol
+            case currSrc: newSrc = new CurrentSource(name, sourceValue.DC, sourceValue.AC, newTransFun);    break;
+            case voltSrc: newSrc = new VoltageSource(name, sourceValue.DC, sourceValue.AC, newTransFun);    break;
         }
 
         int node1Index = elementCollection.assignNodeMapping(params[1]);
