@@ -90,7 +90,7 @@ public class SourceParser {
             //Obtain AC value
             }else if(params[paramsIndex].equalsIgnoreCase("AC")){
                 double amplitude = CircuitBuilder.parseDouble(params[paramsIndex + 1]);
-                double phase = Math.toRadians(CircuitBuilder.parseDouble(params[paramsIndex + 2]));
+                double phase = Math.toRadians(CircuitBuilder.parseDouble(params[paramsIndex + 3]));
                 double real = amplitude * Math.cos(phase);
                 double imaginary = amplitude * Math.sin(phase);
                 sourceValue.AC = MathActivator.Activator.complex(real, imaginary);

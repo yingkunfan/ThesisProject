@@ -1,5 +1,7 @@
 package sriracha.frontend.model.elements.sources;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import sriracha.frontend.*;
 import sriracha.frontend.model.*;
 import sriracha.frontend.model.elements.*;
@@ -233,6 +235,7 @@ public class CurrentSource extends TwoPortElement implements Serializable
                     {
                         instTime = Float.parseFloat(value);
                     }
+                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
                     @Override
                     public String getUnit()
                     {
