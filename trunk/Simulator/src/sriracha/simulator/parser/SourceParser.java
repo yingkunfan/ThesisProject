@@ -5,7 +5,10 @@ import sriracha.simulator.model.CircuitElement;
 import sriracha.simulator.model.ICollectElements;
 import sriracha.simulator.model.elements.ctlsources.*;
 import sriracha.simulator.model.elements.sources.CurrentSource;
+import sriracha.simulator.model.elements.sources.Source;
+import sriracha.simulator.model.elements.sources.SourceClass;
 import sriracha.simulator.model.elements.sources.VoltageSource;
+import sriracha.simulator.model.elements.sources.transient_functions.SinTransFun;
 
 import java.util.Arrays;
 
@@ -83,6 +86,11 @@ public class SourceParser {
         elementCollection.addElement(source);
     }
 
+    /**
+     * Parse the remaining parameters listed EXCLUDING the source name and the two source nodes.
+     * @param params remaining source characteristics: DC, AC, or transient function
+     * @return
+     */
     public static SourceValue findPhasorOrDC(String... params)
     {
         if (params.length == 1)
@@ -156,4 +164,36 @@ public class SourceParser {
             throw new ParseException("Invalid source format: " + params[0]);
     }
 
+    public static Source generateSource(SourceClass srcClass, String[]params){
+        SourceValue sourceValue = new SourceValue();
+        SinTransFun newTransFun;
+        int paramsIndex = 0;
+
+        while(paramsIndex < params.length){
+            if(params[paramsIndex].equalsIgnoreCase("DC")){
+                sourceValue.DC = CircuitBuilder.parseDouble(params[paramsIndex + 1]);
+
+                paramsIndex = paramsIndex + 2;
+            }else if(params[paramsIndex].equalsIgnoreCase("AC")){
+                double amplitude = CircuitBuilder.parseDouble(params[paramsIndex + 1]);
+                double phase = Math.toRadians(CircuitBuilder.parseDouble(params[paramsIndex + 2]));
+                double real = amplitude * Math.cos(phase);
+                double imaginary = amplitude * Math.sin(phase);
+                sourceValue.AC = MathActivator.Activator.complex(real, imaginary);
+
+                paramsIndex = paramsIndex + 3;
+            }else{
+                if(params[paramsIndex].equalsIgnoreCase("SIN")){
+                    String[]subParams = Arrays.copyOfRange(params, paramsIndex + 1, params.length);
+                    newTransFun = new SinTransFun(subParams);
+
+                }
+            }
+        }
+
+       /* switch(srcClass){
+            case currSrc: return new CurrentSource();
+        } */
+        return null;
+    }
 }

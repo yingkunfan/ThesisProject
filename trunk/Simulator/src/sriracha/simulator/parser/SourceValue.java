@@ -22,6 +22,11 @@ public class SourceValue
      */
     public IComplex AC = MathActivator.Activator.complex(0, 0);
 
+    public SourceValue(){
+        DC = 0;
+        AC = MathActivator.Activator.complex(0, 0);
+    }
+
     /**
      * Construct SourceValue object initializing dc value only.
      * @param dc dc value
