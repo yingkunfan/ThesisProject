@@ -3,6 +3,7 @@ package sriracha.simulator.model.elements.sources;
 import sriracha.math.MathActivator;
 import sriracha.math.interfaces.IComplex;
 import sriracha.simulator.model.CircuitElement;
+import sriracha.simulator.model.elements.sources.transient_functions.TransientFunction;
 import sriracha.simulator.solver.analysis.ac.ACEquation;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
 import sriracha.simulator.solver.analysis.trans.TransEquation;
@@ -13,17 +14,21 @@ public class CurrentSource extends Source
 
     public CurrentSource(String name, IComplex acPhasorValue)
     {
-        super(name, 0, acPhasorValue, Transfun.NONE);
+        super(name, 0, acPhasorValue, null);
     }
 
     public CurrentSource(String name, double dcValue)
     {
-        super(name, dcValue, MathActivator.Activator.complex(0, 0), Transfun.NONE);
+        super(name, dcValue, MathActivator.Activator.complex(0, 0), null);
     }
 
     public CurrentSource(String name, double dcValue, IComplex acPhasorValue)
     {
-        super(name, dcValue, acPhasorValue, Transfun.NONE);
+        super(name, dcValue, acPhasorValue, null);
+    }
+
+    public CurrentSource(String name, double dcValue, IComplex acPhasorValue, TransientFunction transfct){
+        super(name, dcValue, acPhasorValue, transfct);
     }
 
     /**

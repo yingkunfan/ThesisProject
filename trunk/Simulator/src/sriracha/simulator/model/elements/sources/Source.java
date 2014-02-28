@@ -2,6 +2,7 @@ package sriracha.simulator.model.elements.sources;
 
 import sriracha.math.interfaces.IComplex;
 import sriracha.simulator.model.CircuitElement;
+import sriracha.simulator.model.elements.sources.transient_functions.TransientFunction;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
 
 /**
@@ -19,7 +20,7 @@ public abstract class Source extends CircuitElement
 
     protected double dcValue = 0;
 
-    protected Transfun transfun;
+    protected TransientFunction transfun;
 
     protected IComplex acPhasorValue;
 
@@ -29,7 +30,7 @@ public abstract class Source extends CircuitElement
     /**
      * @param name element name from netlist
      */
-    protected Source(String name, double dcValue, IComplex acPhasorValue, Transfun transientFct)
+    protected Source(String name, double dcValue, IComplex acPhasorValue, TransientFunction transientFct)
     {
         super(name);
         this.dcValue = dcValue;
