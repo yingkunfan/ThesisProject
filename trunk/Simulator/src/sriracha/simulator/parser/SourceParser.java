@@ -19,30 +19,6 @@ import java.util.Arrays;
  */
 public class SourceParser {
 
-    public static void createCurrentSource(ICollectElements elementCollection, String[]params)
-    {
-        String[] additionalParams = Arrays.copyOfRange(params, 3, params.length);
-        SourceValue value = findPhasorOrDC(additionalParams);
-        CurrentSource source = new CurrentSource(params[0], value.DC, value.AC);
-
-        int node1Index = elementCollection.assignNodeMapping(params[1]);
-        int node2Index = elementCollection.assignNodeMapping(params[2]);
-        source.setNodeIndices(node1Index, node2Index);
-        elementCollection.addElement(source);
-    }
-
-    public static void createVoltageSource(ICollectElements elementCollection, String[]params)
-    {
-        String[] additionalParams = Arrays.copyOfRange(params, 3, params.length);
-        SourceValue value = findPhasorOrDC(additionalParams);
-        VoltageSource source = new VoltageSource(params[0], value.DC, value.AC);
-
-        int node1Index = elementCollection.assignNodeMapping(params[1]);
-        int node2Index = elementCollection.assignNodeMapping(params[2]);
-        source.setNodeIndices(node1Index, node2Index);
-        elementCollection.addElement(source);
-    }
-
     public static void createVCCS(ICollectElements elementCollection, String[]params)
     {
         VCCS vccs = new VCCS(params[0], CircuitBuilder.parseDouble(params[5]));
@@ -85,84 +61,6 @@ public class SourceParser {
         int node2Index = elementCollection.assignNodeMapping(node2);
         source.setNodeIndices(node1Index, node2Index);
         elementCollection.addElement(source);
-    }
-
-    /**
-     * Parse the remaining parameters listed EXCLUDING the source name and the two source nodes.
-     * @param params remaining source characteristics: DC, AC, or transient function
-     * @return
-     */
-    public static SourceValue findPhasorOrDC(String... params)
-    {
-        if (params.length == 1)
-            return new SourceValue(CircuitBuilder.parseDouble(params[0]));
-
-        if (params[0].equalsIgnoreCase("DC"))
-        {
-            //If DC specified, skip
-            if ((params.length > 2) && (params.length <= 6))
-            {
-                if (params[2].equalsIgnoreCase("AC"))
-                {
-                    double amplitude = 1, phase = 0;
-                    if (params.length >= 4)
-                        amplitude = CircuitBuilder.parseDouble(params[3]);
-                    if (params.length >= 5)
-                        phase = Math.toRadians(CircuitBuilder.parseDouble(params[4]));
-                    if (params.length >= 6) {
-                        //CircuitBuilder.transFrequency = CircuitBuilder.parseDouble(params[5]);
-                    }
-
-                    double real = amplitude * Math.cos(phase);
-                    double imaginary = amplitude * Math.sin(phase);
-
-                    return new SourceValue(CircuitBuilder.parseDouble(params[1]), MathActivator.Activator.complex(real, imaginary));
-                }
-                else throw new ParseException("Invalid parameters on Voltage Source " + params);
-            }  else if (params.length >= 6)
-            {
-                if (params[2].equalsIgnoreCase(""))
-                {
-                    double amplitude = 1, phase = 0;
-                    //frequency = 1;
-                    if (params.length >= 4)
-                        amplitude = CircuitBuilder.parseDouble(params[3]);
-                    if (params.length >= 5)
-                        phase = Math.toRadians(CircuitBuilder.parseDouble(params[4]));
-                    if (params.length >= 6)
-                        ;//CircuitBuilder.transFrequency = CircuitBuilder.parseDouble(params[5]);
-
-                    double real = amplitude * Math.cos(phase);
-                    double imaginary = amplitude * Math.sin(phase);
-
-                    return new SourceValue(CircuitBuilder.parseDouble(params[1]), MathActivator.Activator.complex(real, imaginary));
-                }
-                else throw new ParseException("Invalid parameters on Voltage Source " + params);
-            }
-            //only purely DC source
-            else
-            {
-                return new SourceValue(CircuitBuilder.parseDouble(params[1]));
-            }
-
-        }
-        //If source is purely AC
-        else if (params[0].equalsIgnoreCase("AC"))
-        {
-            double amplitude = 1, phase = 0;
-            if (params.length >= 2)
-                amplitude = CircuitBuilder.parseDouble(params[1]);
-            if (params.length >= 3)
-                phase = Math.toRadians(CircuitBuilder.parseDouble(params[2]));
-
-            double real = amplitude * Math.cos(phase);
-            double imaginary = amplitude * Math.sin(phase);
-
-
-            return new SourceValue(MathActivator.Activator.complex(real, imaginary));
-        }
-        else
-            throw new ParseException("Invalid source format: " + params[0]);
     }
 
     public static void generateSource(ICollectElements elementCollection, SourceClass srcClass, String[]params){

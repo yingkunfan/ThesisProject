@@ -343,11 +343,10 @@ public class CircuitBuilder
                 break;
 
             case 'i':
-                SourceParser.createCurrentSource(elementCollection, params);
+                SourceParser.generateSource(elementCollection, SourceClass.currSrc, params);
                 break;
 
             case 'v':
-                //SourceParser.createVoltageSource(elementCollection, params);
                 SourceParser.generateSource(elementCollection, SourceClass.voltSrc, params);
                 break;
 
