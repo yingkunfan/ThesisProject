@@ -8,6 +8,7 @@ import sriracha.simulator.model.elements.sources.CurrentSource;
 import sriracha.simulator.model.elements.sources.Source;
 import sriracha.simulator.model.elements.sources.SourceClass;
 import sriracha.simulator.model.elements.sources.VoltageSource;
+import sriracha.simulator.model.elements.sources.transient_functions.PulseTransFun;
 import sriracha.simulator.model.elements.sources.transient_functions.SinTransFun;
 import sriracha.simulator.model.elements.sources.transient_functions.TransientFunction;
 
@@ -98,9 +99,11 @@ public class SourceParser {
                 paramsIndex = paramsIndex + 4;
             //Obtain transient function
             }else{
+                String[]subParams = Arrays.copyOfRange(params, paramsIndex + 1, params.length);
                 if(params[paramsIndex].equalsIgnoreCase("SIN")){
-                    String[]subParams = Arrays.copyOfRange(params, paramsIndex + 1, params.length);
                     newTransFun = new SinTransFun(subParams, srcClass);
+                }else if(params[paramsIndex].equalsIgnoreCase("PULSE")){
+                    newTransFun = new PulseTransFun(subParams, srcClass);
                 }
                 //give loop exit condition.
                 paramsIndex = params.length;
