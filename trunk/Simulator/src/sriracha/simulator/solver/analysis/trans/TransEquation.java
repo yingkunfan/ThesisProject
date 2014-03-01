@@ -84,9 +84,8 @@ public class TransEquation {
     * */
     IRealVector solve(double timeStep, IRealVector currentVoltage, double nextTime) {
 
-        //FUNCTION CALL
+        //Update the b vector for the "nextTime" specified.
         getNewBVector(nextTime);
-
         //(P = C + G/h)
         IRealMatrix P = buildMatrixP(timeStep);
         //Q = G/h*x(n) + b(n+1)

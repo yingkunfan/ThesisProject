@@ -65,9 +65,6 @@ public class CurrentSource extends Source
     @Override
     public void applyTrans(TransEquation equation)
     {
-        /*equation.applySourceVectorStamp(nMinus, transValue);
-        equation.applySourceVectorStamp(nPlus, -transValue); */
-
         equation.applySourceVectorStamp(this);
     }
 

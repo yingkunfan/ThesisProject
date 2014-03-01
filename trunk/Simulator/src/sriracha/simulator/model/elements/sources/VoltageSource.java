@@ -70,8 +70,21 @@ public class VoltageSource extends Source
         equation.applyTransRealMatrixStamp(nPlus, currentIndex, 1);
         equation.applyTransRealMatrixStamp(nMinus, currentIndex, -1);
 
-        //equation.applySourceVectorStamp(currentIndex, transValue);
         equation.applySourceVectorStamp(this);
+    }
+
+
+    public void updateSourceVector(TransEquation transEq, double time){
+        double newVal = this.getTransientValue(time);
+        transEq.updateSourceVector(nMinus, newVal);
+        transEq.updateSourceVector(nPlus, -1 * newVal);
+    }
+
+    public double getTransientValue(double time){
+        if(transfun == null){
+            return 0;
+        }
+        return this.transfun.probeValue(time);
     }
 
     @Override
