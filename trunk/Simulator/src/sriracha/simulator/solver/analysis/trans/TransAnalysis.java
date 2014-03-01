@@ -31,8 +31,6 @@ public class TransAnalysis extends Analysis{
 
     double timeStep;
 
-    double frequency;
-
     /* TODO: Initial voltage is 0 for DC sources only */
     public IRealVector voltageVector;
 
@@ -47,7 +45,6 @@ public class TransAnalysis extends Analysis{
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
         this.timeStep = timeStep;
-        this.frequency = frequency;
     }
 
     @Override
@@ -60,14 +57,15 @@ public class TransAnalysis extends Analysis{
     public IAnalysisResults run()
     {
         voltageVector = activator.realVector(equation.getG().getNumberOfColumns());
+        voltageVector.clear();
         TransResults results = new TransResults();
         double currentTime = timeStart;
-        double nextTime = 0;
-        int p = 0;
+        //double nextTime = timeStart;
+        //int p = 0;
 
-        for (double i = timeStart; i <= timeEnd; i += timeStep) {
+        /*for (double i = timeStart; i <= timeEnd; i += timeStep) {
 
-             /* To ensure that x(n+1) i.e. the next voltage value is not out of range */
+             // To ensure that x(n+1) i.e. the next voltage value is not out of range
             if (nextTime >= timeEnd) {
                break;
             }
@@ -80,21 +78,28 @@ public class TransAnalysis extends Analysis{
 
             nextTime =  currentTime + timeStep;
 
-            IRealVector soln = null;//equation.solve(timeStep, voltageVector, nextTime, ACfrequency, AcValue, DcValue, p);
-
-//            /* The first result is the initial guess. */
-//            if (p == 0) {
-//
-//               results.addVector(currentTime, equation.getInitialGuess());
-//
-//            /* Subsequent results are found through backward euler */
-//            }
+            IRealVector soln = equation.solve(timeStep, voltageVector, nextTime);
 
             results.addVector(nextTime, soln);
             currentTime += timeStep;
             voltageVector = soln;
             p++;
 
+        }*/
+
+        while(currentTime < timeEnd){
+
+            if (Simulator.Instance.isCancelRequested())
+                return null;
+
+            if (Options.isPrintProgress())
+                System.out.println("Transient solving point");
+
+            IRealVector soln = equation.solve(timeStep, voltageVector, currentTime + timeStep);
+
+            results.addVector(currentTime, soln);
+            currentTime += timeStep;
+            voltageVector.copy(soln);
         }
 
         return results;

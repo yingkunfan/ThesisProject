@@ -21,6 +21,6 @@ public abstract class TransientFunction {
      * @param time time at which the equation is probed
      * @return value of the equation at the specified time
      */
-    public abstract IComplex probeValue(double time);
+    public abstract double probeValue(double time);
 
 }

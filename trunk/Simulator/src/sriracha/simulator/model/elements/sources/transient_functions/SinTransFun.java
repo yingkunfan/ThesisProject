@@ -64,10 +64,10 @@ public class SinTransFun extends TransientFunction {
      * @return
      */
     @Override
-    public IComplex probeValue(double time) {
+    public double probeValue(double time) {
         double answer = 0;
         answer = vo + va*Math.exp(-(time - td)*theta)*Math.sin(2*Math.PI*(freq*(time-td) + phi/360));
 
-        return null;
+        return answer;
     }
 }

@@ -71,15 +71,7 @@ public class Inductor extends CircuitElement
         equation.applyTransRealMatrixStamp(nPlus, currentIndex, 1);
         equation.applyTransRealMatrixStamp(nMinus, currentIndex, -1);
 
-        equation.applyTransConductorInductor(currentIndex, currentIndex, -inductance);
-
-        //equation.applyTransConductorInductor(currentIndex, nPlus, 1);
-        //equation.applyTransConductorInductor(currentIndex, nMinus, -1);
-        //equation.applyTransConductorInductor(nPlus, currentIndex, 1);
-       // equation.applyTransConductorInductor(nMinus, currentIndex, -1);
-
-        //equation.applyTransConductorInductor(currentIndex, currentIndex, -inductance);
-
+        equation.applyComplexMatrixStamp(currentIndex, currentIndex, -inductance);
     }
 
 

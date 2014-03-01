@@ -68,8 +68,20 @@ public class CurrentSource extends Source
         /*equation.applySourceVectorStamp(nMinus, transValue);
         equation.applySourceVectorStamp(nPlus, -transValue); */
 
-        equation.applySourceVectorStamp(nMinus, acPhasorValue);
-        equation.applySourceVectorStamp(nPlus, acPhasorValue.opposite());
+        equation.applySourceVectorStamp(this);
+    }
+
+    public void updateSourceVector(TransEquation transEq, double time){
+        double newVal = this.getTransientValue(time);
+        transEq.updateSourceVector(nMinus, newVal);
+        transEq.updateSourceVector(nPlus, -1 * newVal);
+    }
+
+    public double getTransientValue(double time){
+        if(transfun == null){
+            return 0;
+        }
+        return this.transfun.probeValue(time);
     }
 
     @Override

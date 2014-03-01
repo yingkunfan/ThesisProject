@@ -71,7 +71,7 @@ public class VoltageSource extends Source
         equation.applyTransRealMatrixStamp(nMinus, currentIndex, -1);
 
         //equation.applySourceVectorStamp(currentIndex, transValue);
-        equation.applySourceVectorStamp(currentIndex, acPhasorValue);
+        equation.applySourceVectorStamp(this);
     }
 
     @Override

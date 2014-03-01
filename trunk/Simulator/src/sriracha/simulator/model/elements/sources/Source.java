@@ -4,6 +4,7 @@ import sriracha.math.interfaces.IComplex;
 import sriracha.simulator.model.CircuitElement;
 import sriracha.simulator.model.elements.sources.transient_functions.TransientFunction;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
+import sriracha.simulator.solver.analysis.trans.TransEquation;
 
 /**
  * base class for all normal sources, Not Controlled sources
@@ -74,7 +75,20 @@ public abstract class Source extends CircuitElement
     {
         nPlus = indices[0];
         nMinus = indices[1];
-
     }
+
+    /**
+     * Obtain the magnitude of the source output for transient analysis for the specified time.
+     * @param time specified time at which the source transient value is probed
+     * @return source transient value at time "time". Returns 0 if no transient function specified.
+     */
+    public abstract double getTransientValue(double time);
+
+    /**
+     * Update the source vector of the target transient equation at the specified time.
+     * @param transEq target transient equation
+     * @param time time at which the transient source value is probed.
+     */
+    public abstract void updateSourceVector(TransEquation transEq, double time);
 
 }

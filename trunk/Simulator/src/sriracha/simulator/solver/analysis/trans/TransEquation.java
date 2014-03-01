@@ -8,6 +8,9 @@ import sriracha.simulator.model.Circuit;
 import sriracha.simulator.model.CircuitElement;
 import sriracha.math.interfaces.IComplexVector;
 import sriracha.math.interfaces.IRealVector;
+import sriracha.simulator.model.elements.sources.Source;
+
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,7 +28,7 @@ public class TransEquation {
     public static int circuitNodeCount;
 
     private IRealMatrix C;
-    private IComplexVector b;
+    private IRealVector b;
     /**
      * b(n+1)
      */
@@ -34,13 +37,15 @@ public class TransEquation {
     private IRealMatrix G;
     private IRealVector initialVoltageGuess;
     private IRealVector matrixMultiplicationResult;
+    private ArrayList<Source>sources;
+
 
     private TransEquation(int circuitNodeCount)
     {
         this.circuitNodeCount = circuitNodeCount;
 
         C = activator.realMatrix(circuitNodeCount, circuitNodeCount);
-        b = activator.complexVector(circuitNodeCount);
+        b = activator.realVector(circuitNodeCount);
         b2 = activator.realVector(circuitNodeCount);
         b3 = activator.realVector(circuitNodeCount);
         G = activator.realMatrix(circuitNodeCount, circuitNodeCount);
@@ -70,100 +75,44 @@ public class TransEquation {
      */
     public IRealVector buildVectorQ(double timeStep, IRealVector currentVoltage)
     {
-        //System.out.println("G matrix: " + G);
-        //System.out.println("C matrix: " + C);
-         //CALL MATRIX MULTIPLICATION METHOD
            matrixMultiplication((IRealMatrix)(G.times(1/timeStep)), currentVoltage);
-           return (IRealVector) (matrixMultiplicationResult.plus(b2));
+           return (IRealVector) (matrixMultiplicationResult.plus(b));
     }
 
     /* Solve: P*x(n+1) = Q for the given the current nodal voltages and the
     *  returns x(n+1) , i.e. nextVoltage
     * */
-    IRealVector solve(double timeStep, IRealVector currentVoltage, double nextTime, double frequency, IComplex AcValue,
-                      double DcValue, int p) {
+    IRealVector solve(double timeStep, IRealVector currentVoltage, double nextTime) {
 
         //FUNCTION CALL
-        getNewBVector(frequency, nextTime, AcValue, DcValue);
+        getNewBVector(nextTime);
 
-        /* For the first time that solve is called, use a zero initial guess */
-        if (p == 0) {
-            //(P = C + G/h)
-            IRealMatrix P = buildMatrixP(timeStep);
-            //IRealVector Q = buildVectorQ(timeStep, initialVoltageGuess);
-
-            /* Apply DC analysis to get initial guess (AC sources are shorted to 0) */
-            initialVoltageGuess =  getInitialGuess();
-            //Q = G/h*x(n) + b(n+1)
-            IRealVector Q =  buildVectorQ(timeStep, initialVoltageGuess);
-
-            if (Options.isPrintMatrix())
-            {
-                System.out.println(P);
-                System.out.println("=\n");
-                System.out.println(Q);
-            }
-
-            return P.solve(Q);
-        //For all subsequent calculation for time steps following the initial guess
-        }  else {
-            //(P = C + G/h)
-            IRealMatrix P = buildMatrixP(timeStep);
-            //Q = G/h*x(n) + b(n+1)
-            IRealVector Q = buildVectorQ(timeStep, currentVoltage);
-            if (Options.isPrintMatrix())
-            {
-                System.out.println(P);
-                System.out.println("=\n");
-                System.out.println(Q);
-            }
-            //P * x(n+1) = Q, solve for x(n+1)
-            return P.solve(Q);
+        //(P = C + G/h)
+        IRealMatrix P = buildMatrixP(timeStep);
+        //Q = G/h*x(n) + b(n+1)
+        IRealVector Q = buildVectorQ(timeStep, currentVoltage);
+        if (Options.isPrintMatrix())
+        {
+            System.out.println(P);
+            System.out.println("=\n");
+            System.out.println(Q);
         }
+        //P*x(n+1) = Q, solve for x(n+1)
+        return P.solve(Q);
+
     }
 
-    /* TODO: currently only for AC and DC sources */
-    public void getNewBVector(double frequency, double nextTime, IComplex AcValue, double DcValue) {
+    public void getNewBVector(double nextTime) {
+        b.clear();
 
-        IComplex element;
-        double real;
-        double imag;
-        double amplitude;
-        double phase;
-        double result;
-        for (int i = 0; i < circuitNodeCount; i++) {
-            //Note at this point, vector b is already filled with phasor values, all that left to do
-            //is to find the present magnitude of the signal at each node
-            element = b.getValue(i);
-            real = element.getReal();
-            imag = element.getImag();
-
-            /* For AC source */
-            if (AcValue.getReal() != 0 || AcValue.getImag() != 0) {
-
-                if (real != 0 || imag != 0) {
-
-                     real = AcValue.getReal();
-                     imag = AcValue.getImag();
-                     amplitude = Math.sqrt((real*real) + (imag*imag));
-                     phase = Math.atan(imag/real);
-                     result = amplitude*(Math.cos(((Math.PI * 2 * frequency) * nextTime) + phase));
-                     b2.setValue(i, result);
-                     b3.setValue(i, real);
-                     //System.out.println("Result: " + result);
-
-               }
-
-            /* For DC Source */
-            } else {
-                 result = DcValue;
-                 b2.setValue(i, result);
-                 b3.setValue(i, result);
-            }
+        for(Source src: sources)
+        {
+            src.updateSourceVector(this, nextTime);
         }
+
     }
 
-    public void matrixMultiplication(IRealMatrix a, IRealVector b)
+        public void matrixMultiplication(IRealMatrix a, IRealVector b)
     {
         int columnsInB = 1;
         double value = 0;
@@ -199,13 +148,13 @@ public class TransEquation {
     public TransEquation clone()
     {
         TransEquation clone = new TransEquation(b.getDimension());
-        clone.G = (IRealMatrix) G.clone();
-        clone.C = (IRealMatrix) C.clone();
-        clone.b = (IComplexVector) b.clone();
+        clone.G =  G.clone();
+        clone.C =  C.clone();
+        clone.b =  b.clone();
         return clone;
     }
 
-    private TransEquation(IRealMatrix c, IComplexVector b, IRealMatrix g)
+    private TransEquation(IRealMatrix c, IRealVector b, IRealMatrix g)
     {
         this.C = c;
         this.b = b;
@@ -223,16 +172,26 @@ public class TransEquation {
 
     }
 
-    public void applySourceVectorStamp(int i, IComplex d)
+    /**
+     * Called during creation of this equation, the function construct the b vector by
+     * obtaining reference to all sources in the circuit.
+     * @param targetSrc
+     */
+    public void applySourceVectorStamp(Source targetSrc)
     {
-        //no stamps to ground
-        if (i == -1) return;
-
-        b.addValue(i, d);
+        sources.add(targetSrc);
     }
 
 
-    public void applyTransConductorInductor(int i, int j, double value)
+    public void updateSourceVector(int i, double d)
+    {
+        if(i == -1) return;
+
+        if (d != 0)
+            b.addValue(i, d);
+
+    }
+    public void applyComplexMatrixStamp(int i, int j, double value)
     {
         //no stamps to ground
         if (i == -1 || j == -1) return;
