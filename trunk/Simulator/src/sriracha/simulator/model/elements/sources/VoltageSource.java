@@ -76,8 +76,7 @@ public class VoltageSource extends Source
 
     public void updateSourceVector(TransEquation transEq, double time){
         double newVal = this.getTransientValue(time);
-        transEq.updateSourceVector(nMinus, newVal);
-        transEq.updateSourceVector(nPlus, -1 * newVal);
+        transEq.updateSourceVector(currentIndex, newVal);
     }
 
     public double getTransientValue(double time){

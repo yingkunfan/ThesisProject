@@ -101,6 +101,10 @@ public class TransEquation {
 
     }
 
+    /**
+     * Reload the b vector with transient values specified at "nextTime".
+     * @param nextTime time value at which the b vector values should be probed.
+     */
     public void getNewBVector(double nextTime) {
         b.clear();
 
@@ -181,7 +185,11 @@ public class TransEquation {
         sources.add(targetSrc);
     }
 
-
+    /**
+     * Update the present b vector.
+     * @param i index within the b vector where the change is to be applied.
+     * @param d value to be added in the b vector at the specified "i" index.
+     */
     public void updateSourceVector(int i, double d)
     {
         if(i == -1) return;

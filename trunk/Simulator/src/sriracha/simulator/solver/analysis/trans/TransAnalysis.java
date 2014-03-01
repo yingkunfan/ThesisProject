@@ -57,6 +57,8 @@ public class TransAnalysis extends Analysis{
     public IAnalysisResults run()
     {
         voltageVector = activator.realVector(equation.getG().getNumberOfColumns());
+        //the current voltage vector is initialized at 0.  It is currently specified
+        //that the initial conditions are to be set to zero init. conditions.
         voltageVector.clear();
         TransResults results = new TransResults();
         double currentTime = timeStart;
