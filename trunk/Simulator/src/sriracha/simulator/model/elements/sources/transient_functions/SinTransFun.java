@@ -61,7 +61,7 @@ public class SinTransFun extends TransientFunction {
      * Obtain the volt/current value of the sine wave function at the specified time.
      * The equation is vo + va* exp[-(time-td)*theta]*sin[2*PI*(freq*(time-td)+phi/360)]
      * @param time time at which the equation is probed
-     * @return
+     * @return The voltage or current value of the transient function at the specified time.
      */
     @Override
     public double probeValue(double time) {

@@ -1,11 +1,10 @@
 package sriracha.simulator.model.elements.sources.transient_functions;
 
-import sriracha.math.interfaces.IComplex;
 import sriracha.simulator.model.elements.sources.SourceClass;
 import sriracha.simulator.parser.CircuitBuilder;
 
 /**
- * Created by yiqing on 27/02/14.
+ * Created by yiqing on 01/03/14.
  */
 public class PulseTransFun extends TransientFunction {
 
@@ -47,9 +46,27 @@ public class PulseTransFun extends TransientFunction {
      */
     private double per = 0;
 
-    private double minimumPeriod = per;
+    /**
+     * The minimum allowable period of the pulse depending on the values of tr tf and pw.
+     * By standard, it is tr + tf + 2*pw.
+     */
+    private double minimumPeriod = 0;
+
+    /**
+     * The four edges of the pulse used to describe the pulse characteristic curve.
+     * The edges are at the two ends of the plateau and the two ends of the valley, and they
+     * are placed in the array in chronological order, with the plateau occurring before the valley.
+     */
     private double[]edgePositions;
 
+    /**
+     * Expected netlist params: <v1, v2, td, tr, tf, pw, per.>
+     * Any of these parameters may be left out, but if one is left out, all subsequent
+     * parameters (on the right of this one) must also be left out.
+     * NOTE: it is suggested that none of the parameters should be left out.
+     * @param params parameters describing the behavior of the pulse wave.
+     * @param srcClass The type of the source from which this pulse wave is generated from.
+     */
     public PulseTransFun(String[]params, SourceClass srcClass){
         super(srcClass);
         int index = 0;
@@ -58,10 +75,10 @@ public class PulseTransFun extends TransientFunction {
             switch(index){
                 case 0: v1 = CircuitBuilder.parseDouble(params[index]);     break;
                 case 1: v2 = CircuitBuilder.parseDouble(params[index]);     break;
-                case 2: td = CircuitBuilder.parseDouble(params[index]);   break;
-                case 3: tr = CircuitBuilder.parseDouble(params[index]);  break;
-                case 4: tf = CircuitBuilder.parseDouble(params[index]);    break;
-                case 5: pw = CircuitBuilder.parseDouble(params[index]);    break;
+                case 2: td = CircuitBuilder.parseDouble(params[index]);     break;
+                case 3: tr = CircuitBuilder.parseDouble(params[index]);     break;
+                case 4: tf = CircuitBuilder.parseDouble(params[index]);     break;
+                case 5: pw = CircuitBuilder.parseDouble(params[index]);     break;
                 case 6: per = CircuitBuilder.parseDouble(params[index]);    break;
             }
             index++;
@@ -82,7 +99,7 @@ public class PulseTransFun extends TransientFunction {
      * Obtain the volt/current value of the sine wave function at the specified time.
      * The equation is vo + va* exp[-(time-td)*theta]*sin[2*PI*(freq*(time-td)+phi/360)]
      * @param time time at which the equation is probed
-     * @return
+     * @return The voltage or current value of the transient function at the specified time.
      */
     @Override
     public double probeValue(double time) {
@@ -90,7 +107,7 @@ public class PulseTransFun extends TransientFunction {
         if(time <= td)
             return v1;
 
-        double trimmedTime = 0;
+        double trimmedTime;
         //cut out the delay time.
         trimmedTime = (time - td);
         //Reposition time to within the first period, but at the same position on the characteristic curve.
