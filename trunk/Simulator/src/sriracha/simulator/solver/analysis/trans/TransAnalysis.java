@@ -7,8 +7,6 @@ import sriracha.simulator.solver.analysis.Analysis;
 import sriracha.simulator.solver.analysis.AnalysisType;
 import sriracha.simulator.solver.analysis.IAnalysisResults;
 import sriracha.math.MathActivator;
-import sriracha.math.interfaces.IComplex;
-import sriracha.simulator.parser.CircuitBuilder;
 import sriracha.math.interfaces.IRealVector;
 
 /**
@@ -56,7 +54,7 @@ public class TransAnalysis extends Analysis{
     @Override
     public IAnalysisResults run()
     {
-        voltageVector = activator.realVector(equation.getG().getNumberOfColumns());
+        voltageVector = activator.realVector(equation.getC().getNumberOfColumns());
         //the current voltage vector is initialized at 0.  It is currently specified
         //that the initial conditions are to be set to zero init. conditions.
         voltageVector.clear();

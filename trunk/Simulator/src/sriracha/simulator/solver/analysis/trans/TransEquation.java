@@ -1,14 +1,13 @@
 package sriracha.simulator.solver.analysis.trans;
 
 import sriracha.math.MathActivator;
-import sriracha.math.interfaces.IComplex;
 import sriracha.math.interfaces.IRealMatrix;
 import sriracha.simulator.Options;
 import sriracha.simulator.model.Circuit;
 import sriracha.simulator.model.CircuitElement;
-import sriracha.math.interfaces.IComplexVector;
 import sriracha.math.interfaces.IRealVector;
 import sriracha.simulator.model.elements.sources.Source;
+import sriracha.simulator.solver.analysis.Equation;
 
 import java.util.ArrayList;
 
@@ -21,48 +20,50 @@ import java.util.ArrayList;
  * CURRENTLY INITIAL CONDITION is 0, I.E. V AT T=0 IS 0.
  * CURRENTLY ONLY IMPLEMENTS AC input (NOT DC INPUT)
  */
-public class TransEquation {
+public class TransEquation extends Equation
+{
 
     private MathActivator activator = MathActivator.Activator;
 
-    public static int circuitNodeCount;
+    protected int circuitNodeCount;
 
-    private IRealMatrix C;
-    private IRealVector b;
     private IRealMatrix G;
+    private IRealVector b;
+    private IRealMatrix C;
     private IRealVector matrixMultiplicationResult;
     private ArrayList<Source>sources;
 
 
     protected TransEquation(int circuitNodeCount)
     {
+        super(true);
         this.circuitNodeCount = circuitNodeCount;
 
-        C = activator.realMatrix(circuitNodeCount, circuitNodeCount);
-        b = activator.realVector(circuitNodeCount);
         G = activator.realMatrix(circuitNodeCount, circuitNodeCount);
+        b = activator.realVector(circuitNodeCount);
+        C = activator.realMatrix(circuitNodeCount, circuitNodeCount);
         sources = new ArrayList<Source>();
         matrixMultiplicationResult = activator.realVector(circuitNodeCount);
     }
 
 
     /**
-     * builds matrix C + G/h for backward Euler
+     * builds matrix G + C/h for backward Euler
      *
      */
     public IRealMatrix buildMatrixP(double timeStep)
     {
 
-        return (IRealMatrix) C.plus(G.times(1/timeStep));
+        return (IRealMatrix) G.plus(C.times(1 / timeStep));
     }
 
     /**
-     * builds vector [(G/h)*x(n)+b(n+1)] for backward Euler
+     * builds vector [(C/h)*x(n)+b(n+1)] for backward Euler
      *
      */
     public IRealVector buildVectorQ(double timeStep, IRealVector currentVoltage)
     {
-           matrixMultiplication((IRealMatrix)(G.times(1/timeStep)), currentVoltage);
+           matrixMultiplication((IRealMatrix)(C.times(1/timeStep)), currentVoltage);
            return (IRealVector) (matrixMultiplicationResult.plus(b));
     }
 
@@ -73,9 +74,9 @@ public class TransEquation {
 
         //Update the b vector for the "nextTime" specified.
         getNewBVector(nextTime);
-        //(P = C + G/h)
+        //(P = G + C/h)
         IRealMatrix P = buildMatrixP(timeStep);
-        //Q = G/h*x(n) + b(n+1)
+        //Q = C/h*x(n) + b(n+1)
         IRealVector Q = buildVectorQ(timeStep, currentVoltage);
         if (Options.isPrintMatrix())
         {
@@ -137,28 +138,22 @@ public class TransEquation {
     @Override
     public TransEquation clone()
     {
-        TransEquation clone = new TransEquation(b.getDimension());
-        clone.G =  G.clone();
+        TransEquation clone = new TransEquation(circuitNodeCount);
         clone.C =  C.clone();
+        clone.G =  G.clone();
         clone.b =  b.clone();
+        clone.sources = (ArrayList<Source>) sources.clone();
         return clone;
     }
 
-    private TransEquation(IRealMatrix c, IRealVector b, IRealMatrix g)
-    {
-        this.C = c;
-        this.b = b;
-        this.G = g;
-    }
-
-    public void applyTransRealMatrixStamp(int i, int j, double value)
+    public void applyRealMatrixStamp(int i, int j, double value)
     {
 
         //no stamps to ground
         if (i == -1 || j == -1) return;
 
         if (value != 0)
-            C.addValue(i, j, value);
+            G.addValue(i, j, value);
 
     }
 
@@ -192,13 +187,13 @@ public class TransEquation {
 
         if (value != 0)
         {
-            G.addValue(i, j, value);
+            C.addValue(i, j, value);
 
         }
     }
 
-    public IRealMatrix getG() {
-        return G;
+    public IRealMatrix getC() {
+        return C;
     }
 
 }

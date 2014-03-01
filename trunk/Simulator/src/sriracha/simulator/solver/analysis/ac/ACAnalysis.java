@@ -76,7 +76,8 @@ public final class ACAnalysis extends Analysis
     @Override
     public void extractSolvingInfo(Circuit circuit)
     {
-        equation = ACEquation.generate(circuit);
+        //For now, we are not yet dealing with non-linear AC analysis.
+        equation = ACEquation.generate(circuit, true);
     }
 
     @Override

@@ -171,7 +171,7 @@ public class Diode extends NonLinCircuitElement {
 
     @Override
     public void applyDC(DCEquation equation) {
-        if(equation instanceof DCNonLinEquation)
+        if(!equation.isLinear())
             applyDC((DCNonLinEquation)equation);
     }
 

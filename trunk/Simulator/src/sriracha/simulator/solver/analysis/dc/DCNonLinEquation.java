@@ -39,7 +39,7 @@ public class DCNonLinEquation extends DCEquation{
      */
     public DCNonLinEquation(int circuitNodeCount)
     {
-        super(circuitNodeCount);
+        super(circuitNodeCount, false);
 
         //Note: the array list initiate with a guessed size of amount of
         //non-linear circuit element. (guessing it as number of nodes)
@@ -62,7 +62,7 @@ public class DCNonLinEquation extends DCEquation{
     /**
      * This method acts as the official constructor of DCNonLinEquation objects.
      * The method apply the stamps of the circuit elements to the matrix equations.
-     * The "applyDC" method of circuit elements will call the "applyMatrixStamp" or
+     * The "applyDC" method of circuit elements will call the "applyRealMatrixStamp" or
      * "applySourceVectorStamp" method of DCEquation class through the elements of
      * the circuit.
      *
