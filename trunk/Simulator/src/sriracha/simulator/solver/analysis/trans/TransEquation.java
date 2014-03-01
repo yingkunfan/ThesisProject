@@ -29,34 +29,20 @@ public class TransEquation {
 
     private IRealMatrix C;
     private IRealVector b;
-    /**
-     * b(n+1)
-     */
-    private IRealVector b2;
-    private IRealVector b3;
     private IRealMatrix G;
-    private IRealVector initialVoltageGuess;
     private IRealVector matrixMultiplicationResult;
     private ArrayList<Source>sources;
 
 
-    private TransEquation(int circuitNodeCount)
+    protected TransEquation(int circuitNodeCount)
     {
         this.circuitNodeCount = circuitNodeCount;
 
         C = activator.realMatrix(circuitNodeCount, circuitNodeCount);
         b = activator.realVector(circuitNodeCount);
-        b2 = activator.realVector(circuitNodeCount);
-        b3 = activator.realVector(circuitNodeCount);
         G = activator.realMatrix(circuitNodeCount, circuitNodeCount);
         sources = new ArrayList<Source>();
         matrixMultiplicationResult = activator.realVector(circuitNodeCount);
-        initialVoltageGuess = activator.realVector(circuitNodeCount);
-    }
-
-    public IRealVector getInitialGuess()
-    {
-          return C.solve(b3);
     }
 
 

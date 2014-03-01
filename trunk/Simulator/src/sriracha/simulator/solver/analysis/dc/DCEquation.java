@@ -15,7 +15,7 @@ public class DCEquation
 
     protected int circuitNodeCount;
 
-    public DCEquation(int nodeCount)
+    protected DCEquation(int nodeCount)
     {
         G = MathActivator.Activator.realMatrix(nodeCount, nodeCount);
         b = MathActivator.Activator.realVector(nodeCount);

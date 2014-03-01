@@ -31,8 +31,6 @@ public class DCNonLinEquation extends DCEquation{
      */
     private MathActivator activator = MathActivator.Activator;
 
-    private IRealVector f;
-
     private ArrayList<NonLinCircuitElement> nonLinearElem;
     /**
      * private constructor creating a new DCNonLinEquation object with matrix equation
@@ -42,7 +40,6 @@ public class DCNonLinEquation extends DCEquation{
     public DCNonLinEquation(int circuitNodeCount)
     {
         super(circuitNodeCount);
-        f = activator.realVector(circuitNodeCount);
 
         //Note: the array list initiate with a guessed size of amount of
         //non-linear circuit element. (guessing it as number of nodes)
@@ -97,14 +94,9 @@ public class DCNonLinEquation extends DCEquation{
         if (Options.isPrintMatrix())
         {
             System.out.println(G);
-            System.out.println("+\n");
-            System.out.println(f);
             System.out.println("=\n");
             System.out.println(b);
         }
-
-        //create a new f vector
-        int n = b.getDimension();
 
         return myNewtonRapComp(G, b, nonLinearElem);
     }
