@@ -91,6 +91,7 @@ public class TransAnalysis extends Analysis{
 
         while(currentTime < timeEnd){
 
+
             if (Simulator.Instance.isCancelRequested())
                 return null;
 

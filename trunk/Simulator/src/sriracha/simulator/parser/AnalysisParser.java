@@ -14,9 +14,6 @@ import sriracha.simulator.solver.analysis.trans.TransAnalysis;
  */
 public class AnalysisParser {
 
-
-
-
     public static DCAnalysis parseDCAnalysis(String line, Circuit circuit)
     {
         String[] params = line.split("\\s+");
@@ -97,6 +94,7 @@ public class AnalysisParser {
         if (params.length != 4)
             throw new ParseException("Incorrect number of parameters for Transient analysis: " + line);
 
+        //The order of parameters is verified: rangeStop is supposed to come before rangeStart.
         double stepSize = CircuitBuilder.parseDouble(params[1]);
         double rangeStart = CircuitBuilder.parseDouble(params[3]);
         double rangeStop = CircuitBuilder.parseDouble(params[2]);

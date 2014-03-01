@@ -95,7 +95,7 @@ public class SourceParser {
                 double imaginary = amplitude * Math.sin(phase);
                 sourceValue.AC = MathActivator.Activator.complex(real, imaginary);
 
-                paramsIndex = paramsIndex + 3;
+                paramsIndex = paramsIndex + 4;
             //Obtain transient function
             }else{
                 if(params[paramsIndex].equalsIgnoreCase("SIN")){

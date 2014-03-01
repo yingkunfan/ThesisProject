@@ -49,6 +49,7 @@ public class TransEquation {
         b2 = activator.realVector(circuitNodeCount);
         b3 = activator.realVector(circuitNodeCount);
         G = activator.realMatrix(circuitNodeCount, circuitNodeCount);
+        sources = new ArrayList<Source>();
         matrixMultiplicationResult = activator.realVector(circuitNodeCount);
         initialVoltageGuess = activator.realVector(circuitNodeCount);
     }
