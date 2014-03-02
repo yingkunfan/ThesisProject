@@ -3,6 +3,7 @@ package sriracha.simulator.solver.analysis.trans;
 import sriracha.math.MathActivator;
 import sriracha.math.interfaces.IRealMatrix;
 import sriracha.math.interfaces.IRealVector;
+import sriracha.simulator.Options;
 import sriracha.simulator.model.Circuit;
 import sriracha.simulator.model.CircuitElement;
 import sriracha.simulator.model.NonLinCircuitElement;
@@ -29,7 +30,7 @@ public class TransNonLinEquation extends TransEquation{
 
 
     private TransNonLinEquation(int circuitNodeCount) {
-        super(circuitNodeCount);
+        super(circuitNodeCount, false);
 
         //Note: the array list initiate with a guessed size of amount of
         //non-linear circuit element. (guessing it as number of nodes)
@@ -62,4 +63,33 @@ public class TransNonLinEquation extends TransEquation{
         }
         return equation;
     }
+
+    /* Solve: P*x(n+1) = Q for the given the current nodal voltages and the
+   *  returns x(n+1) , i.e. nextVoltage
+   * */
+    IRealVector solve(double timeStep, IRealVector currentVoltage, double nextTime) {
+
+        System.out.println("Solving");
+
+        //Update the b vector for the "nextTime" specified.
+        getNewBVector(nextTime);
+        //(P = G + C/h)
+        IRealMatrix P = buildMatrixP(timeStep);
+        //Q = C/h*x(n) + b(n+1)
+        IRealVector Q = buildVectorQ(timeStep, currentVoltage);
+        if (Options.isPrintMatrix())
+        {
+            System.out.println(P);
+            System.out.println("=\n");
+            System.out.println(Q);
+        }
+        //P*x(n+1) = Q, solve for x(n+1)
+        //return P.solve(Q);
+        return myNewtonRapComp(P, Q, nonLinearElem);
+    }
+
+    public ArrayList<NonLinCircuitElement> getNonLinearElem() {
+        return nonLinearElem;
+    }
+
 }

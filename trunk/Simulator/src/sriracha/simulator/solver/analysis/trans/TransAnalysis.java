@@ -48,7 +48,11 @@ public class TransAnalysis extends Analysis{
     @Override
     public void extractSolvingInfo(Circuit circuit)
     {
-         equation = TransEquation.generate(circuit);
+        //we will be dealing with non-linear transient analysis very soon.
+        if(circuit.isLinear())
+            equation = TransEquation.generate(circuit, true);
+        else
+            equation = TransNonLinEquation.generate(circuit);
     }
 
     @Override
@@ -60,36 +64,8 @@ public class TransAnalysis extends Analysis{
         voltageVector.clear();
         TransResults results = new TransResults();
         double currentTime = timeStart;
-        //double nextTime = timeStart;
-        //int p = 0;
-
-        /*for (double i = timeStart; i <= timeEnd; i += timeStep) {
-
-             // To ensure that x(n+1) i.e. the next voltage value is not out of range
-            if (nextTime >= timeEnd) {
-               break;
-            }
-
-            if (Simulator.Instance.isCancelRequested())
-                return null;
-
-            if (Options.isPrintProgress())
-                System.out.println("Transient solving point");
-
-            nextTime =  currentTime + timeStep;
-
-            IRealVector soln = equation.solve(timeStep, voltageVector, nextTime);
-
-            results.addVector(nextTime, soln);
-            currentTime += timeStep;
-            voltageVector = soln;
-            p++;
-
-        }*/
 
         while(currentTime < timeEnd){
-
-
             if (Simulator.Instance.isCancelRequested())
                 return null;
 

@@ -27,16 +27,16 @@ public class TransEquation extends Equation
 
     protected int circuitNodeCount;
 
-    private IRealMatrix G;
-    private IRealVector b;
-    private IRealMatrix C;
-    private IRealVector matrixMultiplicationResult;
+    protected IRealMatrix G;
+    protected IRealVector b;
+    protected IRealMatrix C;
+    protected IRealVector matrixMultiplicationResult;
     private ArrayList<Source>sources;
 
 
-    protected TransEquation(int circuitNodeCount)
+    protected TransEquation(int circuitNodeCount, boolean isLinear)
     {
-        super(true);
+        super(isLinear);
         this.circuitNodeCount = circuitNodeCount;
 
         G = activator.realMatrix(circuitNodeCount, circuitNodeCount);
@@ -123,9 +123,9 @@ public class TransEquation extends Equation
         }
     }
 
-    public static TransEquation generate(Circuit circuit)
+    public static TransEquation generate(Circuit circuit, boolean isLinear)
     {
-        TransEquation equation = new TransEquation(circuit.getMatrixSize());
+        TransEquation equation = new TransEquation(circuit.getMatrixSize(), isLinear);
 
         for (CircuitElement element : circuit.getElements())
         {
@@ -138,7 +138,7 @@ public class TransEquation extends Equation
     @Override
     public TransEquation clone()
     {
-        TransEquation clone = new TransEquation(circuitNodeCount);
+        TransEquation clone = new TransEquation(circuitNodeCount, this.isLinear);
         clone.C =  C.clone();
         clone.G =  G.clone();
         clone.b =  b.clone();
