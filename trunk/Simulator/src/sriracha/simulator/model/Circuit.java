@@ -98,9 +98,14 @@ public class Circuit implements ICollectElements {
     public void assignAdditionalVarIndices() {
         int index = getNodeCount();
         for (CircuitElement e : elements.values()) {
+
             if (e.getExtraVariableCount() > 0) {
                 e.setFirstVarIndex(index);
                 index += e.getExtraVariableCount();
+            //For the case of subcircuits, it is possible that no extra internal nodes are
+            //created, but the sub-circuit do need to be expanded despite of that.
+            }else if(e instanceof SubCircuit){
+                ((SubCircuit)e).expand();
             }
         }
     }

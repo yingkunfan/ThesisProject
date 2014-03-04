@@ -23,7 +23,6 @@ public class Console
 
         if (args.length > 0)
         {
-
             if (args[0].charAt(0) == '-')
             {
                 //act according to arg
@@ -52,7 +51,7 @@ public class Console
                     //batch, run file contents and exit
                     if (args.length < 2)
                     {
-                        System.err.println("Insufficient args, should be:\n ... -b netlist");
+                        System.err.println("Insufficient args, should be:\n ... -b netlist8");
                         System.exit(1);
                     }
                     runAndPrint(args[1]);
@@ -68,15 +67,11 @@ public class Console
                 // String netlist = r.getContents();
                 // simulator.setNetlist(netlist);
             }
-
-
         } else
         {
-
             //Hello!
             //no args, running from IDE insert quick test stuff here ...
-            runAndPrint("C:\\1- University stuff\\ECSE 499\\Tests\\bnetlist4.txt");
-
+            runAndPrint("C:\\1- University stuff\\ECSE 499\\Tests\\bnetlist8.txt");
         }
 
         //start shell

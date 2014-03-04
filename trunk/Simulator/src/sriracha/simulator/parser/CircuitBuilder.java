@@ -120,9 +120,10 @@ public class CircuitBuilder
             if (line.length() == 0 || line.charAt(0) == '*' || Character.isWhitespace(line.charAt(0)))
                 continue;
 
-            if (line.charAt(0) != '.')
+            if (line.charAt(0) != '.'){
                 parseCircuitElement(circuit, line);
-            else if (line.startsWith(".SUBCKT"))
+            }
+            /*else if (line.startsWith(".SUBCKT"))
             {
                 int startingLine = i;
                 ArrayList<String> subCircuitLines = new ArrayList<String>();
@@ -139,7 +140,7 @@ public class CircuitBuilder
                     i++;
                 }
                 parseSubCircuitTemplate(subCircuitLines.toArray(new String[subCircuitLines.size()]));
-            }
+            } */
             else if (line.startsWith(".AC") || line.startsWith(".DC") || line.startsWith(".TR"))
             {
                 analysisTypes.add(parseAnalysis(line, this.circuit));
@@ -291,13 +292,15 @@ public class CircuitBuilder
         return params.toArray(new String[params.size()]);
     }
 
-
-
-
-
     private void parseSubCircuitTemplate(String[] lines)
     {
         String[] params = lines[0].split("\\s+");
+
+        System.out.println("In parseSubCircuitTemplate: ");
+        for(int i = 0; i < lines.length; i++){
+            System.out.println(lines[i]);
+        }
+        System.out.println("params length: " + params.length);
 
         if (params.length < 3)
             throw new ParseException("Not enough parameters for a subcircuit template: " + lines[0]);
@@ -312,6 +315,7 @@ public class CircuitBuilder
             parseCircuitElement(subCircuit, lines[i]);
 
         subcircuitTemplates.put(name, subCircuit);
+
     }
 
     public static Analysis parseAnalysis(String line, Circuit circuit)
@@ -389,6 +393,7 @@ public class CircuitBuilder
 
     private void createSubcircuit(ICollectElements elementCollection, String name, String subcircuitName, String[] nodes)
     {
+
         if (!subcircuitTemplates.containsKey(subcircuitName))
             throw new ParseException("Subcircuit template not found: " + subcircuitName);
 
@@ -400,6 +405,7 @@ public class CircuitBuilder
 
         sc.setNodeIndices(nodeIndices);
         elementCollection.addElement(sc);
+
     }
 
 

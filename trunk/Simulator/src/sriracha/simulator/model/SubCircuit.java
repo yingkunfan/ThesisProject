@@ -46,7 +46,7 @@ public class SubCircuit extends CircuitElement
      * uses that information combined with the template
      * to finish setting up before applying stamps
      */
-    private void expand()
+    public void expand()
     {
         elements.clear();
         for (CircuitElement e : template.getElements())
@@ -198,5 +198,17 @@ public class SubCircuit extends CircuitElement
     public SubCircuit buildCopy(String name, CircuitElement referencedElement)
     {
         return new SubCircuit(name, template);
+    }
+
+    /**
+     * To string function
+     * @return string description of the subcircuit
+     */
+    public String toString(){
+        String s = "SubCircuit:\n";
+        for (CircuitElement e : elements.values()) {
+            s += e + "\n";
+        }
+        return s;
     }
 }
