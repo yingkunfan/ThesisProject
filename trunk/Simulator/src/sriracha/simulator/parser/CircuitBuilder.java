@@ -292,15 +292,9 @@ public class CircuitBuilder
         return params.toArray(new String[params.size()]);
     }
 
-    private void parseSubCircuitTemplate(String[] lines)
+    public void parseSubCircuitTemplate(String[] lines)
     {
         String[] params = lines[0].split("\\s+");
-
-        System.out.println("In parseSubCircuitTemplate: ");
-        for(int i = 0; i < lines.length; i++){
-            System.out.println(lines[i]);
-        }
-        System.out.println("params length: " + params.length);
 
         if (params.length < 3)
             throw new ParseException("Not enough parameters for a subcircuit template: " + lines[0]);
@@ -408,7 +402,13 @@ public class CircuitBuilder
 
     }
 
+    public HashMap<String, SubCircuitTemplate> getSubCircuitTemplates(){
+        return this.subcircuitTemplates;
+    }
 
+    public HashMap<String, CircuitElementModel> getCircuitElementModels(){
+        return this.circuitElementModels;
+    }
 
     /**
      * parses a double and allows for Spice compatible postfixes (case insensitive)
