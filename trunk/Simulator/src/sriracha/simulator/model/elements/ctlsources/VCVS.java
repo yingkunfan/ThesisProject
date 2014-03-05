@@ -41,6 +41,9 @@ public class VCVS extends VCSource
     @Override
     public void applyDC(DCEquation equation)
     {
+        System.out.println("In VCVS => applyDC(DCEquation equation)");
+        System.out.println("currentIndex: " + currentIndex);
+
         equation.applyRealMatrixStamp(currentIndex, ncPlus, gm);
         equation.applyRealMatrixStamp(currentIndex, ncMinus, -gm);
         equation.applyRealMatrixStamp(nPlus, currentIndex, -1);

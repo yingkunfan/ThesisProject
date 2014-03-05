@@ -40,5 +40,21 @@ public class CircuitBuilderInit {
         /* Note that the ".END" line is omitted for the parseSubCircuitTemplate function. */
 
         circBuild.parseSubCircuitTemplate(opamp741);
+
+        /*
+        Ideal op-amps should have:
+            - infinite voltage gain
+            - Infinite input resistance
+            - 0 output resistance
+            - Infinite bandwidth
+            - zero input offset voltage
+        * */
+        String[]opampIdeal = new String[2];
+        opampIdeal[0] = ".subckt opampIdeal 1 2 3";
+        opampIdeal[1] = "eout 3 0 0 2 100k";
+        //opampIdeal[2] = "Rin 1 2 " + (Double.MAX_VALUE);
+
+        circBuild.parseSubCircuitTemplate(opampIdeal);
+
     }
 }

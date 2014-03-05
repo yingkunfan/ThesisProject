@@ -96,8 +96,13 @@ public class Circuit implements ICollectElements {
      * (Called by setCircuit() of Simulator class)
      */
     public void assignAdditionalVarIndices() {
+        System.out.println("In Circuit => assignAdditionalVarIndices()");
+
         int index = getNodeCount();
+
+
         for (CircuitElement e : elements.values()) {
+            System.out.println(e.toString());
 
             if (e.getExtraVariableCount() > 0) {
                 e.setFirstVarIndex(index);
@@ -107,6 +112,7 @@ public class Circuit implements ICollectElements {
             }else if(e instanceof SubCircuit){
                 ((SubCircuit)e).expand();
             }
+            System.out.println(e.toString());
         }
     }
 

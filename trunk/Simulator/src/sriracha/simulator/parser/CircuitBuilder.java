@@ -56,10 +56,24 @@ public class CircuitBuilder
 
     public CircuitBuilder(String netlist)
     {
-        //Initialize the CircuitBuilder.
+        System.out.println("In CircuitBuilder => CircuitBuilder(String netlist)");
+
+        ArrayList<String>initialList = new ArrayList<String>();
+        String[] lines = netlist.split("\\r?\\n");
+
         CircuitBuilderInit.initCircuitBuilder(this);
 
-        String[] lines = netlist.split("\\r?\\n");
+        /*for(int i = 0; i < lines.length; i++){
+            initialList.add(lines[i]);
+            if(i == 0){
+                CircuitBuilderInit.addBasicTemplates(initialList);
+            }
+        }
+
+        lines = new String[initialList.size()];
+        for(int i = 0; i < lines.length; i++){
+            lines[i] = initialList.get(i);
+        }*/
 
         ArrayList<String> sourceLines = new ArrayList<String>();
         ArrayList<String> dependentSourceLines = new ArrayList<String>();

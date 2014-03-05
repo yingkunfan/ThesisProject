@@ -47,6 +47,7 @@ public class DCEquation extends Equation
     {
         DCEquation equation = new DCEquation(circuit.getMatrixSize(), isLinear);
 
+        System.out.println("In DCEquation => generate");
         for (CircuitElement element : circuit.getElements())
         {
             element.applyDC(equation);
@@ -101,6 +102,8 @@ public class DCEquation extends Equation
     }
 
 
-
+    public IRealMatrix getG(){
+        return G;
+    }
 
 }
