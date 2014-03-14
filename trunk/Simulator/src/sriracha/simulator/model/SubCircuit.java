@@ -194,7 +194,6 @@ public class SubCircuit extends CircuitElement
     {
         int evCount = 0;
         for(CircuitElement e: template.getElements())
-        //for (CircuitElement e : elements.values())
         {
             evCount += e.getExtraVariableCount();
         }
