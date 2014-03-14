@@ -8,31 +8,30 @@ import sriracha.math.interfaces.IRealMatrix;
 import sriracha.simulator.Options;
 import sriracha.simulator.model.Circuit;
 import sriracha.simulator.model.CircuitElement;
+import sriracha.simulator.solver.analysis.Equation;
 
 /**
  * Linear equation
- * C + jwG = b
+ * G + jwG = b
  */
-public class ACEquation
+public class ACEquation extends Equation
 {
 
     private MathActivator activator = MathActivator.Activator;
 
     private int circuitNodeCount;
 
-
-    private IRealMatrix C;
-
-    private IComplexMatrix G;
+    private IComplexMatrix C;
 
     private IComplexVector b;
 
 
-    private ACEquation(int circuitNodeCount)
+    private ACEquation(int circuitNodeCount, boolean isLinear)
     {
+        super(isLinear);
         this.circuitNodeCount = circuitNodeCount;
-        C = activator.realMatrix(circuitNodeCount, circuitNodeCount);
-        G = activator.complexMatrix(circuitNodeCount, circuitNodeCount);
+        G = activator.realMatrix(circuitNodeCount, circuitNodeCount);
+        C = activator.complexMatrix(circuitNodeCount, circuitNodeCount);
         b = activator.complexVector(circuitNodeCount);
     }
 
@@ -40,11 +39,12 @@ public class ACEquation
      * builds matrix for solving circuit at specified frequency point
      *
      * @param frequency in Hz
-     * @return C + G*2*PI*frequency
+
+     * @return G + C*2*PI*frequency
      */
     private IComplexMatrix buildMatrixA(double frequency)
     {
-        return (IComplexMatrix) C.plus(G.times(Math.PI * 2 * frequency));
+        return (IComplexMatrix) G.plus(C.times(Math.PI * 2 * frequency));
     }
 
     /**
@@ -77,7 +77,7 @@ public class ACEquation
 
         if (value != 0)
         {
-            G.addValue(i, j, activator.complex(0, value));
+            C.addValue(i, j, activator.complex(0, value));
         }
     }
 
@@ -88,7 +88,7 @@ public class ACEquation
 
         if (value != 0)
         {
-            C.addValue(i, j, value);
+            G.addValue(i, j, value);
         }
     }
 
@@ -104,17 +104,17 @@ public class ACEquation
     @Override
     public ACEquation clone()
     {
-        ACEquation clone = new ACEquation(b.getDimension());
-        clone.G = (IComplexMatrix) G.clone();
-        clone.C = (IRealMatrix) C.clone();
+        ACEquation clone = new ACEquation(b.getDimension(), this.isLinear);
+        clone.C = (IComplexMatrix) C.clone();
+        clone.G = (IRealMatrix) G.clone();
         clone.b = (IComplexVector) b.clone();
         return clone;
     }
 
 
-    public static ACEquation generate(Circuit circuit)
+    public static ACEquation generate(Circuit circuit, boolean isLinear)
     {
-        ACEquation equation = new ACEquation(circuit.getMatrixSize());
+        ACEquation equation = new ACEquation(circuit.getMatrixSize(), isLinear);
 
         for (CircuitElement element : circuit.getElements())
         {

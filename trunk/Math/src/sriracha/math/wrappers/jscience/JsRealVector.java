@@ -75,6 +75,10 @@ class JsRealVector extends JsVector implements IRealVector
         setValue(i, getValue(i) + value);
     }
 
+    /**
+     * Copy the values of the target vector into this vector.
+     * @param target
+     */
     @Override
     public void copy(IRealVector target){
         if(this.sameSize(target)){

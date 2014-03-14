@@ -8,6 +8,7 @@ import sriracha.simulator.solver.analysis.ac.ACEquation;
 import sriracha.simulator.solver.analysis.dc.DCEquation;
 import sriracha.simulator.solver.analysis.dc.DCNonLinEquation;
 import sriracha.simulator.solver.analysis.trans.TransEquation;
+import sriracha.simulator.solver.analysis.trans.TransNonLinEquation;
 
 /**
  * Diode circuit element using the equation: I = Is*(exp(V/Vt)-1)
@@ -171,7 +172,7 @@ public class Diode extends NonLinCircuitElement {
 
     @Override
     public void applyDC(DCEquation equation) {
-        if(equation instanceof DCNonLinEquation)
+        if(!equation.isLinear())
             applyDC((DCNonLinEquation)equation);
     }
 
@@ -183,6 +184,19 @@ public class Diode extends NonLinCircuitElement {
     @Override
     public void applyAC(ACEquation equation) {
         //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void applyTrans(TransEquation equation)
+    {
+        if(!equation.isLinear())
+            applyTrans((TransNonLinEquation) equation);
+    }
+
+    @Override
+    public void applyTrans(TransNonLinEquation equation)
+    {
+        equation.applyNonLinearCircuitElem(this);
     }
 
     @Override
@@ -200,6 +214,5 @@ public class Diode extends NonLinCircuitElement {
         return is;
     }
 
-    @Override
-    public void applyTrans(TransEquation equation) {}
+
 }

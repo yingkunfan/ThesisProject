@@ -1,5 +1,10 @@
 package sriracha.frontend.model.elements.sources;
 
+<<<<<<< HEAD
+=======
+import android.annotation.TargetApi;
+import android.os.Build;
+>>>>>>> LinearTransient
 import sriracha.frontend.*;
 import sriracha.frontend.model.*;
 import sriracha.frontend.model.elements.*;
@@ -233,6 +238,10 @@ public class CurrentSource extends TwoPortElement implements Serializable
                     {
                         instTime = Float.parseFloat(value);
                     }
+<<<<<<< HEAD
+=======
+                    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+>>>>>>> LinearTransient
                     @Override
                     public String getUnit()
                     {
