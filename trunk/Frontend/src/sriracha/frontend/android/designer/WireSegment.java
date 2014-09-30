@@ -12,7 +12,7 @@ import java.util.Random;
 
 
 /**
- * This class represents a single, straight segment of wire, connected between
+ *  This class represents a single, straight segment of wire, connected between
  * two intersections.
  * The class holds a reference to each endpoint, which must be an instance of
  * {@link IWireIntersection}. It is also responsible for its own serialization,
